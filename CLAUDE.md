@@ -1,9 +1,10 @@
 # CLAUDE.md — Aamir Khan's Duolingo-Themed Portfolio
 
 Personal portfolio for Aamir Khan, CS Master's student at UC Riverside and aspiring AI
-engineer. Duolingo visual design language: flat geometric SVG character, signature green
-palette, bouncy spring animations, XP/streak gamification framing. Currently single-page,
-architected to grow into a multi-page site over time.
+engineer. **Dark-only** Duolingo Night Mode visual design language: blue-navy canvas,
+flat geometric SVG character, signature green accents, bouncy spring animations, XP/streak
+gamification framing. No light theme, no theme toggle. Currently single-page, architected
+to grow into a multi-page site over time.
 
 ---
 
@@ -85,11 +86,12 @@ const projects = [
 ```
 
 **`inProgress: true`:** Category badge renders as `"🚧 In Progress"` with `var(--duo-orange)`
-background and white text. `demoUrl: null` → hide Live Demo button entirely (no disabled
-state). GitHub button renders normally.
+background and `var(--duo-snow)` text. `demoUrl: null` → hide Live Demo button entirely (no
+disabled state). GitHub button renders normally.
 
 **`inProgress: false`:** Category badge uses `var(--duo-green-light)` background and
-`var(--duo-green)` text, label is the `category` value. Both buttons render normally.
+`var(--duo-green)` text (light-island recipe — cards sit on the white laptop screen), label
+is the `category` value. Both buttons render normally.
 
 **URL verification:** Repo slugs above are inferred. Confirm each URL before first deploy.
 
@@ -111,8 +113,10 @@ state). GitHub button renders normally.
   ```
 - **Inline SVG** — all character art inlined into HTML for CSS animation access
 - **CSS custom properties** — all design tokens in `:root` inside `style.css`. No hex
-  values elsewhere except the three confetti colors in `home.js` (confetti does not accept
-  CSS variables — this is the only documented exception)
+  values elsewhere except confetti colors in `home.js` (confetti does not accept CSS
+  variables — this is the only documented exception). Never reintroduce `#F7F7F7` or
+  `#FFFFFF` as page chrome; use `--duo-canvas` / `--duo-surface`. `--duo-snow` is for
+  laptop screen face and green-band button fills only.
 - **Google Fonts — Nunito only:**
   ```html
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -259,26 +263,40 @@ anchor-scroll on "View Projects" and "Hire Me" without any JS.
 
 ### Color Tokens (`:root` in `style.css` — the only place hex values live)
 
+Dark-only, faithful to Duolingo Night Mode neutrals. Accents stay saturated.
+
 ```css
 :root {
-  --duo-green:       #58CC02;   /* primary brand */
-  --duo-green-dark:  #46A302;   /* button shadow */
-  --duo-green-light: #D7F5B1;   /* badge bg, skill bar track */
-  --duo-yellow:      #FFD900;   /* XP badges, streak, focus rings */
-  --duo-blue:        #1CB0F6;   /* secondary accent */
-  --duo-orange:      #FF9600;   /* in-progress badge */
-  --duo-red:         #FF4B4B;   /* error states only */
-  --duo-white:       #FFFFFF;
-  --duo-off-white:   #F7F7F7;   /* page background */
-  --duo-border:      #E5E5E5;
-  --duo-text:        #3C3C3C;
-  --duo-text-muted:  #777777;
-  --radius-sm:       8px;
-  --radius-md:       12px;
-  --radius-lg:       16px;
-  --radius-pill:     999px;
+  /* Accents — unchanged from Duo brand */
+  --duo-green:        #58CC02;   /* primary brand / CTAs */
+  --duo-green-dark:   #58A700;   /* button bottom shadow (Duo night) */
+  --duo-green-muted:  #2A4A1A;   /* soft green fill on dark chrome (badges, outline hover, XP track) */
+  --duo-green-light:  #D7F5B1;   /* light-island only: badges/pills on white laptop screen */
+  --duo-yellow:       #FFD900;   /* XP badges, streak, focus rings */
+  --duo-blue:         #1CB0F6;   /* secondary accent */
+  --duo-orange:       #FF9600;   /* in-progress badge */
+  --duo-red:          #FF4B4B;   /* error states only */
+
+  /* Night Mode neutrals */
+  --duo-canvas:       #131F24;   /* page background */
+  --duo-surface:      #1F2C34;   /* cards, elevated panels */
+  --duo-surface-2:    #37464F;   /* higher elevation, desk, hover fills */
+  --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows */
+  --duo-text:         #FFFFFF;   /* primary text on dark chrome */
+  --duo-text-muted:   #AFAFAF;   /* subtitles, meta, descriptions */
+  --duo-snow:         #FFFFFF;   /* laptop screen face + footer button fills only — never page chrome */
+
+  --radius-sm:        8px;
+  --radius-md:        12px;
+  --radius-lg:        16px;
+  --radius-pill:      999px;
 }
 ```
+
+**Retired tokens:** `--duo-white` and `--duo-off-white`. Do not add them back.
+
+**Contrast checklist:** white/`--duo-text` on `--duo-canvas`; muted `#AFAFAF` on canvas;
+green buttons with white labels; yellow streak badge uses `--duo-canvas` text (not white).
 
 ### Layout Container
 
@@ -301,7 +319,7 @@ On mobile (< 768px), the `2rem` padding becomes `1rem`.
 body {
   font-family: 'Nunito', system-ui, sans-serif;
   font-size: 1rem; font-weight: 400; line-height: 1.7;
-  color: var(--duo-text); background: var(--duo-off-white);
+  color: var(--duo-text); background: var(--duo-canvas);
 }
 ```
 
@@ -338,7 +356,7 @@ Use a shared base class to avoid duplicated CSS. Apply both classes to every but
 
 /* Primary CTA — usage: class="duo-btn-base duo-btn" */
 .duo-btn {
-  background: var(--duo-green); color: #fff; border: none;
+  background: var(--duo-green); color: var(--duo-snow); border: none;
   box-shadow: 0 4px 0 var(--duo-green-dark);
 }
 .duo-btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-green-dark); }
@@ -349,11 +367,11 @@ Use a shared base class to avoid duplicated CSS. Apply both classes to every but
   background: transparent; color: var(--duo-green);
   border: 2px solid var(--duo-green); box-shadow: none;
 }
-.duo-btn-outline:hover { background: var(--duo-green-light); }
+.duo-btn-outline:hover { background: var(--duo-green-muted); }
 
-/* Footer variant — usage: class="duo-btn-base duo-btn-footer" */
+/* Footer variant — usage: class="duo-btn-base duo-btn-footer" (on green band) */
 .duo-btn-footer {
-  background: var(--duo-white); color: var(--duo-green);
+  background: var(--duo-snow); color: var(--duo-green);
   border: 2px solid rgba(255,255,255,0.6);
   box-shadow: 0 4px 0 rgba(0,0,0,0.12);
 }
@@ -362,9 +380,11 @@ Use a shared base class to avoid duplicated CSS. Apply both classes to every but
 
 ### Card Component
 
+Page chrome cards use Night Mode surface — never snow/white as page cards.
+
 ```css
 .duo-card {
-  background: var(--duo-white);
+  background: var(--duo-surface);
   border: 2px solid var(--duo-border);
   border-radius: var(--radius-lg);
   box-shadow: 0 4px 0 var(--duo-border);  /* Duolingo tactile depth — never omit */
@@ -380,15 +400,17 @@ Use a shared base class to avoid duplicated CSS. Apply both classes to every but
 
 `position: fixed; top: 0; z-index: 100; width: 100%`
 
-- Left: `icon.svg` at 40px + "Aamir Khan" Nunito 700
-- Right: NAV_LINKS rendered by `nav.js` + `"Hire Me"` (`.duo-btn-base.duo-btn`,
-  smooth-scrolls to `#contact` via `href="#contact"` — do NOT link to the email address)
-- Background: `rgba(255,255,255,0.95)` + `backdrop-filter: blur(8px)`
+- Left: `icon.svg` at 40px + "Aamir Khan" Nunito 700 (`var(--duo-text)`)
+- Right: NAV_LINKS rendered by `nav.js` (`var(--duo-text-muted)` default) + `"Hire Me"`
+  (`.duo-btn-base.duo-btn`, smooth-scrolls to `#contact` via `href="#contact"` — do NOT
+  link to the email address)
+- Background: `rgba(19, 31, 36, 0.95)` + `backdrop-filter: blur(8px)`
 - `border-bottom: 2px solid var(--duo-border)` always visible
-- Add `box-shadow: 0 2px 12px rgba(0,0,0,0.06)` after scrolling 60px (via scroll listener
+- Add `box-shadow: 0 2px 12px rgba(0,0,0,0.35)` after scrolling 60px (via scroll listener
   in `nav.js` toggling a `.scrolled` class)
 - Avatar hover: `transform: scale(1.1)` with `transition: transform 0.15s ease`
 - Mobile (< 768px): hamburger collapses links to dropdown; avatar + name always visible
+- Future full-path active underline: still `var(--duo-green)`
 
 ### Section 2 — Hero
 
@@ -396,22 +418,23 @@ Use a shared base class to avoid duplicated CSS. Apply both classes to every but
 
 Background:
 ```css
-background-color: var(--duo-off-white);
-background-image: radial-gradient(circle, var(--duo-border) 1px, transparent 1px);
+background-color: var(--duo-canvas);
+background-image: radial-gradient(circle, rgba(55, 70, 79, 0.7) 1px, transparent 1px);
 background-size: 28px 28px;
 ```
 
 Layout: `display: flex; align-items: center; gap: 2rem` — 60% text left, 40% character right.
 
 **Left column content (use verbatim):**
-- `"Hi, I'm Aamir Khan 👋"` — Nunito 900, hero clamp size
+- `"Hi, I'm Aamir Khan 👋"` — Nunito 900, hero clamp size, `var(--duo-text)`
 - `"Aspiring AI Engineer"` — Nunito 700, 1.4rem, `var(--duo-green)`
 - `"AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI"` — `var(--duo-text-muted)`
-- `"CS Master's student at UC Riverside. Building applied AI and agentic systems; teaching others along the way."` — body
+- `"CS Master's student at UC Riverside. Building applied AI and agentic systems; teaching others along the way."` — body, `var(--duo-text)`
 - Buttons: `"View Projects"` (`.duo-btn-base.duo-btn`, `href="#projects"`) + `"Resume"` (`.duo-btn-base.duo-btn-outline`, opens resume URL in new tab)
-- XP badge: `"🔥 Streak: 365 days"` — `background: var(--duo-yellow)`, `color: var(--duo-text)`, Nunito 700, `border-radius: var(--radius-pill)`, `padding: 4px 14px`, `font-size: 0.85rem`
+- XP badge: `"🔥 Streak: 365 days"` — `background: var(--duo-yellow)`, `color: var(--duo-canvas)` (dark text on yellow for contrast — do not use white), Nunito 700, `border-radius: var(--radius-pill)`, `padding: 4px 14px`, `font-size: 0.85rem`
 
-**Right column:** `standing.svg` inlined
+**Right column:** `standing.svg` inlined — no recolor required; `#1A1A1A` outlines remain
+visible on the navy canvas.
 
 **Page-load animation (CSS only — not GSAP):**
 ```css
@@ -435,11 +458,14 @@ state immediately.
 
 ### Section 3 — About / Skills
 
-`id="about"` · `background: var(--duo-white)` · `padding: 5rem 0`
+`id="about"` · `background: var(--duo-canvas)` · `padding: 5rem 0`
+
+Canvas page + surface cards (avoids a flat elevated slab for the whole section).
 
 - Eyebrow label: `"SKILL TREE"` — `var(--duo-green)`, `0.8rem`, weight 800, `letter-spacing: 0.15em`
-- Heading: `"What I've Learned"` — Nunito 800
+- Heading: `"What I've Learned"` — Nunito 800, `var(--duo-text)`
 - Layout: 45% bio left / 55% skill grid right (stacked on mobile)
+- Bio text: `var(--duo-text-muted)` (or body `--duo-text` for primary sentences)
 
 **Bio (verbatim):**
 > I'm Aamir — a CS Master's student at UC Riverside with a focus on applied AI and agentic systems. I've built transformers from scratch, fine-tuned LLMs, and shipped AI-powered tools. Currently training AI models at Handshake AI and testing AI products at DeepLearning.AI. Open to SWE and AI/ML internships.
@@ -456,9 +482,10 @@ const skills = [
 ];
 ```
 
-Each skill: `.duo-card` with icon + name (Nunito 700) + `"[level] XP"` right-aligned +
-XP bar (`height: 10px`, `border-radius: var(--radius-pill)`, track `--duo-green-light`,
-fill `--duo-green`). Add class `skill-card` to each card.
+Each skill: `.duo-card` with icon + name (Nunito 700, `var(--duo-text)`) + `"[level] XP"`
+right-aligned (`var(--duo-text-muted)`) + XP bar (`height: 10px`,
+`border-radius: var(--radius-pill)`, track `--duo-green-muted`, fill `--duo-green`).
+Add class `skill-card` to each card.
 
 XP bar and card animations — use a single GSAP batch call per section, not a global
 index accumulator (which causes excessive delays on later cards):
@@ -508,8 +535,8 @@ above). Scrolling opens the lid. Scene zooms in. Project carousel appears on scr
 **CSS 3D — implement exactly:**
 
 ```css
-#laptop-scene   { height: 300vh; }  /* scroll distance — never inline, must be in stylesheet */
-.laptop-sticky  { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+#laptop-scene   { height: 300vh; background: var(--duo-canvas); }  /* scroll distance — never inline */
+.laptop-sticky  { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--duo-canvas); }
 
 .laptop-3d-wrapper {
   perspective: 1400px;
@@ -530,6 +557,10 @@ above). Scrolling opens the lid. Scene zooms in. Project carousel appears on scr
   position: absolute;  /* overlays the screen surface inside the lid */
   inset: 10px;         /* matches the bezel inset */
   opacity: 0;          /* fades in during Phase 2 of the GSAP timeline */
+}
+
+.desk-surface {
+  background: var(--duo-surface-2);  /* slate desk strip under laptop */
 }
 
 .scene-container { will-change: transform; }
@@ -598,15 +629,20 @@ laptopTl
 ```
 
 **Laptop visual (CSS-drawn — no image files):**
-- Base: `#BDBDBD` rounded rect, trackpad, key grid via `repeating-linear-gradient`
+- Base: `#BDBDBD` rounded rect, trackpad, key grid via `repeating-linear-gradient` (physical object — keep)
 - Lid exterior: `var(--duo-green)`, `border-radius: 12px 12px 0 0`
 - Screen bezel: `#2C2C2C`, inset 10px, `border-radius: 8px`
-- Screen surface: `#FFFFFF`
+- Screen surface: `var(--duo-snow)` — bright app window on the dark scene (intentional)
 - Camera dot: `#2C2C2C` circle at top-center of bezel
-- Glow at 30–70% open: `filter: drop-shadow(0 0 24px rgba(88,204,2,0.4))` on `.laptop-lid`;
-  toggle via `onUpdate` progress check
+- Glow at 30–70% open: `filter: drop-shadow(0 0 24px rgba(88,204,2,0.5))` on `.laptop-lid`
+  (slightly stronger than light-era 0.4 so it reads on navy); toggle via `onUpdate` progress check
 
 ### Section 5 — Project Carousel (inside `.laptop-screen-content`)
+
+**Light island:** The laptop screen is the only light surface on the site. Project cards use
+a light mini-theme (dark body copy, light badge chrome) so the device reads like a real
+app window. Do not restyle in-screen cards with `--duo-text` (white) — that would vanish
+on snow. Scope light-island overrides under `.laptop-screen-content` / `.project-card`.
 
 All five project cards are pre-rendered in the DOM. Only one is visible at a time via
 CSS class switching. The `.laptop-screen-content` container must be
@@ -632,12 +668,22 @@ CSS class switching. The `.laptop-screen-content` container must be
 
 **Card structure:**
 ```
-[CATEGORY BADGE]             ← green pill (inProgress=false) or orange "🚧 In Progress" pill
-Project Name          h3     ← Nunito 800, 1.1rem
-Description           p      ← body, var(--duo-text-muted)
-[Python] [PyTorch]           ← tech stack pills (same pill style as badge)
+[CATEGORY BADGE]             ← green-light pill (inProgress=false) or orange "🚧 In Progress" pill
+Project Name          h3     ← Nunito 800, 1.1rem, dark text (#3C3C3C or local --island-text)
+Description           p      ← body, muted dark (#777777 or local --island-muted)
+[Python] [PyTorch]           ← tech stack pills (same pill style as badge; light-island greens)
 [View Demo] [GitHub]         ← .duo-btn-base.duo-btn + .duo-btn-base.duo-btn-outline
                              ← omit View Demo entirely when demoUrl is null
+```
+
+Define local island tokens on `.laptop-screen-content` (hex still only via CSS variables):
+```css
+.laptop-screen-content {
+  --island-text: #3C3C3C;
+  --island-muted: #777777;
+  --island-border: #E5E5E5;
+  color: var(--island-text);
+}
 ```
 
 **Carousel state machine:**
@@ -672,7 +718,8 @@ function goTo(newIndex) {
 }
 ```
 
-Navigation: left/right arrow buttons outside the screen bezel.
+Navigation: left/right arrow buttons outside the screen bezel (on the dark scene —
+`var(--duo-green)` icons/borders, not light-chrome assumptions).
 Dots: `var(--duo-green)` active, `var(--duo-border)` inactive.
 Keyboard: `ArrowLeft` → `goTo(currentIndex - 1)`, `ArrowRight` → `goTo(currentIndex + 1)`.
 Touch swipe — note correct direction mapping:
@@ -721,15 +768,20 @@ function updateCharacterMood(mood) {
 To add a new mood: (1) add `<g class="face" data-face="[mood]">` to `seated.svg`,
 (2) add one CSS rule, (3) use the string in `characterMood` or `updateCharacterMood()`.
 
+Mood faces and jacket fills stay identical on the navy canvas — no SVG recolor required
+unless contrast QA fails. Navy increases perceived saturation of jacket blue; that is fine.
+
 ### Section 7 — Footer / CTA
 
-`id="contact"` · `background: var(--duo-green)` · `color: white`
+`id="contact"` · `background: var(--duo-green)` · `color: var(--duo-snow)`
+
+Keep the full green band — bold Duo CTA punctuation at the bottom of the dark site.
 
 Rendered entirely by `footer.js` into `#footer-root`. Template must include:
 
 - Heading: `"Let's build something."` — Nunito 900, white, 2.5rem
 - Subheading: `"Open to SWE and AI/ML internships · Let's talk."` — white, 80% opacity
-- Gamification pill: `"🎉 Lesson complete! You've unlocked: Aamir Khan"` — white bg,
+- Gamification pill: `"🎉 Lesson complete! You've unlocked: Aamir Khan"` — `var(--duo-snow)` bg,
   `var(--duo-green)` text, Nunito 800, `border-radius: var(--radius-pill)`, `padding: 8px 20px`
 - Buttons (2×2 grid desktop / stacked mobile, all `.duo-btn-base.duo-btn-footer`):
   - `"📄 Resume"` → resume Google Drive URL, new tab
@@ -779,6 +831,8 @@ Duolingo-style stylized version of Aamir's actual appearance — not a generic a
 - Outlines: `stroke="#1A1A1A"` `stroke-width="2.5"` `stroke-linejoin="round"` on all shapes
 - Head ~40% of total body height; body compact; limbs short and thick
 - Expressions must be clearly distinct from each other at a glance
+- Character fills are designed for the navy Night Mode canvas — do not lighten skin/jacket
+  for dark mode; only recolor if a contrast QA failure is found
 
 ### SVG Specs
 
@@ -870,7 +924,10 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 ## Code Conventions
 
 - Vanilla JS only — no TypeScript, no frameworks, no npm
+- Dark-only theme — no light theme, no `prefers-color-scheme` dual palette, no theme toggle
 - All hex values in `:root` only, except confetti colors in `home.js` (documented exception)
+- Never use `#F7F7F7` / raw `#FFFFFF` as page or card chrome — `--duo-canvas` / `--duo-surface`;
+  `--duo-snow` only for laptop screen face and green-band button fills
 - Section comments: `<!-- ===== SECTION: HERO ===== -->`
 - GSAP timeline comments: what it targets and what it does
 - Mobile-first: base for 375px; breakpoints at 768px, 1024px, 1440px
@@ -895,30 +952,38 @@ npx vercel                    # deploy; or connect repo to Vercel dashboard
 
 1. Place `owner-photo.jpg` in `assets/reference/` — study before drawing anything
 2. `icon.svg` — establishes skin tone, hair, face shape for all other SVGs
-3. `standing.svg` — full body; verify proportions match icon at 200×320
+3. `standing.svg` — full body; verify proportions match icon at 200×320 on navy canvas
 4. `seated.svg` — waist-up; all four `[data-face]` groups; verify mood swap via console: `updateCharacterMood('happy')`
 5. `laptop.svg` — base + lid; verify they separate cleanly into two HTML elements
-6. `style.css` — reset + `box-sizing`, `scroll-behavior`, `:root` tokens, body, `.container`, typography, all button variants, `.duo-card`, `#laptop-scene` height, `.laptop-sticky`, `.project-card` transition CSS, character idle keyframes, mobile laptop override
+6. `style.css` — reset + `box-sizing`, `scroll-behavior`, **Night Mode `:root` tokens first**, body on `--duo-canvas`, `.container`, typography, all button variants (outline hover → `--duo-green-muted`), `.duo-card` on `--duo-surface`, `#laptop-scene` height + canvas bg, `.laptop-sticky`, light-island variables on `.laptop-screen-content`, `.project-card` transition CSS, character idle keyframes, mobile laptop override
 7. `index.html` skeleton — full shell, all section IDs including the `#projects` anchor div, semantic structure, no JS yet
-8. Inline all SVGs; verify sizing at 375px and 1280px in browser
-9. `nav.js` — NAV_LINKS render + scroll shadow + mobile hamburger
+8. Inline all SVGs; verify sizing and contrast at 375px and 1280px in browser (dark chrome)
+9. `nav.js` — NAV_LINKS render + dark scrolled shadow + mobile hamburger
 10. `footer.js` — footer HTML template with `#copyright-year` span + dynamic year
-11. Hero — layout + CSS page-load animations
-12. About / Skills — card grid, XP bars, GSAP batch stagger
-13. Laptop scene — static HTML + CSS 3D; verify `rotateX(0deg)` looks correctly flat in browser before adding GSAP
+11. Hero — layout + CSS page-load animations; streak badge uses `--duo-canvas` text on yellow
+12. About / Skills — surface card grid, XP bars with `--duo-green-muted` track, GSAP batch stagger
+13. Laptop scene — static HTML + CSS 3D; desk `--duo-surface-2`; verify `rotateX(0deg)` looks correctly flat before adding GSAP
 14. GSAP laptop timeline — lid rotation, screen fade, zoom; test `scrub: 0.5` feel
-15. Carousel — CSS card states, JS state machine, nav arrows, dots, keyboard, touch
+15. Carousel — light-island card chrome, CSS card states, JS state machine, dark-scene arrows/dots, keyboard, touch
 16. Character mood wiring — `updateCharacterMood()` from carousel `goTo()` and GSAP `onUpdate`
-17. Footer — confetti via ScrollTrigger
-18. `og-image.png` — 1200×630px, green bg, white "Aamir Khan" Nunito 900, role text below
+17. Footer — green band + confetti via ScrollTrigger
+18. `og-image.png` — 1200×630px, `--duo-canvas` (`#131F24`) background, Feather Green accents, white "Aamir Khan" Nunito 900, role text below
 19. Mobile pass — 375px + 768px; laptop static fallback; carousel touch swipe
-20. Accessibility pass — `:focus-visible`, `aria-label` on all SVGs, keyboard carousel nav
+20. Accessibility pass — `:focus-visible`, `aria-label` on all SVGs, keyboard carousel nav; verify white-on-canvas, muted-on-canvas, green CTA, yellow streak contrast
 21. Reduced motion pass — test with OS reduced motion enabled; verify both CSS and JS paths
 22. Performance pass — `will-change` on `.laptop-lid` + `.scene-container` only; all GSAP inside `DOMContentLoaded`; confirm no layout shift on load
 
 ---
 
 ## Critical Technical Notes
+
+**Dark theme (Night Mode):**
+- Site is dark-only — canvas `#131F24`, surfaces `#1F2C34` / `#37464F`, text white / `#AFAFAF`
+- Accents stay bright (`#58CC02`, yellow, blue, orange) — do not desaturate for dark mode
+- Do not reintroduce `#F7F7F7` or `#FFFFFF` as page chrome; `--duo-snow` is for laptop screen
+  face and footer button fills only
+- Laptop screen is the sole light island; in-screen cards use `--island-*` dark text tokens
+- No theme toggle and no `prefers-color-scheme` dual token sets
 
 **Laptop 3D:**
 - `perspective` on `.laptop-3d-wrapper`; `transform-style: preserve-3d` on `.laptop-lid`
