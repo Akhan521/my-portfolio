@@ -32,6 +32,8 @@ Update this block after every commit so a cold start knows exactly where to pick
 
 - [ ] Place `owner-photo.jpg` into `assets/reference/` — **required** before drawing any SVG.
       The character is a stylized version of Aamir's real appearance, not a generic avatar.
+      Source photo: `C:\Users\aamir\OneDrive\Pictures\Screenshots\aamir-prof-small.png`
+      (it's a PNG — convert to a real `.jpg`, don't just rename). This is created in Commit 1.
 - [ ] Confirm the five project repo URLs in `CLAUDE.md` resolve (they are inferred slugs).
 
 ---
