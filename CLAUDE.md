@@ -287,10 +287,11 @@ Dark-only, faithful to Duolingo Night Mode neutrals. Accents stay saturated.
   --duo-red:          #FF4B4B;   /* error states only */
 
   /* Night Mode neutrals */
-  --duo-canvas:       #131F24;   /* page background */
-  --duo-surface:      #1F2C34;   /* cards, elevated panels */
-  --duo-surface-2:    #37464F;   /* higher elevation, desk, hover fills */
-  --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows */
+  --duo-canvas:       #0F181C;   /* page background */
+  --duo-surface:      #1B262C;   /* cards, elevated panels */
+  --duo-surface-2:    #32414A;   /* higher elevation, desk, hover fills */
+  --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows — intentionally
+                                    one step lighter than surface-2 so edges stay legible */
   --duo-text:         #FFFFFF;   /* primary text on dark chrome */
   --duo-text-muted:   #AFAFAF;   /* subtitles, meta, descriptions */
   --duo-snow:         #FFFFFF;   /* laptop screen face + footer button fills only — never page chrome */
@@ -303,6 +304,11 @@ Dark-only, faithful to Duolingo Night Mode neutrals. Accents stay saturated.
 ```
 
 **Retired tokens:** `--duo-white` and `--duo-off-white`. Do not add them back.
+
+**Retired values:** the neutral ramp was originally Duolingo's own `#131F24` / `#1F2C34` /
+`#37464F`. It was deepened one step (same ~198° blue-slate hue, lower lightness) to cut the
+navy cast — this also widens canvas↔surface separation so `.duo-card` and its tactile
+bottom shadow read better. Do not revert to the old values.
 
 **Contrast checklist:** white/`--duo-text` on `--duo-canvas`; muted `#AFAFAF` on canvas;
 green buttons with white labels; yellow streak badge uses `--duo-canvas` text (not white).
@@ -413,7 +419,8 @@ Page chrome cards use Night Mode surface — never snow/white as page cards.
 - Right: NAV_LINKS rendered by `nav.js` (`var(--duo-text-muted)` default) + `"Hire Me"`
   (`.duo-btn-base.duo-btn`, smooth-scrolls to `#contact` via `href="#contact"` — do NOT
   link to the email address)
-- Background: `rgba(19, 31, 36, 0.95)` + `backdrop-filter: blur(8px)`
+- Background: `rgba(15, 24, 28, 0.95)` + `backdrop-filter: blur(8px)` (this is `--duo-canvas`
+  at 95% — keep the two in sync if the canvas token ever changes again)
 - `border-bottom: 2px solid var(--duo-border)` always visible
 - Add `box-shadow: 0 2px 12px rgba(0,0,0,0.35)` after scrolling 60px (via scroll listener
   in `nav.js` toggling a `.scrolled` class)
@@ -982,7 +989,7 @@ npx vercel                    # deploy; or connect repo to Vercel dashboard
 15. Carousel — light-island card chrome, CSS card states, JS state machine, dark-scene arrows/dots, keyboard, touch
 16. Character mood wiring — `updateCharacterMood()` from carousel `goTo()` and GSAP `onUpdate`
 17. Footer — green band + confetti via ScrollTrigger
-18. `og-image.png` — 1200×630px, `--duo-canvas` (`#131F24`) background, Feather Green accents, white "Aamir Khan" Nunito 900, role text below
+18. `og-image.png` — 1200×630px, `--duo-canvas` (`#0F181C`) background, Feather Green accents, white "Aamir Khan" Nunito 900, role text below
 19. Mobile pass — 375px + 768px; laptop static fallback; carousel touch swipe
 20. Accessibility pass — `:focus-visible`, `aria-label` on all SVGs, keyboard carousel nav; verify white-on-canvas, muted-on-canvas, green CTA, yellow streak contrast
 21. Reduced motion pass — test with OS reduced motion enabled; verify both CSS and JS paths
@@ -993,7 +1000,7 @@ npx vercel                    # deploy; or connect repo to Vercel dashboard
 ## Critical Technical Notes
 
 **Dark theme (Night Mode):**
-- Site is dark-only — canvas `#131F24`, surfaces `#1F2C34` / `#37464F`, text white / `#AFAFAF`
+- Site is dark-only — canvas `#0F181C`, surfaces `#1B262C` / `#32414A`, text white / `#AFAFAF`
 - Accents stay bright (`#58CC02`, yellow, blue, orange) — do not desaturate for dark mode
 - Do not reintroduce `#F7F7F7` or `#FFFFFF` as page chrome; `--duo-snow` is for laptop screen
   face and footer button fills only

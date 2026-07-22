@@ -17,10 +17,11 @@ img, svg { display: block; max-width: 100%; }
   --duo-red:          #FF4B4B;   /* error states only */
 
   /* Night Mode neutrals */
-  --duo-canvas:       #131F24;   /* page background */
-  --duo-surface:      #1F2C34;   /* cards, elevated panels */
-  --duo-surface-2:    #37464F;   /* higher elevation, desk, hover fills */
-  --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows */
+  --duo-canvas:       #0F181C;   /* page background */
+  --duo-surface:      #1B262C;   /* cards, elevated panels */
+  --duo-surface-2:    #32414A;   /* higher elevation, desk, hover fills */
+  --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows — intentionally
+                                    one step lighter than surface-2 so edges stay legible */
   --duo-text:         #FFFFFF;   /* primary text on dark chrome */
   --duo-text-muted:   #AFAFAF;   /* subtitles, meta, descriptions */
   --duo-snow:         #FFFFFF;   /* laptop screen face + footer button fills only — never page chrome */

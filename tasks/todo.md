@@ -229,3 +229,7 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   Beard + tie added to CLAUDE.md Visual Profile. README rewritten as UTF-8 (was UTF-16).
 - 2026-07-21 — Commit 2: design system. 19 tokens, zero hex outside `:root`. Scratch
   `preview.html` (gitignored) renders every token, button variant, and card for eyeballing.
+- 2026-07-21 — Neutral ramp deepened one step to cut the navy cast: canvas `#131F24`→`#0F181C`,
+  surface `#1F2C34`→`#1B262C`, surface-2 `#37464F`→`#32414A`. `--duo-border` stays `#37464F`,
+  now deliberately one step lighter than surface-2 so edges stay legible. Navbar rgba in
+  CLAUDE.md updated to match. Old values documented as retired.
