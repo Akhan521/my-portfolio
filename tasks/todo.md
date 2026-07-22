@@ -21,8 +21,8 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** Commit 1 — Project scaffold & HTML shell
-> **Last completed:** Commit 0 — task tracker (this file)
+> **Next up:** Commit 2 — Design system in style.css
+> **Last completed:** Commit 1 — Project scaffold & HTML shell
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -30,7 +30,7 @@ Update this block after every commit so a cold start knows exactly where to pick
 
 ## Prerequisites (one-time, before Commit 3)
 
-- [ ] Place `owner-photo.jpg` into `assets/reference/` — **required** before drawing any SVG.
+- [x] Place `owner-photo.jpg` into `assets/reference/` — **required** before drawing any SVG.
       The character is a stylized version of Aamir's real appearance, not a generic avatar.
       Source photo: `C:\Users\aamir\OneDrive\Pictures\Screenshots\aamir-prof-small.png`
       (it's a PNG — convert to a real `.jpg`, don't just rename). This is created in Commit 1.
@@ -58,13 +58,14 @@ commit) — no giant JS commit at the end.
 
 ## Phase 0 — Foundation
 
-### [ ] Commit 1 — Project scaffold & HTML shell
+### [x] Commit 1 — Project scaffold & HTML shell
 Lay down the full file tree and the empty page skeleton. No styling, no content yet.
-- [ ] Create dirs: `js/`, `pages/` (+ `.gitkeep`), `assets/reference/`, `assets/character/`
-- [ ] `index.html` from the CLAUDE.md HTML shell: head/meta/fonts/favicon, `#nav-root`,
+- [x] Create dirs: `js/`, `pages/` (+ `.gitkeep`), `assets/reference/`
+      (`assets/character/` skipped — git can't track empty dirs; created in Commit 3)
+- [x] `index.html` from the CLAUDE.md HTML shell: head/meta/fonts/favicon, `#nav-root`,
       empty `<main>`, `#footer-root`, all script tags in the required load order
-- [ ] Create empty placeholder files: `style.css`, `nav.js`, `footer.js`, `js/home.js`
-- [ ] Replace stub `README.md` with a short project intro + local-run instructions
+- [x] Create empty placeholder files: `style.css`, `nav.js`, `footer.js`, `js/home.js`
+- [x] Replace stub `README.md` with a short project intro + local-run instructions
 - **Done when:** page loads at `localhost:8080` with no console errors (blank but valid).
 - **Commit:** `Scaffold project structure and HTML shell.`
 
@@ -221,3 +222,6 @@ head ~40% of body height. Tune all four to read correctly on the navy canvas.
 Append a one-line note per completed commit (date + what shipped + anything to revisit).
 
 - 2026-07-20 — Commit 0: created this task tracker and lessons file.
+- 2026-07-21 — Commit 1: scaffold + shell. Reference photo converted PNG→JPG and placed.
+  Photo confirms navy suit / white shirt / dark tie, short dark hair, **full beard** — the
+  beard is not in the CLAUDE.md visual profile; add it to the SVGs in Commit 3.
