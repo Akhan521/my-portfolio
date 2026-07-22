@@ -133,27 +133,36 @@ is the `category` value. Both buttons render normally.
 ```
 portfolio/
 ├── CLAUDE.md
-├── index.html                 ← only page currently
-├── style.css                  ← all shared styles: tokens, reset, typography, components
-├── nav.js                     ← renders NAV_LINKS, handles active state
-├── footer.js                  ← renders footer HTML including copyright span
+├── README.md
+├── index.html                 ← entry point; stays at root
+├── css/
+│   └── style.css              ← all shared styles: tokens, reset, typography, components
 ├── js/
+│   ├── nav.js                 ← renders NAV_LINKS, handles active state
+│   ├── footer.js              ← renders footer HTML including copyright span
 │   └── home.js                ← all JS for index.html
 ├── pages/                     ← future pages as standalone .html files
 │   └── .gitkeep
-├── assets/
-│   ├── reference/
-│   │   └── owner-photo.jpg    ← study before drawing any SVG (see Character Art section)
-│   ├── character/
-│   │   ├── icon.svg           ← head + shoulders, circular clip, 40px navbar avatar
-│   │   ├── standing.svg       ← full body, waving, hero + footer
-│   │   └── seated.svg         ← waist-up, all four mood face groups
-│   └── laptop.svg             ← base and lid as separate SVG groups
-└── README.md
+├── tasks/                     ← build plan and lessons (not shipped)
+│   ├── todo.md
+│   └── lessons.md
+└── assets/
+    ├── og-image.png           ← 1200×630 social preview
+    ├── laptop.svg             ← base and lid as separate SVG groups
+    ├── reference/
+    │   └── owner-photo.jpg    ← study before drawing any SVG (see Character Art section)
+    └── character/
+        ├── icon.svg           ← head + shoulders, circular clip, 40px navbar avatar
+        ├── standing.svg       ← full body, waving, hero + footer
+        └── seated.svg         ← waist-up, all four mood face groups
 ```
 
-**`pages/` path rule:** All shared assets must use `../` prefix (e.g. `../style.css`).
-Never absolute paths — Vercel may host in a subdirectory.
+**Directory conventions:** all stylesheets live in `css/`, all scripts in `js/`, all static
+media in `assets/`. Only `index.html` and the two markdown docs sit at the root. Keep it
+that way — do not reintroduce loose `.css` / `.js` files at the root.
+
+**`pages/` path rule:** All shared assets must use `../` prefix (e.g. `../css/style.css`,
+`../js/nav.js`). Never absolute paths — Vercel may host in a subdirectory.
 
 ---
 
@@ -180,7 +189,7 @@ Nav and footer HTML are injected at runtime by `nav.js` (into `#nav-root`) and `
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div id="nav-root"></div>
@@ -191,8 +200,8 @@ Nav and footer HTML are injected at runtime by `nav.js` (into `#nav-root`) and `
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-  <script src="nav.js"></script>
-  <script src="footer.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/footer.js"></script>
   <script src="js/home.js"></script><!-- replace with page-specific script on other pages -->
 </body>
 </html>
@@ -239,7 +248,7 @@ document.getElementById('copyright-year').textContent = new Date().getFullYear()
 
 1. Create `pages/[name].html` from the shell with `../` prefixed on all asset paths
 2. Write a specific `<title>` and `<meta name="description">` for the page
-3. Add one entry to `NAV_LINKS` in `nav.js`
+3. Add one entry to `NAV_LINKS` in `js/nav.js`
 4. Create `js/[name].js` for page-specific JS; replace the `js/home.js` script tag
 5. Use same tokens, `.duo-card`, `.duo-btn-base` variants, typography — identical language
 6. Test `../` paths with `python3 -m http.server 8080`
@@ -818,12 +827,18 @@ Duolingo-style stylized version of Aamir's actual appearance — not a generic a
 | Skin base | `#C68642` warm medium-brown |
 | Skin shadow | `#A0652A` |
 | Hair | `#1C1008` very dark brown-black; short, close-cropped; simple rounded cap |
+| Beard | `#1C1008` same as hair; full but neatly trimmed — connects to the hairline at the sideburns, wraps the jaw, includes a moustache, leaves the lips clear |
 | Face shape | Full and rounded — wider than a typical narrow cartoon face |
 | Eye iris | `#3D2000` dark brown |
 | Eye sclera | `#FFFFFF` large, expressive |
 | Jacket | `#2D5FA6` blue suit jacket with visible lapels |
 | Shirt | `#FFFFFF` white, visible at collar |
+| Tie | `#2C3440` dark charcoal, narrow — visible in `icon.svg` and `standing.svg` |
 | Blush | `#F0A080` at 35% opacity — happy and excited states only |
+
+**Beard is a defining feature — never omit it.** Draw it as one flat shape behind the mouth
+so mood swaps only need to change the mouth and eyes, not the beard. It must still read as
+a beard at the 40px navbar size, so keep the jaw silhouette bold and avoid thin whiskers.
 
 ### Style Rules
 

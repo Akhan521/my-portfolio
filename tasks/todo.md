@@ -21,7 +21,7 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** Commit 2 — Design system in style.css
+> **Next up:** Commit 2 — Design system in css/style.css
 > **Last completed:** Commit 1 — Project scaffold & HTML shell
 
 Update this block after every commit so a cold start knows exactly where to pick up.
@@ -60,16 +60,16 @@ commit) — no giant JS commit at the end.
 
 ### [x] Commit 1 — Project scaffold & HTML shell
 Lay down the full file tree and the empty page skeleton. No styling, no content yet.
-- [x] Create dirs: `js/`, `pages/` (+ `.gitkeep`), `assets/reference/`
+- [x] Create dirs: `css/`, `js/`, `pages/` (+ `.gitkeep`), `assets/reference/`
       (`assets/character/` skipped — git can't track empty dirs; created in Commit 3)
 - [x] `index.html` from the CLAUDE.md HTML shell: head/meta/fonts/favicon, `#nav-root`,
       empty `<main>`, `#footer-root`, all script tags in the required load order
-- [x] Create empty placeholder files: `style.css`, `nav.js`, `footer.js`, `js/home.js`
+- [x] Create empty placeholder files: `css/style.css`, `js/nav.js`, `js/footer.js`, `js/home.js`
 - [x] Replace stub `README.md` with a short project intro + local-run instructions
 - **Done when:** page loads at `localhost:8080` with no console errors (blank but valid).
 - **Commit:** `Scaffold project structure and HTML shell.`
 
-### [ ] Commit 2 — Design system in style.css
+### [ ] Commit 2 — Design system in css/style.css
 The entire visual language, before any section uses it.
 - [ ] Global reset + `box-sizing` + `scroll-behavior` + `img,svg` base
 - [ ] Night Mode `:root` color tokens + radius tokens (the only place hex lives)
@@ -116,17 +116,17 @@ head ~40% of body height. Tune all four to read correctly on the navy canvas.
 
 ## Phase 2 — Shared Chrome
 
-### [ ] Commit 7 — nav.js (navigation)
+### [ ] Commit 7 — js/nav.js (navigation)
 - [ ] Render `NAV_LINKS` + avatar + name + "Hire Me" CTA into `#nav-root`
-- [ ] Fixed navbar CSS in `style.css`; `.scrolled` shadow after 60px scroll
+- [ ] Fixed navbar CSS in `css/style.css`; `.scrolled` shadow after 60px scroll
 - [ ] Mobile (<768px) hamburger → dropdown; active-state rule (full-path links only)
 - **Done when:** navbar is fixed, blurred, gains shadow on scroll, hamburger works at 375px.
 - **Commit:** `Add navbar rendering, scroll shadow, and mobile menu.`
 
-### [ ] Commit 8 — footer.js (footer template + green band)
+### [ ] Commit 8 — js/footer.js (footer template + green band)
 - [ ] Inject full footer HTML into `#footer-root`: heading, subheading, gamification pill,
       2×2 button grid, inlined `standing.svg`, `#copyright-year` span
-- [ ] Footer CSS (green band) in `style.css`; dynamic year via `getFullYear()`
+- [ ] Footer CSS (green band) in `css/style.css`; dynamic year via `getFullYear()`
 - [ ] Confetti wiring is deferred to Commit 15
 - **Done when:** green footer renders with live year and working links.
 - **Commit:** `Add footer template, green CTA band, and dynamic year.`
