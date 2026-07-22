@@ -1,0 +1,9 @@
+# Scratch design-system preview — regenerable, not part of the site
+preview.html
+
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/

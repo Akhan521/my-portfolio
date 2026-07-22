@@ -21,8 +21,8 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** Commit 2 — Design system in css/style.css
-> **Last completed:** Commit 1 — Project scaffold & HTML shell
+> **Next up:** Commit 3 — icon.svg (navbar avatar)
+> **Last completed:** Commit 2 — Design system in css/style.css
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -69,14 +69,14 @@ Lay down the full file tree and the empty page skeleton. No styling, no content 
 - **Done when:** page loads at `localhost:8080` with no console errors (blank but valid).
 - **Commit:** `Scaffold project structure and HTML shell.`
 
-### [ ] Commit 2 — Design system in css/style.css
+### [x] Commit 2 — Design system in css/style.css
 The entire visual language, before any section uses it.
-- [ ] Global reset + `box-sizing` + `scroll-behavior` + `img,svg` base
-- [ ] Night Mode `:root` color tokens + radius tokens (the only place hex lives)
-- [ ] Body typography on `--duo-canvas`, `.container`, type scale
-- [ ] `.duo-btn-base` + `.duo-btn` / `.duo-btn-outline` / `.duo-btn-footer`
-- [ ] `.duo-card` with tactile shadow
-- [ ] Global `prefers-reduced-motion` reset block
+- [x] Global reset + `box-sizing` + `scroll-behavior` + `img,svg` base
+- [x] Night Mode `:root` color tokens + radius tokens (the only place hex lives)
+- [x] Body typography on `--duo-canvas`, `.container`, type scale
+- [x] `.duo-btn-base` + `.duo-btn` / `.duo-btn-outline` / `.duo-btn-footer`
+- [x] `.duo-card` with tactile shadow
+- [x] Global `prefers-reduced-motion` reset block
 - **Done when:** a throwaway test button/card renders with correct colors, shadow, hover.
 - **Commit:** `Add Night Mode design system: tokens, typography, buttons, card.`
 
@@ -225,3 +225,7 @@ Append a one-line note per completed commit (date + what shipped + anything to r
 - 2026-07-21 — Commit 1: scaffold + shell. Reference photo converted PNG→JPG and placed.
   Photo confirms navy suit / white shirt / dark tie, short dark hair, **full beard** — the
   beard is not in the CLAUDE.md visual profile; add it to the SVGs in Commit 3.
+- 2026-07-21 — Reorg: `style.css` → `css/`, `nav.js`/`footer.js` → `js/` (all refs updated).
+  Beard + tie added to CLAUDE.md Visual Profile. README rewritten as UTF-8 (was UTF-16).
+- 2026-07-21 — Commit 2: design system. 19 tokens, zero hex outside `:root`. Scratch
+  `preview.html` (gitignored) renders every token, button variant, and card for eyeballing.

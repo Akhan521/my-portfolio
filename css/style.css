@@ -1,1 +1,121 @@
-/* Design system lands in Commit 2. */
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img, svg { display: block; max-width: 100%; }
+
+/* ===== TOKENS ===== */
+/* The only place hex values live (exception: confetti colors in js/home.js). */
+:root {
+  /* Accents — unchanged from Duo brand */
+  --duo-green:        #58CC02;   /* primary brand / CTAs */
+  --duo-green-dark:   #58A700;   /* button bottom shadow (Duo night) */
+  --duo-green-muted:  #2A4A1A;   /* soft green fill on dark chrome (badges, outline hover, XP track) */
+  --duo-green-light:  #D7F5B1;   /* light-island only: badges/pills on white laptop screen */
+  --duo-yellow:       #FFD900;   /* XP badges, streak, focus rings */
+  --duo-blue:         #1CB0F6;   /* secondary accent */
+  --duo-orange:       #FF9600;   /* in-progress badge */
+  --duo-red:          #FF4B4B;   /* error states only */
+
+  /* Night Mode neutrals */
+  --duo-canvas:       #131F24;   /* page background */
+  --duo-surface:      #1F2C34;   /* cards, elevated panels */
+  --duo-surface-2:    #37464F;   /* higher elevation, desk, hover fills */
+  --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows */
+  --duo-text:         #FFFFFF;   /* primary text on dark chrome */
+  --duo-text-muted:   #AFAFAF;   /* subtitles, meta, descriptions */
+  --duo-snow:         #FFFFFF;   /* laptop screen face + footer button fills only — never page chrome */
+
+  --radius-sm:        8px;
+  --radius-md:        12px;
+  --radius-lg:        16px;
+  --radius-pill:      999px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+body {
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--duo-text);
+  background: var(--duo-canvas);
+}
+
+h1 { font-size: clamp(3rem, 8vw, 6rem);     font-weight: 900; line-height: 1.1; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; }
+h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; }
+
+.text-muted { color: var(--duo-text-muted); font-size: 0.85rem; }
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 767px) {
+  .container { padding: 0 1rem; }
+}
+
+/* ===== BUTTONS ===== */
+.duo-btn-base {
+  display: inline-block;
+  border-radius: var(--radius-md);
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.duo-btn-base:focus-visible { outline: 3px solid var(--duo-yellow); outline-offset: 3px; }
+.duo-btn-base:active        { transform: translateY(2px); }
+
+/* Primary CTA */
+.duo-btn {
+  background: var(--duo-green);
+  color: var(--duo-snow);
+  border: none;
+  box-shadow: 0 4px 0 var(--duo-green-dark);
+}
+.duo-btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-green-dark); }
+.duo-btn:active { box-shadow: 0 2px 0 var(--duo-green-dark); }
+
+/* Secondary */
+.duo-btn-outline {
+  background: transparent;
+  color: var(--duo-green);
+  border: 2px solid var(--duo-green);
+  box-shadow: none;
+}
+.duo-btn-outline:hover { background: var(--duo-green-muted); }
+
+/* Footer variant — sits on the green band */
+.duo-btn-footer {
+  background: var(--duo-snow);
+  color: var(--duo-green);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+}
+.duo-btn-footer:hover { background: var(--duo-green-light); }
+
+/* ===== CARD ===== */
+.duo-card {
+  background: var(--duo-surface);
+  border: 2px solid var(--duo-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 0 var(--duo-border);  /* Duolingo tactile depth — never omit */
+  padding: 1.5rem;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
