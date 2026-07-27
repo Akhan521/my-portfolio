@@ -21,7 +21,7 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** Commit 3 — icon.svg (navbar avatar)
+> **Next up:** Commit 3 — icon.svg (navbar avatar) — FRESH START (previous attempt scratched)
 > **Last completed:** Commit 2 — Design system in css/style.css
 
 Update this block after every commit so a cold start knows exactly where to pick up.
@@ -87,11 +87,14 @@ The entire visual language, before any section uses it.
 Study `assets/reference/owner-photo.jpg` before each. Flat fills, `#1A1A1A` outlines,
 head ~40% of body height. Tune all four to read correctly on the navy canvas.
 
-### [ ] Commit 3 — icon.svg (navbar avatar)
+### [ ] Commit 3 — icon.svg (navbar avatar) — FRESH START
+- [ ] **Read `tasks/duolingo-style.md` first** (updated with official Duolingo guidelines).
 - [ ] `viewBox="0 0 80 80"`, circular clipPath, head + shoulders, `role="img"` + aria-label
 - [ ] Establishes skin `#C68642`, hair `#1C1008`, jacket `#2D5FA6` for all later SVGs
-- **Done when:** renders cleanly clipped at 40px on a dark swatch.
+- [ ] Built from the Duolingo shape kit (few bold rounded shapes), clear owner likeness
+- **Done when:** renders cleanly at 40px AND reads as both Duolingo-style and recognizably Aamir.
 - **Commit:** `Add character icon SVG (navbar avatar).`
+- **Note:** first two attempts were scratched (see Review Log 2026-07-26).
 
 ### [ ] Commit 4 — standing.svg (hero + footer)
 - [ ] `viewBox="0 0 200 320"`, full body, right arm raised in relaxed wave
@@ -233,3 +236,12 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   surface `#1F2C34`→`#1B262C`, surface-2 `#37464F`→`#32414A`. `--duo-border` stays `#37464F`,
   now deliberately one step lighter than surface-2 so edges stay legible. Navbar rgba in
   CLAUDE.md updated to match. Old values documented as retired.
+- 2026-07-26 — Commit 3: two icon.svg attempts (realistic-ish, then a "full Duolingo"
+  redraw). Owner rejected both — direction wasn't right. **Icon SCRATCHED entirely.**
+- 2026-07-26 — Ingested Duolingo's OFFICIAL design guidelines (shape-language + characters
+  /body-types pages, extracted from the site's JS bundle since it's a client-rendered SPA)
+  and rewrote `tasks/duolingo-style.md` with the real verbatim rules — three rounded shapes,
+  no pointy edges, fewest shapes, rhythm, 1–2 shapes per feature, geometric eyes (no ovals),
+  asymmetric mouths, etc. Corrected the earlier doc, which had used generic shape theory the
+  official guide does not teach. Commit 3 reset to a fresh start; next icon must follow the
+  updated doc. CLAUDE.md refactor tracked separately.
