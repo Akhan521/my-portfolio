@@ -157,3 +157,68 @@ Coordinates that look plausible in source can still render broken. View the PNG 
   rhythm, fewest shapes. Follow the real rules above.
 - A flat **gray backdrop** was tried and disliked; also arguably off-brand ("never use gray").
   Prefer a brand color or light pastel for any background field.
+
+---
+
+## 12. Visual profile (match `owner-photo.jpg`)
+
+| Feature | Value |
+|---|---|
+| Skin base | `#C68642` warm medium-brown |
+| Skin shadow | `#A0652A` |
+| Hair | `#1C1008` very dark brown-black; short, close-cropped; simple rounded cap |
+| Beard | `#1C1008`; full but neatly trimmed — connects to the hairline at the sideburns, wraps the jaw, includes a moustache, leaves the lips clear |
+| Face shape | Full and rounded — wider than a typical narrow cartoon face |
+| Eye iris | `#3D2000` dark brown |
+| Eye sclera | `#FFFFFF` large, expressive |
+| Jacket | `#2D5FA6` blue suit jacket with visible lapels |
+| Shirt | `#FFFFFF` white, visible at collar |
+| Tie | `#2C3440` dark charcoal, narrow |
+| Blush | `#F0A080` at 35% opacity — happy and excited states only |
+
+**Beard is a defining feature — never omit it.** Draw it as one flat shape behind the mouth
+so mood swaps only change the mouth and eyes, not the beard. It must read as a beard at the
+40px navbar size — keep the jaw silhouette bold, avoid thin whiskers.
+
+Style constraints (also project conventions): flat fills only (zero gradients/shadows on
+character shapes); outlines `stroke="#1A1A1A"` `stroke-width="2.5"` `stroke-linejoin="round"`;
+head ~40% of total body height; body compact, limbs short/thick; expressions clearly distinct.
+
+## 13. SVG file specs
+
+- **`icon.svg`** — `viewBox="0 0 80 80"`, circular `<clipPath>`, head + shoulders, rendered 40px.
+  Establishes skin/hair/jacket palette for the others.
+- **`standing.svg`** — `viewBox="0 0 200 320"`, full body, right arm raised in relaxed wave,
+  default calm-happy expression. Animation hooks: `.char-body`, `.char-arm-right`, `.char-eyes`.
+  Used in hero + footer.
+- **`seated.svg`** — `viewBox="0 0 280 300"`, waist-up, arms resting on a desk strip at bottom,
+  eyes directed slightly downward toward the laptop. Contains `#character-face` with all four
+  mood groups. Do NOT draw the laptop in this SVG.
+  ```svg
+  <g id="character-face" data-mood="neutral">
+    <g class="face" data-face="neutral">  </g>
+    <g class="face" data-face="happy">    </g>
+    <g class="face" data-face="excited">  </g>
+    <g class="face" data-face="surprised"></g>
+  </g>
+  ```
+- **`laptop.svg`** — `viewBox="0 0 340 260"`. `<g id="laptop-base">`: gray keyboard body,
+  trackpad, key grid — bottom ~80px. `<g id="laptop-lid">`: green lid, dark bezel, white screen
+  surface — top ~180px. Inline the two groups into separate HTML elements; keep a clear ~2px
+  hinge gap between base and lid.
+
+All SVGs: `role="img"` + descriptive `aria-label`.
+
+## 14. Idle animations (CSS)
+
+```css
+@keyframes char-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes char-blink   { 0%, 88%, 100% { transform: scaleY(1); } 93% { transform: scaleY(0.08); } }
+@keyframes char-wave    { 0%, 100% { transform: rotate(0deg); } 30% { transform: rotate(22deg); } 70% { transform: rotate(-8deg); } }
+.char-body      { animation: char-breathe 3.5s ease-in-out infinite; }
+.char-eyes      { transform-origin: center; animation: char-blink 5s ease-in-out infinite; }
+.char-arm-right { transform-origin: top center; animation: char-wave 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .char-body, .char-eyes, .char-arm-right { animation: none; } }
+```
+**Blink:** animate the iris via `transform: scaleY()` with `transform-origin: center center`
+(without it the blink collapses on the wrong axis).

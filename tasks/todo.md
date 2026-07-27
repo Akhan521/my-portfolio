@@ -244,4 +244,11 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   no pointy edges, fewest shapes, rhythm, 1–2 shapes per feature, geometric eyes (no ovals),
   asymmetric mouths, etc. Corrected the earlier doc, which had used generic shape theory the
   official guide does not teach. Commit 3 reset to a fresh start; next icon must follow the
-  updated doc. CLAUDE.md refactor tracked separately.
+  updated doc.
+- 2026-07-26 — Refactored the bloated `CLAUDE.md` (1032 → ~195 lines): kept essentials
+  (summary, reference-file index, owner info, tech stack + load order, file structure, design
+  tokens, conventions, critical notes, commands, build-order pointer) and offloaded detail to
+  new reference docs: `tasks/build-specs.md` (HTML shell, nav/footer templates, component CSS,
+  all section specs, animation system), `tasks/content.md` (projects/skills/copy), and folded
+  character SVG specs + idle animations into `tasks/duolingo-style.md`. No spec content lost —
+  just reorganized. **END OF DAY 2026-07-26: committed + pushed to GitHub.**
