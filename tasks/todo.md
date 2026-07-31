@@ -21,8 +21,8 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** Commit 3 — icon.svg (navbar avatar) — FRESH START (previous attempt scratched)
-> **Last completed:** Commit 2 — Design system in css/style.css
+> **Next up:** Commit 3 — Generate character images (owner runs the ChatGPT prompts in `tasks/duolingo-style.md`)
+> **Last completed:** Docs pivot to the raster character-art pipeline (2026-07-27)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -82,32 +82,33 @@ The entire visual language, before any section uses it.
 
 ---
 
-## Phase 1 — Character Art (SVGs)
+## Phase 1 — Character Art (generated raster images)
 
-Study `assets/reference/owner-photo.jpg` before each. Flat fills, `#1A1A1A` outlines,
-head ~40% of body height. Tune all four to read correctly on the navy canvas.
+**Approach changed 2026-07-27:** character art is no longer hand-drawn SVG — it's generated
+with ChatGPT's image model. **Read `tasks/duolingo-style.md` first** (north-star style, base +
+per-asset prompts, consistency + transparent-bg rules). Owner runs the prompts and drops
+outputs in; Claude processes/wires them. Generate the whole set in one session for consistency.
 
-### [ ] Commit 3 — icon.svg (navbar avatar) — FRESH START
-- [ ] **Read `tasks/duolingo-style.md` first** (updated with official Duolingo guidelines).
-- [ ] `viewBox="0 0 80 80"`, circular clipPath, head + shoulders, `role="img"` + aria-label
-- [ ] Establishes skin `#C68642`, hair `#1C1008`, jacket `#2D5FA6` for all later SVGs
-- [ ] Built from the Duolingo shape kit (few bold rounded shapes), clear owner likeness
-- **Done when:** renders cleanly at 40px AND reads as both Duolingo-style and recognizably Aamir.
-- **Commit:** `Add character icon SVG (navbar avatar).`
-- **Note:** first two attempts were scratched (see Review Log 2026-07-26).
+### [ ] Commit 3 — Generate character images (ChatGPT, owner)
+- [ ] Copy the approved north-star into `assets/character/reference/style-north-star.png`
+- [ ] Generate with the prompts in `tasks/duolingo-style.md` §3–4, attaching the reference:
+      `avatar` (green circle), `hero` (transparent), `seated-neutral` + `seated-excited`
+      (transparent, aligned to crossfade)
+- [ ] Save full-res masters to `assets/character/src/`
+- **Done when:** all four masters exist, each clearly Aamir and on-style; the two seated
+      images align pose/framing for a clean crossfade.
+- **Commit:** `Add generated character image masters.`
 
-### [ ] Commit 4 — standing.svg (hero + footer)
-- [ ] `viewBox="0 0 200 320"`, full body, right arm raised in relaxed wave
-- [ ] Animation hooks: `.char-body`, `.char-arm-right`, `.char-eyes`
-- **Done when:** proportions match icon; outlines read on navy.
-- **Commit:** `Add standing character SVG with animation hooks.`
+### [ ] Commit 4 — Import avatar + hero
+- [ ] Process with `sips`: `avatar.png` (navbar sizes @1x/@2x) + `hero.png` (transparent, sized)
+- [ ] Confirm hero transparency composites cleanly over the dark canvas
+- **Done when:** avatar + hero render crisp at their display sizes on the dark chrome.
+- **Commit:** `Import and size avatar and hero character images.`
 
-### [ ] Commit 5 — seated.svg (laptop scene, mood system)
-- [ ] `viewBox="0 0 280 300"`, waist-up, arms on desk strip, eyes toward laptop
-- [ ] `#character-face` containing all four `[data-face]` groups (neutral/happy/excited/surprised)
-- [ ] No laptop drawn in this SVG
-- **Done when:** temporary CSS shows only the `neutral` face; each mood clearly distinct.
-- **Commit:** `Add seated character SVG with four mood face groups.`
+### [ ] Commit 5 — Import seated pair (mood crossfade assets)
+- [ ] Process `seated-neutral.png` + `seated-excited.png`; verify pixel alignment for crossfade
+- **Done when:** stacking + toggling `.excited` crossfades in place with no jump (per build-specs §6).
+- **Commit:** `Import seated neutral/excited character images.`
 
 ### [ ] Commit 6 — laptop.svg (base + lid groups)
 - [ ] `viewBox="0 0 340 260"`, `#laptop-base` (keys/trackpad) + `#laptop-lid` (green/bezel/screen)
@@ -252,3 +253,11 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   all section specs, animation system), `tasks/content.md` (projects/skills/copy), and folded
   character SVG specs + idle animations into `tasks/duolingo-style.md`. No spec content lost —
   just reorganized. **END OF DAY 2026-07-26: committed + pushed to GitHub.**
+- 2026-07-27 — **PIVOT: character art → AI-generated raster images.** Hand-drawn SVG scrapped
+  (a 3rd fresh icon attempt was also rejected). Owner will generate soft-shaded cartoon
+  portraits with ChatGPT's image model from an approved north-star reference; Claude wires the
+  PNGs in. Reworked `tasks/duolingo-style.md` into an image-generation guide, updated
+  `CLAUDE.md` + `tasks/build-specs.md` for raster (whole-image motion only; a single
+  neutral↔excited seated crossfade replaces the 4-group SVG mood system). Phase 1 re-slotted:
+  Commits 3–5 = generate/import images, Commit 6 = laptop.svg (device) unchanged. Docs pivot
+  committed separately (66c78be); this todo update is its own commit. Next: draft the prompts.
