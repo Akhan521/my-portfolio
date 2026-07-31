@@ -1,10 +1,11 @@
 # CLAUDE.md — Aamir Khan's Duolingo-Themed Portfolio
 
 Personal portfolio for Aamir Khan, CS Master's student at UC Riverside and aspiring AI
-engineer. **Dark-only** Duolingo Night Mode visual design language: blue-navy canvas, flat
-geometric SVG character, signature green accents, bouncy spring animations, XP/streak
-gamification framing. No light theme, no theme toggle. Currently single-page, architected to
-grow into a multi-page site over time. Vanilla HTML/CSS/JS — no framework, no bundler, no npm.
+engineer. **Dark-only** Duolingo Night Mode visual design language: blue-navy canvas,
+AI-generated soft-shaded cartoon character illustrations, signature green accents, bouncy
+spring animations, XP/streak gamification framing. No light theme, no theme toggle. Currently
+single-page, architected to grow into a multi-page site over time. Vanilla HTML/CSS/JS — no
+framework, no bundler, no npm.
 
 ---
 
@@ -16,7 +17,7 @@ these reference docs — **read the relevant one before working in that area:**
 | File | Contains |
 |---|---|
 | `tasks/todo.md` | The commit-by-commit build roadmap + current position. **Start here to resume.** |
-| `tasks/duolingo-style.md` | **Character-art bible** — Duolingo shape language, visual profile, SVG specs, idle animations. **Read before ANY character SVG work.** |
+| `tasks/duolingo-style.md` | **Character-art bible** — the image-generation pipeline: north-star style, base + per-asset ChatGPT prompts, consistency + transparency rules, raster animation reality. **Read before producing or wiring any character art.** |
 | `tasks/build-specs.md` | Full implementation specs: HTML shell, nav/footer templates, component CSS, all section specs (navbar → footer), GSAP timelines, animation system. |
 | `tasks/content.md` | Verbatim content data: projects, skills, and all section copy. |
 | `tasks/lessons.md` | Correction lessons from this build — review at session start. |
@@ -46,7 +47,9 @@ available, replace it in both the hero Resume button and the footer.
 - **Vanilla HTML / CSS / JavaScript** — no framework, no bundler, no npm.
 - **GSAP 3.12.5 + ScrollTrigger** — all scroll animations.
 - **canvas-confetti 1.9.3** — footer only.
-- **Inline SVG** — all character art inlined into HTML for CSS animation access.
+- **Raster character art** — soft-shaded cartoon PNGs generated with ChatGPT's image model
+  (pipeline in `tasks/duolingo-style.md`), composited into the page and animated as **whole
+  images only** (float/entrance + GSAP scroll). The laptop *device* stays CSS/SVG-drawn.
 - **Google Fonts — Nunito only** (weights 400;700;800;900).
 - **Deploy target:** Vercel (primary); also works unchanged on GitHub Pages / Netlify.
 
@@ -75,9 +78,15 @@ portfolio/
 ├── tasks/                     ← build plan, lessons, and reference docs (not shipped)
 └── assets/
     ├── og-image.png           ← 1200×630 social preview
-    ├── laptop.svg             ← base and lid as separate SVG groups
-    ├── reference/owner-photo.jpg   ← study before drawing any SVG
-    └── character/             ← icon.svg, standing.svg, seated.svg
+    ├── laptop.svg             ← CSS/SVG-drawn device: base and lid as separate SVG groups
+    ├── reference/owner-photo.jpg    ← real photo, for likeness reference
+    └── character/             ← generated raster art (see tasks/duolingo-style.md)
+        ├── src/               ← full-res generation masters
+        ├── reference/         ← style-north-star.png (approved style target)
+        ├── avatar.png         ← navbar, green circle, head+shoulders
+        ├── hero.png           ← hero, transparent bg
+        ├── seated-neutral.png ← laptop scene, transparent bg
+        └── seated-excited.png ← laptop scene mood crossfade, transparent bg
 ```
 
 **Conventions:** all stylesheets in `css/`, all scripts in `js/`, all static media in

@@ -172,7 +172,8 @@ Layout: `display: flex; align-items: center; gap: 2rem` — 60% text left, 40% c
 Copy: see `tasks/content.md` (hero). Streak badge: `background: var(--duo-yellow)`,
 `color: var(--duo-canvas)` (dark text on yellow — not white), Nunito 700,
 `border-radius: var(--radius-pill)`, `padding: 4px 14px`, `font-size: 0.85rem`.
-Right column: `standing.svg` inlined.
+Right column: `hero.png` (transparent-bg raster) — apply the `.hero-character` entrance
+animation and an optional gentle idle float (whole-image transform only; no per-part motion).
 
 Page-load animation (CSS only — not GSAP):
 ```css
@@ -257,7 +258,7 @@ HTML structure:
 <section id="laptop-scene">
   <div class="laptop-sticky">
     <div class="scene-container">
-      <div class="character-seated"><!-- INLINE seated.svg --></div>
+      <div class="character-seated"><!-- seated-neutral.png + seated-excited.png stacked (see Section 6) --></div>
       <div class="desk-surface"></div>
       <div class="laptop-3d-wrapper">
         <div class="laptop-base"><!-- INLINE #laptop-base SVG group --></div>
@@ -348,30 +349,42 @@ carousel.addEventListener('touchend', e => {
 });
 ```
 
-## Section 6 — Character Reaction System
-`data-mood` on `#character-face` (in `seated.svg`) drives CSS visibility switching. Adding a
-mood needs no JS change — one SVG group + one CSS rule.
+## Section 6 — Character Reaction System (raster crossfade)
+Raster art can't swap face groups, so mood is a **two-image opacity crossfade**. Stack
+`seated-neutral.png` and `seated-excited.png` in the same box; both are transparent-bg PNGs
+generated to align pixel-for-pixel (see `tasks/duolingo-style.md` §4–5). Only ONE mood beat
+exists — neutral ↔ excited, tied to the laptop opening — not per-project moods.
+```html
+<div class="character-seated">
+  <img class="mood mood-neutral" src="assets/character/seated-neutral.png" alt="Aamir at his laptop" aria-hidden="false">
+  <img class="mood mood-excited" src="assets/character/seated-excited.png" alt="" aria-hidden="true">
+</div>
+```
 ```css
-.face { display: none; }
-#character-face[data-mood="neutral"]   .face[data-face="neutral"]   { display: block; }
-#character-face[data-mood="happy"]     .face[data-face="happy"]     { display: block; }
-#character-face[data-mood="excited"]   .face[data-face="excited"]   { display: block; }
-#character-face[data-mood="surprised"] .face[data-face="surprised"] { display: block; }
+.character-seated { position: relative; }
+.character-seated .mood { position: absolute; inset: 0; transition: opacity 300ms ease; }
+.character-seated .mood-excited { opacity: 0; }               /* hidden until triggered */
+.character-seated.excited .mood-neutral { opacity: 0; }
+.character-seated.excited .mood-excited { opacity: 1; }
 ```
 ```javascript
+// Called from the laptop GSAP onUpdate (excited past ~55% scroll)
 function updateCharacterMood(mood) {
-  const face = document.getElementById('character-face');
-  if (face) face.dataset.mood = mood;
+  const el = document.querySelector('.character-seated');
+  if (el) el.classList.toggle('excited', mood === 'excited');
 }
 ```
+Fallback: if two aligned generations prove too hard, ship one static `seated.png` and drop
+`updateCharacterMood`.
 
 ## Section 7 — Footer / CTA
 `id="contact"` · `background: var(--duo-green)` · `color: var(--duo-snow)`. Full green band.
 Rendered entirely by `footer.js` into `#footer-root`. Copy + buttons: see `tasks/content.md`.
 Layout: heading Nunito 900 white 2.5rem; subheading white 80% opacity; gamification pill
 (`var(--duo-snow)` bg, `var(--duo-green)` text, Nunito 800, pill radius, `padding: 8px 20px`);
-buttons 2×2 grid desktop / stacked mobile, all `.duo-btn-base.duo-btn-footer`; `standing.svg`
-inlined bottom-right with `.char-arm-right` wave; copyright white 60% opacity 0.85rem centered.
+buttons 2×2 grid desktop / stacked mobile, all `.duo-btn-base.duo-btn-footer`; `hero.png`
+(or a dedicated footer image) bottom-right, static or gentle float (no wave — raster art);
+copyright white 60% opacity 0.85rem centered.
 
 Confetti (in `home.js` — once when footer enters viewport):
 ```javascript
