@@ -21,8 +21,8 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** Commit 3 — Generate character images (owner runs the ChatGPT prompts in `tasks/duolingo-style.md`)
-> **Last completed:** Docs pivot to the raster character-art pipeline (2026-07-27)
+> **Next up:** Commit 3 (in progress) — generate the HERO image (prompt ② in `tasks/duolingo-style.md`), then the seated pair. Avatar is locked ✅.
+> **Last completed:** Locked the avatar + north-star reference (2026-07-30)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -90,11 +90,11 @@ per-asset prompts, consistency + transparent-bg rules). Owner runs the prompts a
 outputs in; Claude processes/wires them. Generate the whole set in one session for consistency.
 
 ### [ ] Commit 3 — Generate character images (ChatGPT, owner)
-- [ ] Copy the approved north-star into `assets/character/reference/style-north-star.png`
-- [ ] Generate with the prompts in `tasks/duolingo-style.md` §3–4, attaching the reference:
-      `avatar` (green circle), `hero` (transparent), `seated-neutral` + `seated-excited`
-      (transparent, aligned to crossfade)
-- [ ] Save full-res masters to `assets/character/src/`
+- [x] Copy the approved north-star into `assets/character/reference/style-north-star.png`
+- [~] Generate with the prompts in `tasks/duolingo-style.md` §3–4, attaching the reference:
+      `avatar` ✅ (locked — the north-star doubles as the avatar) · `hero` (transparent, next) ·
+      `seated-neutral` + `seated-excited` (transparent, aligned to crossfade — to do)
+- [~] Save full-res masters to `assets/character/src/` (avatar-src.png done)
 - **Done when:** all four masters exist, each clearly Aamir and on-style; the two seated
       images align pose/framing for a clean crossfade.
 - **Commit:** `Add generated character image masters.`
@@ -261,3 +261,9 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   neutral↔excited seated crossfade replaces the 4-group SVG mood system). Phase 1 re-slotted:
   Commits 3–5 = generate/import images, Commit 6 = laptop.svg (device) unchanged. Docs pivot
   committed separately (66c78be); this todo update is its own commit. Next: draft the prompts.
+- 2026-07-30 — Locked the **avatar**: the owner-approved image
+  (`aamir-prof-duo-style.png`) meets all criteria, so no regen. Copied into the repo as
+  `assets/character/reference/style-north-star.png` (the fixed style/likeness reference for
+  every prompt) and `assets/character/src/avatar-src.png` (avatar master). **END OF DAY:**
+  next session generate the HERO (transparent cutout, prompt ②) using the green-circle image
+  as reference, then the seated pair.
