@@ -99,8 +99,17 @@ character stays consistent.
 
 The avatar keeps its green circle (that's the design). **hero** and **seated-*** must be
 **transparent-background PNGs** so we can composite them over the dark canvas and the desk
-scene. Request transparency at generation time — we have no reliable local background-removal
-tool, and chroma-keying soft-shaded edges looks bad.
+scene.
+
+**Proven workflow (used for the hero, 2026-07-31):** ChatGPT's image model tends to *bake* a
+background (a green gradient + glow) even when asked for transparency — don't trust it. Instead:
+1. Generate the illustration (background can be anything).
+2. Cut it out with **macOS on-device subject lift** — Finder → right-click → Quick Actions →
+   *Remove Background* (or Preview / Photos "Copy Subject"). This gives true alpha with a clean
+   anti-aliased edge and drops any glow/fringe.
+3. **Verify** before locking: confirm real transparency (RGBA, corner alpha 0, only a thin
+   ~1% semi-transparent edge) AND composite over `#0F181C` to check for a colored fringe that
+   would be invisible on white but glow on the dark canvas.
 
 ## 7. Output specs
 

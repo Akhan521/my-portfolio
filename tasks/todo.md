@@ -21,8 +21,8 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** Commit 3 (in progress) — generate the HERO image (prompt ② in `tasks/duolingo-style.md`), then the seated pair. Avatar is locked ✅.
-> **Last completed:** Locked the avatar + north-star reference (2026-07-30)
+> **Next up:** Commit 3 (in progress) — generate the SEATED pair (prompts ③/④ in `tasks/duolingo-style.md`). Avatar ✅ and Hero ✅ locked.
+> **Last completed:** Locked the hero image (transparent cutout, verified over dark canvas) (2026-07-31)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -92,9 +92,10 @@ outputs in; Claude processes/wires them. Generate the whole set in one session f
 ### [ ] Commit 3 — Generate character images (ChatGPT, owner)
 - [x] Copy the approved north-star into `assets/character/reference/style-north-star.png`
 - [~] Generate with the prompts in `tasks/duolingo-style.md` §3–4, attaching the reference:
-      `avatar` ✅ (locked — the north-star doubles as the avatar) · `hero` (transparent, next) ·
+      `avatar` ✅ (locked — the north-star doubles as the avatar) · `hero` ✅ (locked —
+      transparent cutout via macOS subject lift, verified over dark canvas) ·
       `seated-neutral` + `seated-excited` (transparent, aligned to crossfade — to do)
-- [~] Save full-res masters to `assets/character/src/` (avatar-src.png done)
+- [~] Save full-res masters to `assets/character/src/` (avatar-src.png, hero-src.png done)
 - **Done when:** all four masters exist, each clearly Aamir and on-style; the two seated
       images align pose/framing for a clean crossfade.
 - **Commit:** `Add generated character image masters.`
