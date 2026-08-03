@@ -84,7 +84,9 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
   box-shadow: 0 4px 0 var(--duo-green-dark);
 }
 .duo-btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-green-dark); }
-.duo-btn:active { box-shadow: 0 2px 0 var(--duo-green-dark); }
+/* Deeper press: travel the full 4px so the button "bottoms out" onto its shadow —
+   clearly readable even inside the focus ring. */
+.duo-btn:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-green-dark); }
 /* Primary tactile button: push the focus ring out past the 3D lip (up to 6px on hover)
    so the ring wraps the whole raised shape instead of flattening it. */
 .duo-btn:focus-visible { outline-offset: 7px; }

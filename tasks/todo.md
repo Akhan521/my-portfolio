@@ -21,8 +21,9 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** finish navbar press polish, then the HERO section (uses `hero.png`).
-> **Last completed:** Built the navbar (Commit 7) + imported the avatar (2026-08-02)
+> **Next up:** keep tweaking the navbar — refine the CTA **focus-ring appearance** (spacing/
+> corner feel per owner's 2026-08-02 screenshot), then build the HERO section (uses `hero.png`).
+> **Last completed:** Navbar built + deepened CTA press to 4px for visibility (2026-08-02)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -285,3 +286,7 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   breathing room; primary CTA focus ring anchored to a non-transforming wrapper via
   `:has(:focus-visible)` so the tactile press shows while focused. Still refining how visible
   the press reads under the ring. A TEMP scroll scaffold sits in `index.html` (remove at hero).
+- 2026-08-02 (eod) — Deepened the primary CTA press from 2px → **4px full bottom-out** so the
+  press reads clearly even inside the focus ring (verified in headless). **Open for tomorrow:**
+  owner shared a screenshot of the focused CTA — still wants to tweak how the yellow focus
+  ring itself looks (spacing / corner radius / overall feel). Resume there before the hero.
