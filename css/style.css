@@ -73,7 +73,7 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
   cursor: pointer;
   transition: transform 0.08s ease, box-shadow 0.08s ease;
 }
-.duo-btn-base:focus-visible { outline: 3px solid var(--duo-yellow); outline-offset: 3px; }
+.duo-btn-base:focus-visible { outline: 3px solid var(--duo-yellow); outline-offset: 4px; }
 .duo-btn-base:active        { transform: translateY(2px); }
 
 /* Primary CTA */
@@ -85,6 +85,9 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 }
 .duo-btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-green-dark); }
 .duo-btn:active { box-shadow: 0 2px 0 var(--duo-green-dark); }
+/* Primary tactile button: push the focus ring out past the 3D lip (up to 6px on hover)
+   so the ring wraps the whole raised shape instead of flattening it. */
+.duo-btn:focus-visible { outline-offset: 7px; }
 
 /* Secondary */
 .duo-btn-outline {
@@ -119,4 +122,120 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ===== NAVBAR ===== */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(15, 24, 28, 0.95);          /* --duo-canvas at 95% — keep in sync */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--duo-border);
+  transition: box-shadow 0.2s ease;
+}
+/* Dark-mode elevation: lift the bar to a lighter surface tone + shadow when scrolled
+   (a plain drop shadow is invisible on the near-black canvas). */
+.site-nav.scrolled {
+  background: rgba(27, 38, 44, 0.98);   /* --duo-surface, near-opaque */
+  border-bottom-color: var(--duo-surface-2);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.nav-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--duo-border);
+  transition: transform 0.15s ease;
+}
+.nav-brand:hover .nav-avatar { transform: scale(1.1); }
+.nav-name { font-weight: 700; font-size: 1.05rem; color: var(--duo-text); }
+
+.nav-links { display: flex; align-items: center; gap: 1.6rem; }
+.nav-link {
+  color: var(--duo-text-muted);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: color 0.15s ease;
+}
+.nav-link:hover { color: var(--duo-text); }
+.nav-link[aria-current="page"] {
+  color: var(--duo-green);
+  border-bottom: 2px solid var(--duo-green);
+}
+
+/* Consistent, spaced focus rings across the whole navbar */
+.nav-link:focus-visible,
+.nav-brand:focus-visible {
+  outline: 3px solid var(--duo-yellow);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+.nav-cta { padding: 8px 18px; font-size: 0.85rem; }
+/* Focus ring lives on the (non-transforming) wrapper, not the button, so the button's
+   tactile press stays visible while focused. :has() lets the wrapper react to the inner
+   button's :focus-visible. */
+.nav-cta-wrap { display: inline-flex; border-radius: var(--radius-md); }
+.nav-cta-wrap:has(.nav-cta:focus-visible) {
+  outline: 3px solid var(--duo-yellow);
+  outline-offset: 7px;
+}
+.nav-cta:focus-visible { outline: none; }
+
+/* Hamburger — hidden on desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav-toggle:focus-visible { outline: 3px solid var(--duo-yellow); outline-offset: 4px; border-radius: 6px; }
+.nav-toggle span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--duo-text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.site-nav.open .nav-toggle span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.site-nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+.site-nav.open .nav-toggle span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media (max-width: 767px) {
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--duo-canvas);
+    border-bottom: 2px solid var(--duo-border);
+    padding: 0.5rem 1rem 1rem;
+    transform: translateY(-130%);
+    transition: transform 0.25s ease;
+  }
+  .site-nav.open .nav-links { transform: translateY(0); }
+  .nav-link { padding: 0.9rem 0.25rem; border-bottom: 1px solid var(--duo-border); }
+  .nav-cta { text-align: center; }
+  .nav-cta-wrap { align-self: center; margin-top: 0.75rem; }  /* center it; don't stretch full-width */
 }

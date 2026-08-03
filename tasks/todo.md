@@ -21,8 +21,8 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** Commit 4 — Import avatar + hero (size display copies via `sips`). All 4 character masters are locked ✅.
-> **Last completed:** Commit 3 — generated & locked all 4 character images (avatar, hero, seated pair) (2026-07-31)
+> **Next up:** finish navbar press polish, then the HERO section (uses `hero.png`).
+> **Last completed:** Built the navbar (Commit 7) + imported the avatar (2026-08-02)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -121,12 +121,17 @@ outputs in; Claude processes/wires them. Generate the whole set in one session f
 
 ## Phase 2 — Shared Chrome
 
-### [ ] Commit 7 — js/nav.js (navigation)
-- [ ] Render `NAV_LINKS` + avatar + name + "Hire Me" CTA into `#nav-root`
-- [ ] Fixed navbar CSS in `css/style.css`; `.scrolled` shadow after 60px scroll
-- [ ] Mobile (<768px) hamburger → dropdown; active-state rule (full-path links only)
-- **Done when:** navbar is fixed, blurred, gains shadow on scroll, hamburger works at 375px.
-- **Commit:** `Add navbar rendering, scroll shadow, and mobile menu.`
+### [x] Commit 7 — js/nav.js (navigation)  *(built ahead of Commits 4–6 for a visible win)*
+- [x] Render `NAV_LINKS` + avatar + name + "Hire Me" CTA into `#nav-root`
+- [x] Fixed navbar CSS; scroll elevation after 60px — note: on the dark theme a drop shadow
+      is invisible, so `.scrolled` uses a **tonal lift** (bar → lighter surface tone) + shadow
+- [x] Mobile (<768px) hamburger → dropdown; active-state rule (full-path links only)
+- [x] Also imported `avatar.png` (from the master) — the Commit-4 avatar half, done here
+- Focus a11y: spaced rounded rings; primary CTA ring anchored to a non-transforming wrapper
+      (`:has(:focus-visible)`) so the tactile press stays visible while focused
+- **Done when:** navbar is fixed, blurred, elevates on scroll, hamburger works. ✅ verified in
+      headless Chrome (desktop + mobile).
+- **Commit:** `Add navbar rendering, scroll elevation, and mobile menu.`
 
 ### [ ] Commit 8 — js/footer.js (footer template + green band)
 - [ ] Inject full footer HTML into `#footer-root`: heading, subheading, gamification pill,
@@ -272,3 +277,11 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   #0F181C canvas). Seated-excited was edited from seated-neutral, so the pair aligns within
   ~4px (head top/center) — a seamless opacity crossfade. Masters in `assets/character/src/`.
   Next: Commit 4 (size avatar + hero via `sips`) then Commit 5 (size the seated pair).
+- 2026-08-02 — Built the **navbar (Commit 7)** ahead of the image-import commits for a visible
+  win: `js/nav.js` (brand + links + Hire Me CTA, scroll-elevation, mobile hamburger) + navbar
+  CSS, and imported `assets/character/avatar.png` (160px, cropped to the circle) from the
+  master. Verified live in headless Chrome (desktop + mobile). Dark-theme fixes from owner
+  feedback: drop shadow was invisible → switched to a tonal-lift elevation; focus rings given
+  breathing room; primary CTA focus ring anchored to a non-transforming wrapper via
+  `:has(:focus-visible)` so the tactile press shows while focused. Still refining how visible
+  the press reads under the ring. A TEMP scroll scaffold sits in `index.html` (remove at hero).
