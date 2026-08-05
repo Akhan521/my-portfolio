@@ -190,10 +190,12 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 /* Focus ring lives on the (non-transforming) wrapper, not the button, so the button's
    tactile press stays visible while focused. :has() lets the wrapper react to the inner
    button's :focus-visible. */
-.nav-cta-wrap { display: inline-flex; border-radius: var(--radius-md); }
+/* padding-bottom reserves space for the button's 4px tactile lip, so the focus ring
+   wraps the whole visible button with EVEN spacing (not top-heavy). */
+.nav-cta-wrap { display: inline-flex; border-radius: var(--radius-md); padding-bottom: 4px; }
 .nav-cta-wrap:has(.nav-cta:focus-visible) {
   outline: 3px solid var(--duo-yellow);
-  outline-offset: 7px;
+  outline-offset: 5px;
 }
 .nav-cta:focus-visible { outline: none; }
 

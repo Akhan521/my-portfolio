@@ -21,9 +21,9 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** keep tweaking the navbar — refine the CTA **focus-ring appearance** (spacing/
-> corner feel per owner's 2026-08-02 screenshot), then build the HERO section (uses `hero.png`).
-> **Last completed:** Navbar built + deepened CTA press to 4px for visibility (2026-08-02)
+> **Next up:** build the **HERO section** (uses `hero.png`) — first real page section; the
+> nav links finally get scroll targets. Remove the TEMP scaffold in `index.html`.
+> **Last completed:** Refined the CTA focus ring — option C, symmetric/lip-compensated (2026-08-03)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -290,3 +290,8 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   press reads clearly even inside the focus ring (verified in headless). **Open for tomorrow:**
   owner shared a screenshot of the focused CTA — still wants to tweak how the yellow focus
   ring itself looks (spacing / corner radius / overall feel). Resume there before the hero.
+- 2026-08-03 — Rendered 4 focus-ring options for the owner (offset/tightness/pill); he chose
+  **C (symmetric, lip-compensated)**. Applied to `.nav-cta-wrap`: `padding-bottom: 4px` reserves
+  room for the 4px tactile lip so the ring wraps with even spacing (offset 5px), not top-heavy.
+  Verified in-context: ring is evenly spaced and the button stays aligned with the nav links.
+  **Navbar polish is done.** Next: the HERO section.
