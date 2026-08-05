@@ -21,9 +21,10 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** build the **HERO section** (uses `hero.png`) — first real page section; the
-> nav links finally get scroll targets. Remove the TEMP scaffold in `index.html`.
-> **Last completed:** Refined the CTA focus ring — option C, symmetric/lip-compensated (2026-08-03)
+> **Next up:** finish the **HERO redesign** — pick the frame treatment (the one OPEN decision
+> in `docs/superpowers/specs/2026-08-04-hero-redesign-design.md`), finalize that spec, then
+> implement Approach B (replaces the initial hero). Then remove the TEMP scaffold in `index.html`.
+> **Last completed:** Built the initial hero, then brainstormed a clean-professional redesign (Approach B) (2026-08-04)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -295,3 +296,14 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   room for the 4px tactile lip so the ring wraps with even spacing (offset 5px), not top-heavy.
   Verified in-context: ring is evenly spaced and the button stays aligned with the nav links.
   **Navbar polish is done.** Next: the HERO section.
+- 2026-08-04 — Built the **initial hero** (commit `88310c3`): split layout, verbatim copy,
+  staggered entrance, idle float, waving 👋, streak badge, View Projects + Resume. Owner review:
+  the wave (cliché), streak (hollow game gimmick), and mismatched buttons read as AI-generic.
+  **Pivoted to a redesign via the brainstorming process.** Agreed north star: clean-professional,
+  keep Duolingo DNA (green, rounded tactile shapes, warmth, character) but drop literal game
+  mechanics. Chose **Approach B — Framed Character** (character in a deliberate Duolingo-shaped
+  frame; matched tactile button pair incl. new `.duo-btn-neutral`; a REAL "open to internships"
+  status chip with a pulsing dot replacing the streak; warm "Hi, I'm Aamir Khan"; no emoji).
+  Cropped `assets/character/hero-tight.png` for the frame. **One open decision: frame treatment**
+  (dark-panel+green-edge vs bright-green vs green-tinted) — captured in
+  `docs/superpowers/specs/2026-08-04-hero-redesign-design.md`. Resume there next session.
