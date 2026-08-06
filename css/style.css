@@ -20,6 +20,7 @@ img, svg { display: block; max-width: 100%; }
   --duo-canvas:       #0F181C;   /* page background */
   --duo-surface:      #1B262C;   /* cards, elevated panels */
   --duo-surface-2:    #32414A;   /* higher elevation, desk, hover fills */
+  --duo-surface-3:    #3E4E58;   /* raised neutral button face (one step lighter than surface-2) */
   --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows — intentionally
                                     one step lighter than surface-2 so edges stay legible */
   --duo-text:         #FFFFFF;   /* primary text on dark chrome */
@@ -100,17 +101,18 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 }
 .duo-btn-outline:hover { background: var(--duo-green-muted); }
 
-/* Neutral tactile — same weight/press as .duo-btn, for pairing a non-green secondary CTA.
-   Shadow uses --duo-canvas (clearly darker than the surface-2 fill) so the tactile depth
-   reads; --duo-border is too close to the fill to show as a shadow. */
+/* Neutral tactile — mirrors .duo-btn's light-face / darker-edge recipe so the 3D depth reads.
+   No border (so it's the exact same size as .duo-btn, and the face meets the edge crisply).
+   Edge = --duo-surface: darker than the surface-3 face, yet lighter than --duo-canvas so the
+   ledge stays visible against the page background. */
 .duo-btn-neutral {
-  background: var(--duo-surface-2);
+  background: var(--duo-surface-3);
   color: var(--duo-text);
-  border: 2px solid var(--duo-border);
-  box-shadow: 0 4px 0 var(--duo-canvas);
+  border: none;
+  box-shadow: 0 4px 0 var(--duo-surface);
 }
-.duo-btn-neutral:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-canvas); }
-.duo-btn-neutral:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-canvas); }
+.duo-btn-neutral:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-surface); }
+.duo-btn-neutral:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-surface); }
 
 /* Footer variant — sits on the green band */
 .duo-btn-footer {

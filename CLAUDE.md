@@ -1,6 +1,6 @@
 # CLAUDE.md — Aamir Khan's Duolingo-Themed Portfolio
 
-Personal portfolio for Aamir Khan, CS Master's student at UC Riverside and aspiring AI
+Personal portfolio for Aamir Khan, CS Master's student at UC Riverside and AI software
 engineer. **Dark-only** Duolingo Night Mode visual design language: blue-navy canvas,
 AI-generated soft-shaded cartoon character illustrations, signature green accents, bouncy
 spring animations, rounded tactile shapes. Clean and professional — keeps Duolingo's DNA
@@ -31,7 +31,7 @@ these reference docs — **read the relevant one before working in that area:**
 | Field | Value |
 |---|---|
 | Name | Aamir Khan |
-| Role | Aspiring AI Engineer |
+| Role | AI Software Engineer |
 | Subtitle | AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI |
 | Tagline | CS Master's student at UC Riverside. Building applied AI and agentic systems; teaching others along the way. |
 | GitHub | https://github.com/Akhan521 |
@@ -119,6 +119,7 @@ Dark-only, faithful to Duolingo Night Mode neutrals; accents stay saturated. **`
   --duo-canvas:       #0F181C;   /* page background */
   --duo-surface:      #1B262C;   /* cards, elevated panels */
   --duo-surface-2:    #32414A;   /* higher elevation, desk, hover fills */
+  --duo-surface-3:    #3E4E58;   /* raised neutral button face (one step lighter than surface-2) */
   --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows — one step lighter than surface-2 */
   --duo-text:         #FFFFFF;   /* primary text on dark chrome */
   --duo-text-muted:   #AFAFAF;   /* subtitles, meta, descriptions */

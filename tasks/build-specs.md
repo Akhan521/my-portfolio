@@ -14,13 +14,13 @@ character-art rules live in `tasks/duolingo-style.md`; content data lives in `ta
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aamir Khan — Aspiring AI Engineer. CS Master's student at UC Riverside building applied AI and agentic systems.">
-  <meta property="og:title" content="Aamir Khan — AI Engineer Portfolio">
+  <meta name="description" content="Aamir Khan — AI Software Engineer. CS Master's student at UC Riverside building applied AI and agentic systems.">
+  <meta property="og:title" content="Aamir Khan — AI Software Engineer Portfolio">
   <meta property="og:description" content="CS Master's student at UC Riverside building applied AI and agentic systems.">
   <meta property="og:image" content="assets/og-image.png">
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
-  <title>Aamir Khan — AI Engineer</title>
+  <title>Aamir Khan — AI Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -132,10 +132,12 @@ Wrap every section's content in `<div class="container">`.
 .duo-btn-outline { background: transparent; color: var(--duo-green); border: 2px solid var(--duo-green); box-shadow: none; }
 .duo-btn-outline:hover { background: var(--duo-green-muted); }
 
-/* Neutral tactile — same weight/press as .duo-btn, for pairing a non-green secondary CTA (hero) */
-.duo-btn-neutral { background: var(--duo-surface-2); color: var(--duo-text); border: 2px solid var(--duo-border); box-shadow: 0 4px 0 var(--duo-border); }
-.duo-btn-neutral:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-border); }
-.duo-btn-neutral:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-border); }
+/* Neutral tactile — mirrors .duo-btn's light-face/darker-edge recipe (for pairing a non-green
+   secondary CTA, e.g. hero Resume). No border → same size as .duo-btn + crisp face-to-edge.
+   Edge = --duo-surface (darker than the surface-3 face, but lighter than canvas so it stays visible). */
+.duo-btn-neutral { background: var(--duo-surface-3); color: var(--duo-text); border: none; box-shadow: 0 4px 0 var(--duo-surface); }
+.duo-btn-neutral:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-surface); }
+.duo-btn-neutral:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-surface); }
 
 .duo-btn-footer { background: var(--duo-snow); color: var(--duo-green); border: 2px solid rgba(255,255,255,0.6); box-shadow: 0 4px 0 rgba(0,0,0,0.12); }
 .duo-btn-footer:hover { background: var(--duo-green-light); }

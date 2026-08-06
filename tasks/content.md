@@ -91,7 +91,7 @@ const skills = [
 ## Hero copy (verbatim) — redesigned 2026-08-05 (Approach B, clean-professional)
 
 - Greeting: `"Hi, I'm Aamir!"` (first name only — the navbar already shows the full "Aamir Khan"; no emoji)
-- Role: `"Aspiring AI Engineer"`
+- Role: `"AI Software Engineer"`
 - Value line: `"CS Master's student at UC Riverside, building applied AI and agentic systems."`
 - Credentials line (muted): `"AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI"`
 - Buttons (matched tactile pair): `"View Projects"` (`.duo-btn`, → `#projects`) ·

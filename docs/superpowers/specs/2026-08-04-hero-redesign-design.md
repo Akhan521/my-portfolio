@@ -30,10 +30,11 @@ as an intentional design element (a "profile card"), not a stock floating cutout
 - **Credentials line:** "AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI" (muted).
 - **Matched button pair** (fixes the mismatch): both tactile Duolingo buttons —
   - Primary: `.duo-btn` green (**View Projects** → `#projects`).
-  - Secondary: **new `.duo-btn-neutral`** (surface-2 bg, `--duo-border` border, tactile bottom
-    shadow in **`--duo-canvas`** — darker than the fill so the depth reads; `--duo-border` was
-    too close to the fill to show — 4px press) — **Resume** (Drive link, new tab). Same weight
-    as the primary.
+  - Secondary: **new `.duo-btn-neutral`** — mirrors `.duo-btn`'s light-face/darker-edge recipe:
+    `--duo-surface-3` face (new token, a lighter slate), **no border** (so it's the same size as
+    the green button and the face meets the edge crisply), tactile shadow `0 4px 0 --duo-surface`
+    (darker than the face, lighter than canvas → the ledge stays visible), 4px press — **Resume**
+    (Drive link, new tab). Same weight/size as the primary.
 - **Real status chip** (replaces the streak): pill with a **pulsing green "available" dot** +
   "Open to SWE & AI/ML internships". Meaningful info; the pulse is the *purposeful* motion that
   replaces the decorative wave.

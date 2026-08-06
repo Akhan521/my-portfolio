@@ -318,3 +318,11 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
   bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
   Next: About/Skills section.**
+- 2026-08-05 — Post-review tweaks: (1) **Role retitled** "Aspiring AI Engineer" →
+  **"AI Software Engineer"** across index.html (role + meta/title/OG), CLAUDE.md, content.md,
+  build-specs.md — owner positions as a SWE building AI systems (app/LLM/agentic layer), not
+  low-level ML. (2) **`.duo-btn-neutral` depth/size fix (attempt 2):** the earlier version had a
+  2px border (→ 4px bigger than the green btn) and a `--duo-canvas` shadow (= page bg → invisible
+  ledge). Rebuilt to mirror the green recipe: new `--duo-surface-3` lighter face, no border (same
+  size), `--duo-surface` edge (darker than face, lighter than canvas → visible). Now a proper
+  matched tactile pair. Docs synced.
