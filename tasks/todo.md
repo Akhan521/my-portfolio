@@ -21,9 +21,17 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** **About / Skills section** (Section 3 in `tasks/build-specs.md`) — SKILL TREE
-> eyebrow, "What I've Learned", bio + 2-col skill-card grid with animated XP bars (GSAP).
-> **Last completed:** Hero redesign (Approach B) implemented + polished (2026-08-05)
+> **Next up (2 quick hero refinements the owner flagged, THEN the About section):**
+>   1. Refine the `.hero-status` chip ("Open to SWE & AI/ML internships") — owner wants to
+>      revisit its look (it sits right below the two buttons).
+>   2. Play with the **Resume button color** — even after the `--duo-surface-3`/`--duo-surface`
+>      fix, the face↔edge contrast is still a bit hard to read on the dark canvas. Explore
+>      warmer/lighter faces or a different edge so the tactile depth reads more clearly. (Could
+>      also consider a subtle accent — e.g. a blue/`--duo-blue` secondary — but keep it a
+>      matched tactile pair with View Projects.)
+> Then: **About / Skills section** (Section 3 in `tasks/build-specs.md`) — SKILL TREE eyebrow,
+> "What I've Learned", bio + 2-col skill-card grid with animated XP bars (GSAP).
+> **Last completed:** Hero redesign (Approach B) implemented + polished; role retitled (2026-08-05)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
