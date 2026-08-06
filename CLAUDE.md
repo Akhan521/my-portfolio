@@ -3,9 +3,11 @@
 Personal portfolio for Aamir Khan, CS Master's student at UC Riverside and aspiring AI
 engineer. **Dark-only** Duolingo Night Mode visual design language: blue-navy canvas,
 AI-generated soft-shaded cartoon character illustrations, signature green accents, bouncy
-spring animations, XP/streak gamification framing. No light theme, no theme toggle. Currently
-single-page, architected to grow into a multi-page site over time. Vanilla HTML/CSS/JS — no
-framework, no bundler, no npm.
+spring animations, rounded tactile shapes. Clean and professional — keeps Duolingo's DNA
+(green, tactile shapes, warmth, the character) but avoids literal game mechanics (no
+XP/streak/badge decoration; motion and UI must carry real meaning, not gimmicks). No light
+theme, no theme toggle. Currently single-page, architected to grow into a multi-page site
+over time. Vanilla HTML/CSS/JS — no framework, no bundler, no npm.
 
 ---
 
@@ -108,7 +110,7 @@ Dark-only, faithful to Duolingo Night Mode neutrals; accents stay saturated. **`
   --duo-green-dark:   #58A700;   /* button bottom shadow */
   --duo-green-muted:  #2A4A1A;   /* soft green fill on dark chrome (badges, outline hover, XP track) */
   --duo-green-light:  #D7F5B1;   /* light-island only: badges/pills on white laptop screen */
-  --duo-yellow:       #FFD900;   /* XP badges, streak, focus rings */
+  --duo-yellow:       #FFD900;   /* focus rings, sparing highlight accents */
   --duo-blue:         #1CB0F6;   /* secondary accent */
   --duo-orange:       #FF9600;   /* in-progress badge */
   --duo-red:          #FF4B4B;   /* error states only */

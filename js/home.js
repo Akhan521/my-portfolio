@@ -4,13 +4,13 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Hero: under reduced motion, skip the staggered entrance/float and show the final state now.
+  // Hero: under reduced motion, skip the staggered entrance/float/pulse and show final state now.
   if (reduceMotion) {
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll(
-        '#hero .hero-greeting, #hero .hero-role, #hero .hero-subtitle, ' +
-        '#hero .hero-bio, #hero .hero-buttons, #hero .hero-badge, ' +
-        '#hero .hero-character, #hero .hero-character img, #hero .hero-greeting .wave'
+        '#hero .hero-greeting, #hero .hero-role, #hero .hero-value, ' +
+        '#hero .hero-creds, #hero .hero-buttons, #hero .hero-status, ' +
+        '#hero .hero-status .status-dot, #hero .hero-portrait, #hero .hero-frame'
       ).forEach(function (el) {
         el.style.animation = 'none';
         el.style.opacity = '1';

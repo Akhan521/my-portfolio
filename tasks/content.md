@@ -88,14 +88,17 @@ const skills = [
 
 ---
 
-## Hero copy (verbatim)
+## Hero copy (verbatim) — redesigned 2026-08-05 (Approach B, clean-professional)
 
-- Greeting: `"Hi, I'm Aamir Khan 👋"`
+- Greeting: `"Hi, I'm Aamir!"` (first name only — the navbar already shows the full "Aamir Khan"; no emoji)
 - Role: `"Aspiring AI Engineer"`
-- Subtitle: `"AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI"`
-- Bio line: `"CS Master's student at UC Riverside. Building applied AI and agentic systems; teaching others along the way."`
-- Buttons: `"View Projects"` (→ `#projects`) · `"Resume"` (→ resume URL, new tab)
-- Streak badge: `"🔥 Streak: 365 days"`
+- Value line: `"CS Master's student at UC Riverside, building applied AI and agentic systems."`
+- Credentials line (muted): `"AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI"`
+- Buttons (matched tactile pair): `"View Projects"` (`.duo-btn`, → `#projects`) ·
+  `"Resume"` (`.duo-btn-neutral`, → resume URL, new tab)
+- Status chip (replaces the streak badge): `"Open to SWE & AI/ML internships"` with a pulsing
+  green availability dot
+- Retired: the `"🔥 Streak: 365 days"` badge and the `👋` emoji (read as AI-generic filler).
 
 ## About / Skill Tree copy (verbatim)
 

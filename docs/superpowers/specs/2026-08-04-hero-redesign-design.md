@@ -1,7 +1,6 @@
-# Hero Section Redesign — Design (DRAFT / in progress)
+# Hero Section Redesign — Design (FINAL)
 
-**Status:** Draft. Direction agreed; **one open decision (frame treatment)** before this is
-final. Resume the brainstorming here, lock the frame, finalize this doc, then implement.
+**Status:** Final — all decisions locked (frame treatment chosen 2026-08-05). Ready to implement.
 
 ## Why
 
@@ -23,14 +22,18 @@ as an intentional design element (a "profile card"), not a stock floating cutout
 ## Decisions locked
 
 - **Remove** the waving emoji and the streak badge entirely.
-- **Greeting:** warm **"Hi, I'm Aamir Khan"** (no emoji), large/bold (Nunito 900).
+- **Greeting:** warm **"Hi, I'm Aamir!"** (first name only — the navbar already shows the full
+  "Aamir Khan", and first-name fits on one line with no orphaned word; no emoji), large/bold
+  (Nunito 900).
 - **Role:** "Aspiring AI Engineer" — Feather green, weight 800.
 - **Value line:** "CS Master's student at UC Riverside, building applied AI and agentic systems."
 - **Credentials line:** "AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI" (muted).
 - **Matched button pair** (fixes the mismatch): both tactile Duolingo buttons —
   - Primary: `.duo-btn` green (**View Projects** → `#projects`).
-  - Secondary: **new `.duo-btn-neutral`** (surface-2 bg, `--duo-border` border + tactile
-    bottom shadow, 4px press) — **Resume** (Drive link, new tab). Same weight as the primary.
+  - Secondary: **new `.duo-btn-neutral`** (surface-2 bg, `--duo-border` border, tactile bottom
+    shadow in **`--duo-canvas`** — darker than the fill so the depth reads; `--duo-border` was
+    too close to the fill to show — 4px press) — **Resume** (Drive link, new tab). Same weight
+    as the primary.
 - **Real status chip** (replaces the streak): pill with a **pulsing green "available" dot** +
   "Open to SWE & AI/ML internships". Meaningful info; the pulse is the *purposeful* motion that
   replaces the decorative wave.
@@ -38,21 +41,17 @@ as an intentional design element (a "profile card"), not a stock floating cutout
   character fills it via `object-fit: cover` using a **tight-cropped** image
   (`assets/character/hero-tight.png`, 637×826 — crop of `hero.png` removing its ~18% transparent
   top/bottom margins so it fills the frame with no empty space).
+- **Frame treatment (CHOSEN — option 3, "green-tinted / middle ground"):** a dark green-tinted
+  panel fill (`#16241C`), a **3px `--duo-green` border**, the green tactile bottom shadow
+  (`0 10px 0 var(--duo-green-dark)`), **plus a soft radial green glow behind the character's head**
+  (`radial-gradient(circle, rgba(88,204,2,0.55) 0%, rgba(88,204,2,0) 68%)`, sized ~78%×70%,
+  centered ~44% from the top, z-index BELOW the character image). Keeps the classy dark frame
+  while the glow lifts the character off the background so he still pops. `border-radius: 34px`,
+  `overflow: hidden`. (Rejected: option 1 dark-panel-only — character popped too little; option 2
+  bright-green — too much green.)
 - **Layout:** text-left (~55%) / framed character right (~45%); stacks on mobile (< 768px).
 - **Motion:** gentle idle float on the framed portrait + the pulsing availability dot. Respect
   `prefers-reduced-motion` (snap to final state).
-
-## OPEN DECISION — frame treatment (resume here)
-
-Three variants previewed as mockups; owner to choose:
-1. **Dark surface panel + green accent edge** (last previewed) — `--duo-surface` fill, 3px
-   `--duo-green` border, green tactile bottom shadow. Subtle, sophisticated. Tradeoff: character
-   pops a little less on the dark fill (dark hair/beard edges blend, like the reason the avatar
-   uses a green circle).
-2. **Bright green frame** — `--duo-green` fill, green-dark tactile shadow. Boldest; character
-   pops hardest; most overtly Duolingo.
-3. **Middle ground** — slightly green-tinted dark panel, or a soft green glow behind the
-   character, so it stays subtle but the character pops more.
 
 ## Follow-on doc updates (when implementing)
 

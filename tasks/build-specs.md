@@ -132,6 +132,11 @@ Wrap every section's content in `<div class="container">`.
 .duo-btn-outline { background: transparent; color: var(--duo-green); border: 2px solid var(--duo-green); box-shadow: none; }
 .duo-btn-outline:hover { background: var(--duo-green-muted); }
 
+/* Neutral tactile — same weight/press as .duo-btn, for pairing a non-green secondary CTA (hero) */
+.duo-btn-neutral { background: var(--duo-surface-2); color: var(--duo-text); border: 2px solid var(--duo-border); box-shadow: 0 4px 0 var(--duo-border); }
+.duo-btn-neutral:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-border); }
+.duo-btn-neutral:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-border); }
+
 .duo-btn-footer { background: var(--duo-snow); color: var(--duo-green); border: 2px solid rgba(255,255,255,0.6); box-shadow: 0 4px 0 rgba(0,0,0,0.12); }
 .duo-btn-footer:hover { background: var(--duo-green-light); }
 ```
@@ -161,32 +166,45 @@ Wrap every section's content in `<div class="container">`.
 - Avatar hover: `transform: scale(1.1)` with `transition: transform 0.15s ease`
 - Mobile (< 768px): hamburger collapses links to dropdown; avatar + name always visible
 
-## Section 2 — Hero
-`id="hero"` · `min-height: 100vh` · `padding-top: 80px`
+## Section 2 — Hero (redesigned 2026-08-05 — Approach B, see `docs/superpowers/specs/2026-08-04-hero-redesign-design.md`)
+`id="hero"` · `min-height: 100vh` · `padding: 96px 0 3rem`
 ```css
 background-color: var(--duo-canvas);
 background-image: radial-gradient(circle, rgba(55, 70, 79, 0.7) 1px, transparent 1px);
 background-size: 28px 28px;
 ```
-Layout: `display: flex; align-items: center; gap: 2rem` — 60% text left, 40% character right.
-Copy: see `tasks/content.md` (hero). Streak badge: `background: var(--duo-yellow)`,
-`color: var(--duo-canvas)` (dark text on yellow — not white), Nunito 700,
-`border-radius: var(--radius-pill)`, `padding: 4px 14px`, `font-size: 0.85rem`.
-Right column: `hero.png` (transparent-bg raster) — apply the `.hero-character` entrance
-animation and an optional gentle idle float (whole-image transform only; no per-part motion).
+Layout: `.hero-inner` is `display: flex; align-items: center; gap: 4rem` — text left (~55%),
+framed character right (~45%). Stacks to `column` (text first) on mobile < 768px. Copy: see
+`tasks/content.md` (hero). **No streak badge, no emoji** — dropped as AI-generic filler.
 
-Page-load animation (CSS only — not GSAP):
+- **Greeting** `.hero-greeting`: `clamp(2.6rem, 5.6vw, 4.4rem)`, weight 900.
+- **Role** `.hero-role`: 1.5rem, weight 800, `var(--duo-green)`.
+- **Value** `.hero-value`: 1.15rem, `var(--duo-text)`, `max-width: 34ch`.
+- **Credentials** `.hero-creds`: 0.9rem, `var(--duo-text-muted)`.
+- **Buttons** (matched tactile pair): `.duo-btn` (View Projects → `#projects`) +
+  `.duo-btn-neutral` (Resume → resume URL, new tab).
+- **Status chip** `.hero-status`: pill on `--duo-surface` / `--duo-border`, weight 700, with a
+  `.status-dot` (green, `status-pulse` box-shadow ring animation) — real "available" signal.
+- **Framed character** `.hero-portrait > .hero-frame > img`: rounded panel (`border-radius: 34px`,
+  `overflow: hidden`), fill `#16241C` (green-tinted dark), `3px var(--duo-green)` border, tactile
+  `box-shadow: 0 10px 0 var(--duo-green-dark)`, and a `::before` radial green glow
+  (`rgba(88,204,2,0.55)→0`, ~78%×70%, centered top 44%, z-index 1) behind the image (z-index 2).
+  Image is `assets/character/hero-tight.png` with `object-fit: cover; object-position: center top`.
+
+Page-load animation (CSS only — not GSAP), staggered fade-up on text + slide-in on portrait;
+idle `hero-float` on `.hero-frame`; `status-pulse` on the dot:
 ```css
 @keyframes slide-in-right { from { transform: translateX(80px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 @keyframes fade-up        { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.hero-character { animation: slide-in-right 600ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-.hero-greeting  { animation: fade-up 400ms ease-out 200ms both; }
-.hero-role      { animation: fade-up 400ms ease-out 350ms both; }
-.hero-bio       { animation: fade-up 400ms ease-out 450ms both; }
-.hero-buttons   { animation: fade-up 400ms ease-out 550ms both; }
-.hero-badge     { animation: fade-up 400ms ease-out 650ms both; }
+.hero-portrait { animation: slide-in-right 600ms cubic-bezier(0.22,1,0.36,1) both; }
+.hero-greeting { animation: fade-up 400ms ease-out 200ms both; }
+.hero-role     { animation: fade-up 400ms ease-out 300ms both; }
+.hero-value    { animation: fade-up 400ms ease-out 380ms both; }
+.hero-creds    { animation: fade-up 400ms ease-out 460ms both; }
+.hero-buttons  { animation: fade-up 400ms ease-out 560ms both; }
+.hero-status   { animation: fade-up 400ms ease-out 660ms both; }
 ```
-Skip all animations under `prefers-reduced-motion: reduce` — final state immediately.
+Reduced motion: `home.js` snaps all the above (+ `.hero-frame`, `.status-dot`) to final state.
 
 ## Section 3 — About / Skills
 `id="about"` · `background: var(--duo-canvas)` · `padding: 5rem 0`

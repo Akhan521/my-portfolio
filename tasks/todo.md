@@ -21,10 +21,9 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up:** finish the **HERO redesign** — pick the frame treatment (the one OPEN decision
-> in `docs/superpowers/specs/2026-08-04-hero-redesign-design.md`), finalize that spec, then
-> implement Approach B (replaces the initial hero). Then remove the TEMP scaffold in `index.html`.
-> **Last completed:** Built the initial hero, then brainstormed a clean-professional redesign (Approach B) (2026-08-04)
+> **Next up:** **About / Skills section** (Section 3 in `tasks/build-specs.md`) — SKILL TREE
+> eyebrow, "What I've Learned", bio + 2-col skill-card grid with animated XP bars (GSAP).
+> **Last completed:** Hero redesign (Approach B) implemented + polished (2026-08-05)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -147,13 +146,16 @@ outputs in; Claude processes/wires them. Generate the whole set in one session f
 
 ## Phase 3 — Sections (top to bottom)
 
-### [ ] Commit 9 — Hero section
-- [ ] `#hero` markup: greeting, role, subtitle, bio, View Projects + Resume buttons, streak badge
-- [ ] Dotted radial background; 60/40 text-left / character-right flex layout
-- [ ] Inline `standing.svg`; CSS page-load entrance keyframes (staggered)
-- [ ] `home.js`: reduced-motion guard that snaps hero elements to final state
-- **Done when:** hero fills viewport, animates in once, links work, respects reduced motion.
-- **Commit:** `Build hero section with entrance animations.`
+### [x] Commit 9 — Hero section  *(built, then REDESIGNED — Approach B)*
+- [x] `#hero` markup: greeting, role, value, credentials, matched buttons, status chip
+- [x] Dotted radial background; text-left / framed-character-right flex layout
+- [x] `hero.png` raster (framed via `hero-tight.png`); CSS staggered entrance keyframes
+- [x] `home.js`: reduced-motion guard that snaps hero elements to final state
+- **Redesign (2026-08-05):** dropped the waving emoji + streak badge + mismatched buttons
+      (read as AI-generic). Now: warm "Hi, I'm Aamir!", green-tinted framed portrait (green edge
+      + glow), matched tactile pair (`.duo-btn` + new `.duo-btn-neutral`), real availability
+      status chip. Spec: `docs/superpowers/specs/2026-08-04-hero-redesign-design.md`.
+- **Done when:** hero fills viewport, animates in once, links work, respects reduced motion. ✅
 
 ### [ ] Commit 10 — About / Skills section
 - [ ] `#about` markup: eyebrow, heading, bio, 2-col skill grid of `.skill-card`s w/ XP bars
@@ -307,3 +309,12 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   Cropped `assets/character/hero-tight.png` for the frame. **One open decision: frame treatment**
   (dark-panel+green-edge vs bright-green vs green-tinted) — captured in
   `docs/superpowers/specs/2026-08-04-hero-redesign-design.md`. Resume there next session.
+- 2026-08-05 — **Hero redesign implemented (Approach B).** Owner chose frame option 3
+  (green-tinted dark panel + green edge + soft glow). Replaced the initial hero markup/CSS; added
+  `.duo-btn-neutral`, the `.hero-frame` (fill `#16241C`, 3px green border, tactile shadow,
+  radial glow), and the `.hero-status` chip w/ pulsing dot. Synced docs (CLAUDE.md, content.md,
+  build-specs.md). Owner polish: (a) neutral button's tactile shadow was invisible (`--duo-border`
+  ~ fill) -> switched to `--duo-canvas` so depth reads; (b) greeting -> first-name "Hi, I'm Aamir!"
+  (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
+  bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
+  Next: About/Skills section.**

@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero frame options</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body { background: var(--duo-canvas);
+    background-image: radial-gradient(circle, rgba(55,70,79,0.7) 1px, transparent 1px); background-size: 28px 28px;
+    min-height: 100vh; padding: 3rem 2rem 4rem; font-family: Nunito, sans-serif; }
+  h1 { color: var(--duo-text); font-size: 1.6rem; margin-bottom: 0.4rem; }
+  .sub { color: var(--duo-text-muted); margin-bottom: 2.5rem; max-width: 60ch; }
+  .grid { display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+  .opt { width: 320px; text-align: center; }
+  .opt h2 { color: var(--duo-text); font-size: 1.05rem; margin-bottom: 0.35rem; }
+  .opt p { color: var(--duo-text-muted); font-size: 0.85rem; margin-bottom: 1.25rem; min-height: 3.4em; }
+  .frame { position: relative; width: 300px; aspect-ratio: 1 / 1.06; border-radius: 34px; overflow: hidden; margin: 0 auto; }
+  .frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; position: relative; z-index: 2; }
+
+  /* Option 1 — dark surface panel + green accent edge */
+  .f1 { background: var(--duo-surface); border: 3px solid var(--duo-green); box-shadow: 0 10px 0 var(--duo-green-dark); }
+
+  /* Option 2 — bright green frame */
+  .f2 { background: var(--duo-green); box-shadow: 0 10px 0 var(--duo-green-dark); }
+
+  /* Option 3 — green-tinted middle ground: dark panel, green edge, + soft green glow behind the character */
+  .f3 { background: #16241c; border: 3px solid var(--duo-green); box-shadow: 0 10px 0 var(--duo-green-dark); }
+  .f3::before { content:""; position:absolute; left:50%; top:44%; transform:translate(-50%,-50%);
+    width:78%; height:70%; background: radial-gradient(circle, rgba(88,204,2,0.55) 0%, rgba(88,204,2,0) 68%); z-index:1; }
+</style></head>
+<body>
+  <h1>Hero frame — 3 treatments</h1>
+  <p class="sub">Same character &amp; frame shape; only the fill/edge changes. Pick 1, 2, or 3 (or tell me a tweak). All keep the Duolingo tactile bottom shadow.</p>
+  <div class="grid">
+    <div class="opt">
+      <h2>1 · Dark panel + green edge</h2>
+      <p>Subtle and classy. Character pops a touch less on the dark fill.</p>
+      <div class="frame f1"><img src="assets/character/hero-tight.png" alt="Aamir Khan"></div>
+    </div>
+    <div class="opt">
+      <h2>2 · Bright green</h2>
+      <p>Bold, most overtly Duolingo. Character pops hardest.</p>
+      <div class="frame f2"><img src="assets/character/hero-tight.png" alt="Aamir Khan"></div>
+    </div>
+    <div class="opt">
+      <h2>3 · Green-tinted (middle)</h2>
+      <p>Dark panel + green edge, plus a soft green glow so the character still pops.</p>
+      <div class="frame f3"><img src="assets/character/hero-tight.png" alt="Aamir Khan"></div>
+    </div>
+  </div>
+</body></html>
