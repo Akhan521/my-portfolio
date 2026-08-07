@@ -44,25 +44,30 @@ owner decides by reacting to what he sees.
   - **Matched tactile buttons**: `.duo-btn` (View Projects → `#projects`) + `.duo-btn-blue`
     (Resume → Drive link). Blue secondary CTA: face `--duo-blue` `#1CB0F6`, edge `--duo-blue-dark`
     `#1488C4`, no border — mirrors the green recipe so the tactile depth reads on the dark canvas.
-  - **Status chip** `.hero-status`: "Open to SWE & AI/ML internships" + pulsing green dot.
+  - **Status chip** `.hero-status`: "Open to SWE & AI/ML internships" + pulsing green dot; sits in
+    `.hero-cta` and spans the full width of the two buttons above (`width:100%` inside a
+    `fit-content` wrapper), with extra gap so the pulse ring stays clear of the text.
   - Staggered CSS entrance, idle float, reduced-motion guard in `js/home.js`.
 - **Character art** (all locked, in `assets/character/`): `avatar.png` (navbar), `hero.png` +
   `hero-tight.png` (hero), `src/` masters, `reference/style-north-star.png`. Also
   `seated-neutral`/`seated-excited` masters exist in `src/` for the future laptop scene.
 
-**Nav + hero are committed and pushed.** The Resume-button refinement below is done and verified.
+**Nav + hero are committed. The two 2026-08-06 hero refinements are committed but NOT yet pushed**
+(owner reviews before pushing).
 
-## 4. OPEN — pick up here next session (owner-flagged, do BEFORE the About section)
+## 4. Recently done (both owner-flagged hero refinements — 2026-08-06)
 
-**DONE (2026-08-06):** Resume button color/contrast — owner picked the bright **Duo blue** option
-from a 5-way side-by-side. Rebuilt `.duo-btn-neutral` → **`.duo-btn-blue`** (face `--duo-blue`,
-edge new `--duo-blue-dark` `#1488C4`); depth now reads clearly. `--duo-surface-3` no longer used
-by a button (kept as an available ramp step).
+Both are complete, verified (desktop + mobile), and committed:
+1. **Resume button color/contrast** — owner picked the bright **Duo blue** option from a 5-way
+   side-by-side. Rebuilt `.duo-btn-neutral` → **`.duo-btn-blue`** (face `--duo-blue`, edge new
+   `--duo-blue-dark` `#1488C4`); depth now reads clearly. `--duo-surface-3` no longer used by a
+   button (kept as an available ramp step).
+2. **`.hero-status` chip** — owner kept the current style but wanted it widened to span the two
+   buttons' combined width, with room for the pulse. Wrapped buttons + chip in `.hero-cta`
+   (`width: fit-content`); chip is now `display:flex; width:100%`, `padding: 8px 18px`,
+   `gap: 0.85rem` (pulse-ring clearance).
 
-**Still open:**
-1. **Refine the `.hero-status` chip** ("Open to SWE & AI/ML internships", sits below the two
-   buttons). Owner wants to revisit its look — treatment TBD (size, style, emphasis, maybe an
-   icon). Currently: pill on `--duo-surface` / `--duo-border`, weight 700, pulsing green dot.
+**Next: the About / Skills section** (see §5).
 
 ## 5. Then continue the roadmap
 

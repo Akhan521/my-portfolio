@@ -21,14 +21,15 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up (1 hero refinement left, THEN the About section):**
->   1. Refine the `.hero-status` chip ("Open to SWE & AI/ML internships") — owner wants to
->      revisit its look (it sits right below the two buttons).
->   ~~2. Resume button color~~ — **DONE (2026-08-06):** owner picked bright Duo blue from a
->      5-way side-by-side; `.duo-btn-neutral` → `.duo-btn-blue` (see Review Log).
-> Then: **About / Skills section** (Section 3 in `tasks/build-specs.md`) — SKILL TREE eyebrow,
+> **Next up: the About / Skills section.** Both owner-flagged hero refinements are DONE and
+> committed (2026-08-06) — not yet pushed (owner reviews first):
+>   ~~1. `.hero-status` chip~~ — **DONE:** kept current style, widened to span the two buttons'
+>      width (`.hero-cta` fit-content wrapper + chip `width:100%`) + pulse-ring clearance.
+>   ~~2. Resume button color~~ — **DONE:** owner picked bright Duo blue; `.duo-btn-neutral` →
+>      `.duo-btn-blue` (see Review Log).
+> **About / Skills section** (Section 3 in `tasks/build-specs.md`) — SKILL TREE eyebrow,
 > "What I've Learned", bio + 2-col skill-card grid with animated XP bars (GSAP).
-> **Last completed:** Resume button → Duo blue secondary CTA (2026-08-06)
+> **Last completed:** hero status chip widened to button-row width (2026-08-06)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -323,6 +324,15 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
   bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
   Next: About/Skills section.**
+- 2026-08-06 — **Hero status chip widened to button-row width.** Owner kept the current chip
+  style (dark pill, gray border, white text, pulsing green dot) but wanted it to span the same
+  width as the two buttons above and leave room for the pulse ring. Wrapped `.hero-buttons` +
+  `.hero-status` in a new `.hero-cta` (`width: fit-content` → collapses to the buttons row, the
+  widest child); chip changed from `inline-flex` to `display:flex; width:100%` so it fills that
+  width, `padding` 6px 16px → 8px 18px, `gap` 0.5rem → 0.85rem (keeps the `status-pulse` ring off
+  the text). Verified desktop + mobile in headless (chip tracks the buttons' width at both).
+  Synced index.html, build-specs.md, HANDOFF.md. Committed separately from the button change.
+  Next: About/Skills section.
 - 2026-08-06 — **Resume button → Duo blue secondary CTA.** The neutral slate button still read
   flat (edge tone too close to the canvas → faint ledge). Rendered a 5-way side-by-side
   (`_btns.html`): current, brighter slate, warm stone, bright Duo blue, deep blue — each as a

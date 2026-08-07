@@ -184,10 +184,15 @@ framed character right (~45%). Stacks to `column` (text first) on mobile < 768px
 - **Role** `.hero-role`: 1.5rem, weight 800, `var(--duo-green)`.
 - **Value** `.hero-value`: 1.15rem, `var(--duo-text)`, `max-width: 34ch`.
 - **Credentials** `.hero-creds`: 0.9rem, `var(--duo-text-muted)`.
+- **CTA group** `.hero-cta`: wraps `.hero-buttons` + `.hero-status`; `width: fit-content` so it
+  collapses to the buttons row (its widest child), letting the full-width status chip below match
+  the buttons' combined width.
 - **Buttons** (matched tactile pair): `.duo-btn` (View Projects → `#projects`) +
   `.duo-btn-blue` (Resume → resume URL, new tab) — a blue secondary CTA.
-- **Status chip** `.hero-status`: pill on `--duo-surface` / `--duo-border`, weight 700, with a
-  `.status-dot` (green, `status-pulse` box-shadow ring animation) — real "available" signal.
+- **Status chip** `.hero-status`: pill on `--duo-surface` / `--duo-border`, weight 700,
+  `display: flex; width: 100%` (spans `.hero-cta` = the two buttons above), `padding: 8px 18px`,
+  `gap: 0.85rem` so the `.status-dot` pulse ring stays clear of the text. `.status-dot` is green
+  with the `status-pulse` box-shadow ring animation — a real "available" signal.
 - **Framed character** `.hero-portrait > .hero-frame > img`: rounded panel (`border-radius: 34px`,
   `overflow: hidden`), fill `#16241C` (green-tinted dark), `3px var(--duo-green)` border, tactile
   `box-shadow: 0 10px 0 var(--duo-green-dark)`, and a `::before` radial green glow
