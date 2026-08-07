@@ -41,27 +41,28 @@ owner decides by reacting to what he sees.
   - **Framed character**: `.hero-frame` — green-tinted dark panel (`#16241C`), 3px green
     border, tactile bottom shadow, soft radial green glow behind the head; character fills it
     via `assets/character/hero-tight.png` + `object-fit: cover`.
-  - **Matched tactile buttons**: `.duo-btn` (View Projects → `#projects`) + `.duo-btn-neutral`
-    (Resume → Drive link). Neutral face `--duo-surface-3`, edge `--duo-surface`, no border.
+  - **Matched tactile buttons**: `.duo-btn` (View Projects → `#projects`) + `.duo-btn-blue`
+    (Resume → Drive link). Blue secondary CTA: face `--duo-blue` `#1CB0F6`, edge `--duo-blue-dark`
+    `#1488C4`, no border — mirrors the green recipe so the tactile depth reads on the dark canvas.
   - **Status chip** `.hero-status`: "Open to SWE & AI/ML internships" + pulsing green dot.
   - Staggered CSS entrance, idle float, reduced-motion guard in `js/home.js`.
 - **Character art** (all locked, in `assets/character/`): `avatar.png` (navbar), `hero.png` +
   `hero-tight.png` (hero), `src/` masters, `reference/style-north-star.png`. Also
   `seated-neutral`/`seated-excited` masters exist in `src/` for the future laptop scene.
 
-**Everything above is committed and pushed.** Working tree is clean.
+**Nav + hero are committed and pushed.** The Resume-button refinement below is done and verified.
 
 ## 4. OPEN — pick up here next session (owner-flagged, do BEFORE the About section)
 
+**DONE (2026-08-06):** Resume button color/contrast — owner picked the bright **Duo blue** option
+from a 5-way side-by-side. Rebuilt `.duo-btn-neutral` → **`.duo-btn-blue`** (face `--duo-blue`,
+edge new `--duo-blue-dark` `#1488C4`); depth now reads clearly. `--duo-surface-3` no longer used
+by a button (kept as an available ramp step).
+
+**Still open:**
 1. **Refine the `.hero-status` chip** ("Open to SWE & AI/ML internships", sits below the two
    buttons). Owner wants to revisit its look — treatment TBD (size, style, emphasis, maybe an
    icon). Currently: pill on `--duo-surface` / `--duo-border`, weight 700, pulsing green dot.
-2. **Improve the Resume button color/contrast.** Even after the fix (face `--duo-surface-3`
-   `#3E4E58`, edge `--duo-surface` `#1B262C`), the face↔edge contrast is still a bit hard to
-   read on the dark canvas. Explore: a lighter/warmer face, a darker or tinted edge, or a
-   subtle accent color (e.g. `--duo-blue`) — but keep it a **matched tactile pair** with the
-   green View Projects button (same size, same 4px press, equally clear depth). Render
-   candidates side-by-side for the owner to choose (see workflow below).
 
 ## 5. Then continue the roadmap
 

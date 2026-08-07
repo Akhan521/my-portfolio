@@ -95,7 +95,7 @@ const skills = [
 - Value line: `"CS Master's student at UC Riverside, building applied AI and agentic systems."`
 - Credentials line (muted): `"AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI"`
 - Buttons (matched tactile pair): `"View Projects"` (`.duo-btn`, → `#projects`) ·
-  `"Resume"` (`.duo-btn-neutral`, → resume URL, new tab)
+  `"Resume"` (`.duo-btn-blue`, → resume URL, new tab)
 - Status chip (replaces the streak badge): `"Open to SWE & AI/ML internships"` with a pulsing
   green availability dot
 - Retired: the `"🔥 Streak: 365 days"` badge and the `👋` emoji (read as AI-generic filler).

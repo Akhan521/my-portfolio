@@ -12,7 +12,8 @@ img, svg { display: block; max-width: 100%; }
   --duo-green-muted:  #2A4A1A;   /* soft green fill on dark chrome (badges, outline hover, XP track) */
   --duo-green-light:  #D7F5B1;   /* light-island only: badges/pills on white laptop screen */
   --duo-yellow:       #FFD900;   /* XP badges, streak, focus rings */
-  --duo-blue:         #1CB0F6;   /* secondary accent */
+  --duo-blue:         #1CB0F6;   /* secondary accent + secondary CTA face */
+  --duo-blue-dark:    #1488C4;   /* blue button bottom shadow (mirrors --duo-green-dark) */
   --duo-orange:       #FF9600;   /* in-progress badge */
   --duo-red:          #FF4B4B;   /* error states only */
 
@@ -101,18 +102,18 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 }
 .duo-btn-outline:hover { background: var(--duo-green-muted); }
 
-/* Neutral tactile — mirrors .duo-btn's light-face / darker-edge recipe so the 3D depth reads.
-   No border (so it's the exact same size as .duo-btn, and the face meets the edge crisply).
-   Edge = --duo-surface: darker than the surface-3 face, yet lighter than --duo-canvas so the
-   ledge stays visible against the page background. */
-.duo-btn-neutral {
-  background: var(--duo-surface-3);
-  color: var(--duo-text);
+/* Secondary CTA (blue) — mirrors .duo-btn's bright-face / darker-tone-edge recipe so the 3D
+   depth reads as clearly as the green primary. No border (same size as .duo-btn, crisp
+   face↔edge). On-brand Duo blue keeps it visually subordinate to the green primary while
+   giving the tactile ledge a strong, legible step over the dark canvas. */
+.duo-btn-blue {
+  background: var(--duo-blue);
+  color: var(--duo-snow);
   border: none;
-  box-shadow: 0 4px 0 var(--duo-surface);
+  box-shadow: 0 4px 0 var(--duo-blue-dark);
 }
-.duo-btn-neutral:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-surface); }
-.duo-btn-neutral:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-surface); }
+.duo-btn-blue:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-blue-dark); }
+.duo-btn-blue:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-blue-dark); }
 
 /* Footer variant — sits on the green band */
 .duo-btn-footer {

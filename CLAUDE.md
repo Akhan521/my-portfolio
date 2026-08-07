@@ -111,7 +111,8 @@ Dark-only, faithful to Duolingo Night Mode neutrals; accents stay saturated. **`
   --duo-green-muted:  #2A4A1A;   /* soft green fill on dark chrome (badges, outline hover, XP track) */
   --duo-green-light:  #D7F5B1;   /* light-island only: badges/pills on white laptop screen */
   --duo-yellow:       #FFD900;   /* focus rings, sparing highlight accents */
-  --duo-blue:         #1CB0F6;   /* secondary accent */
+  --duo-blue:         #1CB0F6;   /* secondary accent + secondary CTA face (hero Resume button) */
+  --duo-blue-dark:    #1488C4;   /* blue button bottom shadow (mirrors --duo-green-dark) */
   --duo-orange:       #FF9600;   /* in-progress badge */
   --duo-red:          #FF4B4B;   /* error states only */
 
@@ -119,7 +120,7 @@ Dark-only, faithful to Duolingo Night Mode neutrals; accents stay saturated. **`
   --duo-canvas:       #0F181C;   /* page background */
   --duo-surface:      #1B262C;   /* cards, elevated panels */
   --duo-surface-2:    #32414A;   /* higher elevation, desk, hover fills */
-  --duo-surface-3:    #3E4E58;   /* raised neutral button face (one step lighter than surface-2) */
+  --duo-surface-3:    #3E4E58;   /* raised neutral surface, one step lighter than surface-2 (available ramp step) */
   --duo-border:       #37464F;   /* card borders, nav rule, tactile shadows — one step lighter than surface-2 */
   --duo-text:         #FFFFFF;   /* primary text on dark chrome */
   --duo-text-muted:   #AFAFAF;   /* subtitles, meta, descriptions */

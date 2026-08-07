@@ -132,12 +132,13 @@ Wrap every section's content in `<div class="container">`.
 .duo-btn-outline { background: transparent; color: var(--duo-green); border: 2px solid var(--duo-green); box-shadow: none; }
 .duo-btn-outline:hover { background: var(--duo-green-muted); }
 
-/* Neutral tactile — mirrors .duo-btn's light-face/darker-edge recipe (for pairing a non-green
-   secondary CTA, e.g. hero Resume). No border → same size as .duo-btn + crisp face-to-edge.
-   Edge = --duo-surface (darker than the surface-3 face, but lighter than canvas so it stays visible). */
-.duo-btn-neutral { background: var(--duo-surface-3); color: var(--duo-text); border: none; box-shadow: 0 4px 0 var(--duo-surface); }
-.duo-btn-neutral:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-surface); }
-.duo-btn-neutral:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-surface); }
+/* Secondary CTA (blue) — mirrors .duo-btn's bright-face/darker-tone-edge recipe so the 3D depth
+   reads as clearly as the green primary (for pairing a non-green secondary CTA, e.g. hero Resume).
+   No border → same size as .duo-btn + crisp face-to-edge. On-brand Duo blue stays subordinate to
+   the green primary while giving the ledge a strong, legible step over the dark canvas. */
+.duo-btn-blue { background: var(--duo-blue); color: var(--duo-snow); border: none; box-shadow: 0 4px 0 var(--duo-blue-dark); }
+.duo-btn-blue:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 var(--duo-blue-dark); }
+.duo-btn-blue:active { transform: translateY(4px); box-shadow: 0 0 0 var(--duo-blue-dark); }
 
 .duo-btn-footer { background: var(--duo-snow); color: var(--duo-green); border: 2px solid rgba(255,255,255,0.6); box-shadow: 0 4px 0 rgba(0,0,0,0.12); }
 .duo-btn-footer:hover { background: var(--duo-green-light); }
@@ -184,7 +185,7 @@ framed character right (~45%). Stacks to `column` (text first) on mobile < 768px
 - **Value** `.hero-value`: 1.15rem, `var(--duo-text)`, `max-width: 34ch`.
 - **Credentials** `.hero-creds`: 0.9rem, `var(--duo-text-muted)`.
 - **Buttons** (matched tactile pair): `.duo-btn` (View Projects → `#projects`) +
-  `.duo-btn-neutral` (Resume → resume URL, new tab).
+  `.duo-btn-blue` (Resume → resume URL, new tab) — a blue secondary CTA.
 - **Status chip** `.hero-status`: pill on `--duo-surface` / `--duo-border`, weight 700, with a
   `.status-dot` (green, `status-pulse` box-shadow ring animation) — real "available" signal.
 - **Framed character** `.hero-portrait > .hero-frame > img`: rounded panel (`border-radius: 34px`,

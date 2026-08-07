@@ -21,17 +21,14 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up (2 quick hero refinements the owner flagged, THEN the About section):**
+> **Next up (1 hero refinement left, THEN the About section):**
 >   1. Refine the `.hero-status` chip ("Open to SWE & AI/ML internships") — owner wants to
 >      revisit its look (it sits right below the two buttons).
->   2. Play with the **Resume button color** — even after the `--duo-surface-3`/`--duo-surface`
->      fix, the face↔edge contrast is still a bit hard to read on the dark canvas. Explore
->      warmer/lighter faces or a different edge so the tactile depth reads more clearly. (Could
->      also consider a subtle accent — e.g. a blue/`--duo-blue` secondary — but keep it a
->      matched tactile pair with View Projects.)
+>   ~~2. Resume button color~~ — **DONE (2026-08-06):** owner picked bright Duo blue from a
+>      5-way side-by-side; `.duo-btn-neutral` → `.duo-btn-blue` (see Review Log).
 > Then: **About / Skills section** (Section 3 in `tasks/build-specs.md`) — SKILL TREE eyebrow,
 > "What I've Learned", bio + 2-col skill-card grid with animated XP bars (GSAP).
-> **Last completed:** Hero redesign (Approach B) implemented + polished; role retitled (2026-08-05)
+> **Last completed:** Resume button → Duo blue secondary CTA (2026-08-06)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -326,6 +323,15 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
   bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
   Next: About/Skills section.**
+- 2026-08-06 — **Resume button → Duo blue secondary CTA.** The neutral slate button still read
+  flat (edge tone too close to the canvas → faint ledge). Rendered a 5-way side-by-side
+  (`_btns.html`): current, brighter slate, warm stone, bright Duo blue, deep blue — each as a
+  matched pair with the green primary. Owner picked **bright Duo blue**. Rebuilt
+  `.duo-btn-neutral` → **`.duo-btn-blue`** (face `--duo-blue` `#1CB0F6`, edge new token
+  `--duo-blue-dark` `#1488C4`, white text, no border — mirrors the green recipe). Depth now reads
+  as clearly as the green button; green+blue is on-brand Duo. Synced index.html, CLAUDE.md,
+  build-specs.md, content.md, HANDOFF.md. `--duo-surface-3` now unused by any button (kept as a
+  ramp step). Verified in headless (desktop). Next: `.hero-status` chip refinement.
 - 2026-08-05 — Post-review tweaks: (1) **Role retitled** "Aspiring AI Engineer" →
   **"AI Software Engineer"** across index.html (role + meta/title/OG), CLAUDE.md, content.md,
   build-specs.md — owner positions as a SWE building AI systems (app/LLM/agentic layer), not
