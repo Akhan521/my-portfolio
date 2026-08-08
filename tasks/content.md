@@ -73,18 +73,22 @@ is the `category` value. Both buttons render normally.
 
 ---
 
-## Skills (About / Skill Tree — levels are estimates, adjust if requested)
+## Skills (About section), implemented 2026-08-07 (curated, categorized chips)
 
-```javascript
-const skills = [
-  { name: "Python",           level: 90, icon: "🐍" },
-  { name: "PyTorch",          level: 85, icon: "🔥" },
-  { name: "Machine Learning", level: 80, icon: "🧠" },
-  { name: "LLMs / NLP",       level: 75, icon: "💬" },
-  { name: "Agentic AI",       level: 70, icon: "🤖" },
-  { name: "JavaScript",       level: 65, icon: "⚡" },
-];
-```
+Owner-confirmed, curated for AI SWE recruiters (not overloaded). No XP levels, no %, no emoji.
+Rendered as solid-tactile `.skill-chip`s under green category labels. See
+`docs/superpowers/specs/2026-08-07-about-skills-design.md`.
+
+- **Languages:** Python · SQL · JavaScript · C++
+- **AI / ML:** PyTorch · LLMs & NLP · Agentic AI · RAG · Fine-tuning (LoRA/PEFT) · Transformers
+- **Tools & Frameworks:** Hugging Face · LangChain · FastAPI · Docker · Git
+
+_Set aside to avoid overload (easy to add back): generic "Machine Learning", standalone Vector
+DBs/embeddings (implied by RAG), React / Node (web-leaning), and NumPy / Pandas (trimmed
+2026-08-07 so Tools is one even row like Languages; largely assumed alongside PyTorch)._
+
+**Retired:** the earlier XP-bar skills (`level`/`icon` array with "SKILL TREE" eyebrow). The
+game-y XP/% and emoji read as AI-generic, replaced per the clean-professional north star.
 
 ---
 
@@ -100,12 +104,13 @@ const skills = [
   green availability dot
 - Retired: the `"🔥 Streak: 365 days"` badge and the `👋` emoji (read as AI-generic filler).
 
-## About / Skill Tree copy (verbatim)
+## About section copy (verbatim) — updated 2026-08-07
 
-- Eyebrow: `"SKILL TREE"`
+- Eyebrow: `"About Me"` (was `"SKILL TREE"` — dropped the game framing)
 - Heading: `"What I've Learned"`
-- Bio:
-  > I'm Aamir — a CS Master's student at UC Riverside with a focus on applied AI and agentic systems. I've built transformers from scratch, fine-tuned LLMs, and shipped AI-powered tools. Currently training AI models at Handshake AI and testing AI products at DeepLearning.AI. Open to SWE and AI/ML internships.
+- Bio (trailing "Open to SWE and AI/ML internships" line trimmed — the hero status chip already
+  states availability, so it read twice on one screen):
+  > I'm Aamir, a CS Master's student at UC Riverside with a focus on applied AI and agentic systems. I've built transformers from scratch, fine-tuned LLMs, and shipped AI-powered tools. Currently training AI models at Handshake AI and testing AI products at DeepLearning.AI.
 
 ## Footer / CTA copy (verbatim)
 

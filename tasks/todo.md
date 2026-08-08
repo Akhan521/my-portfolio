@@ -21,15 +21,14 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up: the About / Skills section.** Both owner-flagged hero refinements are DONE and
-> committed (2026-08-06) — not yet pushed (owner reviews first):
->   ~~1. `.hero-status` chip~~ — **DONE:** kept current style, widened to span the two buttons'
->      width (`.hero-cta` fit-content wrapper + chip `width:100%`) + pulse-ring clearance.
->   ~~2. Resume button color~~ — **DONE:** owner picked bright Duo blue; `.duo-btn-neutral` →
->      `.duo-btn-blue` (see Review Log).
-> **About / Skills section** (Section 3 in `tasks/build-specs.md`) — SKILL TREE eyebrow,
-> "What I've Learned", bio + 2-col skill-card grid with animated XP bars (GSAP).
-> **Last completed:** hero status chip widened to button-row width (2026-08-06)
+> **Next up: the Laptop scene (Commit 11).** The About/Skills section is BUILT + verified
+> (2026-08-07), pending owner review before commit.
+> **Laptop scene** (Section 4 in `tasks/build-specs.md`) — `#projects` anchor + `#laptop-scene`
+> (300vh) sticky structure, seated character + CSS/SVG laptop, static 3D first (GSAP in Commit 12).
+> **Read every line of Section 4 before implementing** (Safari `preserve-3d`, sticky height in CSS).
+> **Uncommitted:** the entire About/Skills section (index.html #about, CSS, home.js GSAP) + doc
+> syncs. Temp `_*.html` comparison pages already deleted.
+> **Last completed:** About/Skills section — categorized skill chips (2026-08-07)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -163,12 +162,16 @@ outputs in; Claude processes/wires them. Generate the whole set in one session f
       status chip. Spec: `docs/superpowers/specs/2026-08-04-hero-redesign-design.md`.
 - **Done when:** hero fills viewport, animates in once, links work, respects reduced motion. ✅
 
-### [ ] Commit 10 — About / Skills section
-- [ ] `#about` markup: eyebrow, heading, bio, 2-col skill grid of `.skill-card`s w/ XP bars
-- [ ] `.skill-bar-fill` starts at `width:0`, carries `data-level`
-- [ ] `home.js`: GSAP batch stagger for cards + separate XP-bar fill tween on one trigger
-- **Done when:** cards stagger in and bars animate to correct widths on scroll.
-- **Commit:** `Build about/skills section with animated XP bars.`
+### [x] Commit 10 — About / Skills section  *(REDESIGNED — chips, not XP bars)*
+Redesigned away from the original XP-bar spec (game-y/AI-generic) per the clean-professional
+north star. Design doc: `docs/superpowers/specs/2026-08-07-about-skills-design.md`.
+- [x] `#about` markup: `About Me` eyebrow, `What I've Learned` heading, bio, + 3 categorized
+      `.skill-group`s of solid-tactile `.skill-chip`s (Languages / AI·ML / Tools & Frameworks)
+- [x] Curated, owner-confirmed skill set — no XP, no %, no emoji, no cards/bars
+- [x] `home.js`: reduced-motion-guarded GSAP ScrollTrigger reveal (bio + labels + chips stagger)
+- **Done when:** bio left / skills right on desktop, stacked on mobile; chips stagger in on
+      scroll; reduced motion snaps to final. ✅ verified in headless (desktop + mobile + reveal).
+- **Commit:** `Build About/Skills section with categorized skill chips.`
 
 ### [ ] Commit 11 — Laptop scene (static 3D)
 - [ ] `#projects` invisible anchor + `#laptop-scene` (300vh) / `.laptop-sticky` structure
@@ -324,6 +327,30 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
   bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
   Next: About/Skills section.**
+- 2026-08-07 — **About / Skills section built (Commit 10) — REDESIGNED from the XP-bar spec.**
+  Brainstormed the direction: the original Section-3 spec (SKILL TREE eyebrow, "XP" labels,
+  animated XP bars, emoji icons) conflicts with the clean-professional north star (no game
+  mechanics / nothing AI-generic), so owner chose a **fully professional, categorized** approach.
+  Probed + curated the real skill set for AI SWE recruiters (owner confirmed RAG / fine-tuning
+  LoRA-PEFT / LangChain / vector DBs). Rendered 3 chip treatments (`_chips.html`); owner picked
+  **A · solid tactile**. Built `#about`: "About Me" eyebrow + "What I've Learned" + bio (trailing
+  internship line trimmed — hero chip already says it) on the left, 3 `.skill-group`s of
+  `.skill-chip`s (Languages / AI·ML / Tools & Frameworks) on the right; stacks on mobile.
+  `home.js` grew a reduced-motion-guarded GSAP ScrollTrigger reveal (bio + labels + chips
+  stagger; no XP fills; safe early-return if GSAP absent). New reusable `.section-eyebrow` /
+  `.section-heading`. Removed the TEMP hero spacer (a smaller 40vh spacer remains for the
+  not-yet-built laptop scene). Design doc: `docs/superpowers/specs/2026-08-07-about-skills-design.md`
+  (committed `3d02dde`). Verified in headless: desktop layout, animated reveal (caught mid-stagger),
+  mobile stack. Synced content.md, build-specs.md §3, HANDOFF.md. Next: Laptop scene (Commit 11).
+- 2026-08-07 (refinements, pre-commit) — Owner review of the About section produced three changes:
+  (1) **Motion timing** set to **"Balanced"** (0.55s fades, 50ms chip stagger, power2.out, ~1.3s
+  full reveal), chosen from a live 4-option comparison page grounded in Material / SaaS / Apple /
+  showcase practices (the initial ~0.9s felt too snappy). (2) **Tools row trimmed to 5** (dropped
+  `NumPy / Pandas`) so it lays out as one even row like Languages instead of orphaning a single
+  chip on its own line; verified in the real section. (3) **New rule: no em dashes anywhere in the
+  portfolio** (use commas / colons / split sentences) — removed from shipped copy (title, meta/OG,
+  bio) + code comments; saved to memory. Internal planning-doc prose still has historical em dashes
+  (sweep offered). **About section + these refinements NOT yet committed** (owner reviews first).
 - 2026-08-06 — **Hero status chip widened to button-row width.** Owner kept the current chip
   style (dark pill, gray border, white text, pulsing green dot) but wanted it to span the same
   width as the two buttons above and leave room for the pulse ring. Wrapped `.hero-buttons` +

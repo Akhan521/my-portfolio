@@ -34,9 +34,11 @@ Heading **"What I've Learned"** is kept — a warm nod to the *learning* idea, n
   vector-DB probe):
   - **Languages:** Python · SQL · JavaScript · C++
   - **AI / ML:** PyTorch · LLMs & NLP · Agentic AI · RAG · Fine-tuning (LoRA/PEFT) · Transformers
-  - **Tools & Frameworks:** Hugging Face · LangChain · FastAPI · Docker · Git · NumPy / Pandas
+  - **Tools & Frameworks:** Hugging Face · LangChain · FastAPI · Docker · Git
   - *Deliberately set aside (not overload):* generic "Machine Learning", standalone Vector
-    DBs/embeddings (implied by RAG), React / Node (web-leaning). Trivial to add back later.
+    DBs/embeddings (implied by RAG), React / Node (web-leaning), and NumPy / Pandas (trimmed
+    2026-08-07 so Tools is one even row like Languages; largely assumed alongside PyTorch).
+    Trivial to add back later.
 
 ## Layout
 
@@ -50,16 +52,22 @@ Heading **"What I've Learned"** is kept — a warm nod to the *learning* idea, n
 - `.skill-chip`: `background: var(--duo-surface-2)`, `color: var(--duo-text)`,
   `box-shadow: 0 2px 0 var(--duo-surface)` (subtle tactile ledge), `border-radius: var(--radius-pill)`,
   `padding: 8px 15px`, `font-weight: 700`, `font-size: 0.9rem`, `white-space: nowrap`.
-- Non-interactive (labels, not buttons) — no hover/press states.
+- Non-interactive (labels, not buttons); no hover/press states.
 - Category label `.skill-cat-label`: `var(--duo-green)`, uppercase, `~0.72rem`, weight 800,
   `letter-spacing: 0.12em`.
 - Groups: `display: flex; flex-wrap: wrap; gap: 10px`; category blocks stacked with vertical gap.
 
 ## Motion (GSAP, real not gimmick)
 
-- Gentle scroll-in stagger for the chips (and/or category groups) via ScrollTrigger
-  (`start: 'top 75%'`, `y: 16→0`, `opacity: 0→1`, small `stagger`, `ease: 'power2.out'`).
-- **No XP-fill animation.** Reduced-motion: snap all to final state (per site convention).
+- Gentle scroll-in reveal via one shared ScrollTrigger (`trigger: '#about', start: 'top 75%'`):
+  three `gsap.from` tweens for `.about-bio > *` (stagger 0.08), `.skill-cat-label` (stagger 0.10),
+  and `.skill-chip` (stagger 0.05), all `y: →0`, `opacity: 0→1`, `duration: 0.55`,
+  `ease: 'power2.out'`.
+- Timing chosen from a live comparison of four grounded options (Material / SaaS / Apple /
+  showcase); owner picked the **"Balanced" (SaaS-marketing standard)**: 0.55s fades, ~50ms chip
+  stagger, full reveal ~1.3s.
+- **No XP-fill animation.** Reduced-motion: skip GSAP entirely, chips render at their visible CSS
+  default (safe fallback also covers GSAP failing to load).
 
 ## Files touched
 

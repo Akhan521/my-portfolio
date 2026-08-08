@@ -214,30 +214,32 @@ idle `hero-float` on `.hero-frame`; `status-pulse` on the dot:
 ```
 Reduced motion: `home.js` snaps all the above (+ `.hero-frame`, `.status-dot`) to final state.
 
-## Section 3 — About / Skills
+## Section 3 — About / Skills  *(built 2026-08-07 — REDESIGNED away from XP bars)*
 `id="about"` · `background: var(--duo-canvas)` · `padding: 5rem 0`
-Canvas page + surface cards. Eyebrow `"SKILL TREE"` (`var(--duo-green)`, `0.8rem`, weight 800,
-`letter-spacing: 0.15em`); heading `"What I've Learned"`. Layout 45% bio left / 55% skill grid
-right (stacked on mobile). Copy + skills data: `tasks/content.md`.
+**Full design: `docs/superpowers/specs/2026-08-07-about-skills-design.md`.** The original XP-bar /
+"SKILL TREE" / emoji spec was dropped as game-y/AI-generic per the clean-professional north star.
 
-Each skill: `.duo-card.skill-card` with icon + name (Nunito 700) + `"[level] XP"` right-aligned
-(`var(--duo-text-muted)`) + XP bar (`height: 10px`, `border-radius: var(--radius-pill)`, track
-`--duo-green-muted`, fill `--duo-green`). Set `width: 0` on `.skill-bar-fill` in CSS;
-`data-level="[level]"` on each fill.
+Eyebrow `.section-eyebrow` `"About Me"` (`var(--duo-green)`, `0.8rem`, weight 800,
+`letter-spacing: 0.15em`, uppercased); heading `.section-heading` `"What I've Learned"`; bio
+`.about-text`. Layout `.about-inner` flex: `.about-bio` ~45% left / `.about-skills` ~55% right
+(stacked on mobile). Copy + curated skill set: `tasks/content.md`.
 
-```javascript
-gsap.from('.skill-card', {
-  scrollTrigger: { trigger: '#about', start: 'top 75%' },
-  y: 28, opacity: 0, duration: 0.55, stagger: 0.07, ease: 'power2.out'
-});
-document.querySelectorAll('.skill-bar-fill').forEach((bar, i) => {
-  gsap.to(bar, {
-    scrollTrigger: { trigger: '#about', start: 'top 75%' },
-    width: bar.dataset.level + '%', duration: 0.8, delay: i * 0.07, ease: 'power2.out'
-  });
-});
+Skills = **solid-tactile chips**, grouped by category (no cards, no bars, no %, no emoji). Each
+`.skill-group` = an `h3.skill-cat-label` (green, uppercase) + a `ul.skill-chips`
+(`flex-wrap; gap: 10px`) of `li.skill-chip`:
+```css
+.skill-chip {
+  background: var(--duo-surface-2); color: var(--duo-text);
+  box-shadow: 0 2px 0 var(--duo-surface);   /* subtle tactile ledge — labels, not buttons */
+  border-radius: var(--radius-pill); padding: 8px 15px;
+  font-size: 0.9rem; font-weight: 700; white-space: nowrap;
+}
 ```
-Skill grid: `display: grid; grid-template-columns: 1fr 1fr; gap: 12px`.
+Motion (`js/home.js`, reduced-motion guarded — no XP fills): a shared ScrollTrigger
+(`trigger: '#about', start: 'top 75%'`) drives three `gsap.from` reveals — `.about-bio > *`
+(y18/stagger .08), `.skill-cat-label` (y14/stagger .12), `.skill-chip` (y12/stagger .03),
+`ease: 'power2.out'`. If GSAP is absent the code early-returns, leaving chips at their visible
+CSS default (safe fallback).
 
 ## Section 4 — Laptop Scene
 `id="projects"` · **Read every line before implementing.**

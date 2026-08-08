@@ -1,4 +1,4 @@
-// nav.js — renders the fixed navbar into #nav-root; handles scroll shadow + mobile menu.
+// nav.js: renders the fixed navbar into #nav-root; handles scroll shadow + mobile menu.
 // Nav/footer HTML is injected at runtime (never written into .html files).
 (function () {
   'use strict';

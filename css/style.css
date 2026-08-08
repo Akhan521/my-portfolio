@@ -369,3 +369,72 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
   .hero-value { margin-left: auto; margin-right: auto; }
   .hero-frame { max-width: 300px; }
 }
+
+/* ===== SECTION: ABOUT / SKILLS ===== */
+#about {
+  background: var(--duo-canvas);
+  padding: 5rem 0;
+}
+.about-inner {
+  display: flex;
+  gap: 3.5rem;
+  align-items: start;
+}
+.about-bio    { flex: 1 1 45%; min-width: 0; }
+.about-skills { flex: 1 1 55%; min-width: 0; display: flex; flex-direction: column; gap: 1.75rem; }
+
+/* Reusable section header bits (eyebrow + heading) */
+.section-eyebrow {
+  color: var(--duo-green);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.section-heading {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+}
+.about-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--duo-text);
+  max-width: 46ch;
+}
+
+/* Skill groups + solid-tactile chips (no bars/%/emoji) */
+.skill-cat-label {
+  color: var(--duo-green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+.skill-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.skill-chip {
+  background: var(--duo-surface-2);
+  color: var(--duo-text);
+  box-shadow: 0 2px 0 var(--duo-surface);   /* subtle tactile ledge — labels, not buttons */
+  border-radius: var(--radius-pill);
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  #about { padding: 3.5rem 0; }
+  .about-inner { flex-direction: column; gap: 2.25rem; }
+  .about-bio, .about-skills { flex: 1 1 100%; }
+  .about-text { max-width: none; }
+}

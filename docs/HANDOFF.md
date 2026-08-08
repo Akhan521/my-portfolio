@@ -48,33 +48,37 @@ owner decides by reacting to what he sees.
     `.hero-cta` and spans the full width of the two buttons above (`width:100%` inside a
     `fit-content` wrapper), with extra gap so the pulse ring stays clear of the text.
   - Staggered CSS entrance, idle float, reduced-motion guard in `js/home.js`.
+- **About / Skills** (`#about`): "About Me" eyebrow + "What I've Learned" heading + bio on the
+  left, three categorized groups of **solid-tactile skill chips** (Languages / AI·ML / Tools &
+  Frameworks) on the right; stacks on mobile. **Redesigned away from the XP-bar spec** (no
+  bars/%/emoji) per the north star — design doc `docs/superpowers/specs/2026-08-07-about-skills-design.md`.
+  Reusable `.section-eyebrow` / `.section-heading`; GSAP ScrollTrigger reveal in `js/home.js`
+  (reduced-motion guarded). *(Built 2026-08-07 — not yet committed as of this writing.)*
 - **Character art** (all locked, in `assets/character/`): `avatar.png` (navbar), `hero.png` +
   `hero-tight.png` (hero), `src/` masters, `reference/style-north-star.png`. Also
   `seated-neutral`/`seated-excited` masters exist in `src/` for the future laptop scene.
 
-**Nav + hero are committed. The two 2026-08-06 hero refinements are committed but NOT yet pushed**
-(owner reviews before pushing).
+**Nav + hero + the two 2026-08-06 hero refinements are committed AND pushed** to `origin/main`.
+The **About/Skills design doc** is committed (`3d02dde`, ahead of origin); the **About/Skills
+section code is built + verified but NOT yet committed** (owner reviews first).
 
-## 4. Recently done (both owner-flagged hero refinements — 2026-08-06)
+## 4. Recently done
 
-Both are complete, verified (desktop + mobile), and committed:
-1. **Resume button color/contrast** — owner picked the bright **Duo blue** option from a 5-way
-   side-by-side. Rebuilt `.duo-btn-neutral` → **`.duo-btn-blue`** (face `--duo-blue`, edge new
-   `--duo-blue-dark` `#1488C4`); depth now reads clearly. `--duo-surface-3` no longer used by a
-   button (kept as an available ramp step).
-2. **`.hero-status` chip** — owner kept the current style but wanted it widened to span the two
-   buttons' combined width, with room for the pulse. Wrapped buttons + chip in `.hero-cta`
-   (`width: fit-content`); chip is now `display:flex; width:100%`, `padding: 8px 18px`,
-   `gap: 0.85rem` (pulse-ring clearance).
-
-**Next: the About / Skills section** (see §5).
+- **About / Skills section** (2026-08-07) — built + verified (desktop, mobile, animated reveal),
+  **uncommitted**. Redesigned from the XP-bar spec to categorized solid-tactile chips (owner chose
+  "fully professional"). Curated skill set owner-confirmed. See §3 + the design doc.
+- **Hero refinements** (2026-08-06) — Resume button → `.duo-btn-blue` (Duo blue secondary CTA);
+  `.hero-status` chip widened to span the two buttons via a `.hero-cta` `fit-content` wrapper.
+  Both committed + pushed.
 
 ## 5. Then continue the roadmap
 
-Next planned section is **About / Skills** (Section 3 in `tasks/build-specs.md`): SKILL TREE
-eyebrow, "What I've Learned" heading, bio, and a 2-column `.skill-card` grid with GSAP-animated
-XP bars. After that: laptop scene (Section 4, uses the seated character masters + a CSS/SVG
-laptop), project carousel, footer + confetti, then the polish passes. Full sequence in `todo.md`.
+Next planned section is the **Laptop scene** (Section 4 in `tasks/build-specs.md`): `#projects`
+anchor + a 300vh `#laptop-scene` sticky structure, the seated character masters + a CSS/SVG
+laptop, static 3D first (GSAP scrub in the following commit). **Read every line of Section 4
+first** — Safari `preserve-3d` differences and the sticky height must live in CSS. After that:
+project carousel, character mood reactions, footer + confetti, then the polish passes. Full
+sequence in `todo.md`.
 
 ## 6. How we work (essential process context)
 
