@@ -53,32 +53,51 @@ owner decides by reacting to what he sees.
   Frameworks) on the right; stacks on mobile. **Redesigned away from the XP-bar spec** (no
   bars/%/emoji) per the north star — design doc `docs/superpowers/specs/2026-08-07-about-skills-design.md`.
   Reusable `.section-eyebrow` / `.section-heading`; GSAP ScrollTrigger reveal in `js/home.js`
-  (reduced-motion guarded). *(Built 2026-08-07 — not yet committed as of this writing.)*
+  (reduced-motion guarded, "Balanced" timing: 0.55s fades, 50ms stagger). *(Built + committed +
+  pushed 2026-08-07, commit `6900b59`.)*
 - **Character art** (all locked, in `assets/character/`): `avatar.png` (navbar), `hero.png` +
   `hero-tight.png` (hero), `src/` masters, `reference/style-north-star.png`. Also
   `seated-neutral`/`seated-excited` masters exist in `src/` for the future laptop scene.
 
-**Nav + hero + the two 2026-08-06 hero refinements are committed AND pushed** to `origin/main`.
-The **About/Skills design doc** is committed (`3d02dde`, ahead of origin); the **About/Skills
-section code is built + verified but NOT yet committed** (owner reviews first).
+**Everything through the 2026-08-08 copy repositioning is committed AND pushed** to `origin/main`.
+Working tree clean.
 
-## 4. Recently done
+## 4. Recently done: copy repositioning (2026-08-08)
 
-- **About / Skills section** (2026-08-07) — built + verified (desktop, mobile, animated reveal),
-  **uncommitted**. Redesigned from the XP-bar spec to categorized solid-tactile chips (owner chose
-  "fully professional"). Curated skill set owner-confirmed. See §3 + the design doc.
-- **Hero refinements** (2026-08-06) — Resume button → `.duo-btn-blue` (Duo blue secondary CTA);
-  `.hero-status` chip widened to span the two buttons via a `.hero-cta` `fit-content` wrapper.
-  Both committed + pushed.
+The hero + About copy was generic and factually stale (still said "currently at Handshake AI,"
+which ended Jun 2026). Using Aamir's factual **information bank** (`tasks/aamir-info-bank.md`, read
+it first), the copy was repositioned to: **AI software engineer on the APPLICATION side who builds
+AI-powered software and ships it to production**, with Tatari as proof and the from-scratch projects
+as "understands the internals" credibility, ML vocabulary kept light. Shipped as four separate
+wording commits (`d7e4555`, `5d51013`, `08dd031`, `7e7a058`):
+
+- **Hero value line:** "I build AI software and make it reliable in production, and I'm strongest at
+  diagnosing why it fails." Tuned to the JD language of Aamir's target company (Decagon): leads with
+  shipping + reliability and foregrounds failure diagnosis, his standout skill.
+- **Hero credentials line:** "AI/ML Software Engineer Intern @ Tatari · CS Master's @ UC Riverside"
+  (current role + school; kept lean, no GPA/honors).
+- **Status chip:** "Open to full-time & internship AI roles" (Aamir is seeking both).
+- **About bio (Bio A):** repositioned around shipping AI to production + the Tatari outage fix
+  (~3.9M daily predictions) + the from-scratch projects. "end to end" dropped per Aamir (buzzwordy).
+
+**Locked facts about Aamir (also in `tasks/aamir-info-bank.md` + memory):** targets AI software
+engineering / AI engineering, **application side, NOT ML engineering**. Current: AI/ML SWE Intern @
+Tatari (through Sep 2026). MS CS @ UCR (4.0), grad Dec 2026. Seeking both full-time + internship. OK
+to name Tatari + cite metrics. Target company = Decagon (conversational-AI agents). All copy stays
+**em-dash free** (avoid "end to end" too).
+
+**Still open (worth raising):** the skill chips could gain a small "production ML systems" signal
+(his real differentiator: MLflow / Databricks serving / FastAPI / feature stores), curated and
+application-leaning, not overloaded. Not done yet.
 
 ## 5. Then continue the roadmap
 
-Next planned section is the **Laptop scene** (Section 4 in `tasks/build-specs.md`): `#projects`
-anchor + a 300vh `#laptop-scene` sticky structure, the seated character masters + a CSS/SVG
-laptop, static 3D first (GSAP scrub in the following commit). **Read every line of Section 4
-first** — Safari `preserve-3d` differences and the sticky height must live in CSS. After that:
-project carousel, character mood reactions, footer + confetti, then the polish passes. Full
-sequence in `todo.md`.
+After the copy pass, the next build is the **Laptop scene** (Section 4 in `tasks/build-specs.md`):
+`#projects` anchor + a 300vh `#laptop-scene` sticky structure, the seated character masters + a
+CSS/SVG laptop, static 3D first (GSAP scrub in the following commit). **Read every line of
+Section 4 first** (Safari `preserve-3d` differences, and the sticky height must live in CSS).
+After that: project carousel, character mood reactions, footer + confetti, then the polish
+passes. Full sequence in `todo.md`.
 
 ## 6. How we work (essential process context)
 

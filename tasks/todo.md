@@ -21,14 +21,16 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up: the Laptop scene (Commit 11).** The About/Skills section is BUILT + verified
-> (2026-08-07), pending owner review before commit.
+> **Next up: the Laptop scene (Commit 11).** The 2026-08-08 copy repositioning pass is DONE +
+> committed + pushed (see Review Log; hero value/credentials/status + About bio rewritten to the
+> AI-software-engineer-application-side positioning, Tatari-forward, from `tasks/aamir-info-bank.md`).
 > **Laptop scene** (Section 4 in `tasks/build-specs.md`) — `#projects` anchor + `#laptop-scene`
-> (300vh) sticky structure, seated character + CSS/SVG laptop, static 3D first (GSAP in Commit 12).
+> (300vh) sticky, seated character + CSS/SVG laptop, static 3D first (GSAP Commit 12).
 > **Read every line of Section 4 before implementing** (Safari `preserve-3d`, sticky height in CSS).
-> **Uncommitted:** the entire About/Skills section (index.html #about, CSS, home.js GSAP) + doc
-> syncs. Temp `_*.html` comparison pages already deleted.
-> **Last completed:** About/Skills section — categorized skill chips (2026-08-07)
+> **Still worth raising:** skill chips could gain a small "production ML systems" signal (curated,
+> not overloaded). All copy stays em-dash free (and avoid "end to end").
+> **Git state:** everything through the copy pass is committed + pushed; working tree clean.
+> **Last completed:** copy repositioning pass, 4 wording commits + info bank (2026-08-08)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -327,6 +329,19 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
   bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
   Next: About/Skills section.**
+- 2026-08-08 — **Copy repositioning pass (hero + About).** Ingested Aamir's factual info bank
+  (`tasks/aamir-info-bank.md`, committed this session) and rewrote the generic + stale copy (it
+  still said "currently at Handshake AI," which ended Jun 2026). New positioning: **AI software
+  engineer on the application side, builds + ships AI software to production**, Tatari as proof,
+  from-scratch projects as credibility, ML vocabulary kept light. The hero value line was tuned to
+  the JD language of Aamir's target company **Decagon** (leads with shipping + reliability,
+  foregrounds failure diagnosis, his standout). Decisions: seeking both full-time + internship; OK
+  to name Tatari + metrics; drop "end to end" (buzzwordy); stay em-dash free. Shipped as **four
+  separate wording commits** at Aamir's request (value line `d7e4555`, credentials `5d51013`,
+  status chip `08dd031`, About bio `7e7a058`), each touching `index.html` + `tasks/content.md`;
+  verified in headless; then a docs commit (info bank + HANDOFF + todo) and pushed everything.
+  New memories saved: [[aamir-background]], [[portfolio-copy-repositioning]], [[no-em-dashes]].
+  Next: Laptop scene (Commit 11).
 - 2026-08-07 — **About / Skills section built (Commit 10) — REDESIGNED from the XP-bar spec.**
   Brainstormed the direction: the original Section-3 spec (SKILL TREE eyebrow, "XP" labels,
   animated XP bars, emoji icons) conflicts with the clean-professional north star (no game
