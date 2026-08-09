@@ -100,8 +100,8 @@ game-y XP/% and emoji read as AI-generic, replaced per the clean-professional no
 - Credentials line (muted): `"AI/ML Software Engineer Intern @ Tatari · CS Master's @ UC Riverside"`
 - Buttons (matched tactile pair): `"View Projects"` (`.duo-btn`, → `#projects`) ·
   `"Resume"` (`.duo-btn-blue`, → resume URL, new tab)
-- Status chip (replaces the streak badge): `"Open to SWE & AI/ML internships"` with a pulsing
-  green availability dot
+- Status chip (replaces the streak badge): `"Open to full-time & internship AI roles"` with a
+  pulsing green availability dot (updated 2026-08-08: Aamir is seeking both full-time and internship)
 - Retired: the `"🔥 Streak: 365 days"` badge and the `👋` emoji (read as AI-generic filler).
 
 ## About section copy (verbatim) — updated 2026-08-07
