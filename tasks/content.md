@@ -96,7 +96,7 @@ game-y XP/% and emoji read as AI-generic, replaced per the clean-professional no
 
 - Greeting: `"Hi, I'm Aamir!"` (first name only — the navbar already shows the full "Aamir Khan"; no emoji)
 - Role: `"AI Software Engineer"`
-- Value line: `"CS Master's student at UC Riverside, building applied AI and agentic systems."`
+- Value line: `"I build AI software and make it reliable in production, and I'm strongest at diagnosing why it fails."`
 - Credentials line (muted): `"AI Trainer @ Handshake AI · AI Product Tester @ DeepLearning.AI"`
 - Buttons (matched tactile pair): `"View Projects"` (`.duo-btn`, → `#projects`) ·
   `"Resume"` (`.duo-btn-blue`, → resume URL, new tab)
