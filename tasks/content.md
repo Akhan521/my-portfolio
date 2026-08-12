@@ -113,8 +113,13 @@ game-y XP/% and emoji read as AI-generic, replaced per the clean-professional no
 - Eyebrow: `"About Me"` (was `"SKILL TREE"` — dropped the game framing)
 - Heading: `"What I've Learned"`
 - Bio (repositioned 2026-08-08 to AI software engineer / application side; leads with shipping to
-  production + failure diagnosis, features Tatari as proof; "end to end" dropped per Aamir):
-  > I'm Aamir, an AI software engineer focused on building AI-powered software and getting it into production. At Tatari, I work on a production AI platform serving millions of predictions a day, where I diagnosed and fixed a multi-month outage that had been silently failing ~3.9M predictions daily, and shipped new serving and monitoring features. I've also built AI systems from scratch, from an image-captioning library to a hand-written GPT and a fine-tuned text-to-SQL model, so I understand what's happening under the hood. I care about shipping AI software that holds up in production, not just in a demo.
+  production + failure diagnosis, features Tatari as proof; "end to end" dropped per Aamir).
+  Rendered as **two paragraphs** (readability), with one phrase per paragraph in **brand-green
+  bold** via `<strong>` + `.about-text strong { color: var(--duo-green) }` (green chosen 2026-08-08;
+  weight-only white was too subtle on the already-white body):
+  > I'm Aamir, an AI software engineer focused on building AI-powered software and getting it into production. At Tatari, I work on a production AI platform serving millions of predictions a day, where I **diagnosed and fixed a multi-month outage** that had been silently failing ~3.9M predictions daily, and shipped new serving and monitoring features.
+  >
+  > I've also **built AI systems from scratch**, from an image-captioning library to a hand-written GPT and a fine-tuned text-to-SQL model, so I understand what's happening under the hood. I care about shipping AI software that holds up in production, not just in a demo.
 
 ## Footer / CTA copy (verbatim)
 

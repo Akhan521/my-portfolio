@@ -405,6 +405,11 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
   color: var(--duo-text);
   max-width: 46ch;
 }
+/* Space between stacked bio paragraphs (keeps the block from reading as one wall of text) */
+.about-text + .about-text { margin-top: 1rem; }
+/* Emphasis on one standout phrase per bio paragraph: brand green + bold, so it reads clearly
+   against the dark canvas (weight-only white was too subtle on already-white body text). */
+.about-text strong { font-weight: 700; color: var(--duo-green); }
 
 /* Skill groups + solid-tactile chips (no bars/%/emoji) */
 .skill-cat-label {

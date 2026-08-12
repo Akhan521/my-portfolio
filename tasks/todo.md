@@ -327,6 +327,13 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
   bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
   Next: About/Skills section.**
+- 2026-08-08 — **About bio readability: two paragraphs + green emphasis.** The bio read as one
+  dense block. Split it into two `<p class="about-text">` paragraphs (who + Tatari / from-scratch +
+  values) with `.about-text + .about-text { margin-top: 1rem }`, and emphasized one standout phrase
+  per paragraph ("diagnosed and fixed a multi-month outage", "built AI systems from scratch") via
+  `<strong>`. Weight-only white was too subtle on the already-white body, so after a 4-way render
+  (white bold / green bold / muted body+white / muted body+green) Aamir picked **green bold**:
+  `.about-text strong { font-weight: 700; color: var(--duo-green) }`. Verified in headless.
 - 2026-08-08 — **Added "Production & MLOps" skill category to the About section.** The chips lacked
   any signal that Aamir ships/operates AI in production (his differentiator). Added a 4th
   `.skill-group` "Production & MLOps": MLflow · Databricks · Model serving · Monitoring · CI/CD
