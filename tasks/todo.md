@@ -21,14 +21,17 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up: the Laptop scene (Commit 11).** The About skill chips now include a 4th category,
-> **"Production & MLOps"** (MLflow · Databricks · Model serving · Monitoring · CI/CD), added
-> 2026-08-08 to signal Aamir's ship-to-production differentiator. Copy repositioning also done.
-> **Laptop scene** (Section 4 in `tasks/build-specs.md`) — `#projects` anchor + `#laptop-scene`
-> (300vh) sticky, seated character + CSS/SVG laptop, static 3D first (GSAP Commit 12).
-> **Read every line of Section 4 before implementing** (Safari `preserve-3d`, sticky height in CSS).
-> **Git state:** copy pass + skill-chip category committed + pushed; working tree clean.
-> **Last completed:** Hero layout refined (contained/centered, responsive gap) (2026-08-08)
+> **Next up: the Laptop scene (Commit 11).** Full orientation for it + the whole remaining
+> roadmap is in the refreshed **`docs/HANDOFF.md` (read §5 + §6 first)**. **Read every line of
+> `tasks/build-specs.md` Section 4 before writing code** (Safari `preserve-3d`, sticky 300vh
+> height must live in CSS).
+> **Prerequisites still pending (do as part of / before the scene):** (a) size + import the seated
+> character pair (Commit 5, masters exist in `assets/character/src/`); (b) build `assets/laptop.svg`
+> with separable base + lid groups (Commit 6). Also remove the TEMP 40vh spacer in `index.html`.
+> **Then, in order:** laptop GSAP timeline (12), project carousel (13), character mood reactions
+> (14), footer + confetti (8 + 15, footer is still an empty stub), polish passes (16-20).
+> **Git state:** everything through the hero layout refinement is committed + pushed; tree clean.
+> **Last completed:** Hero layout refined + handoff refreshed for the laptop scene (2026-08-08)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
