@@ -28,7 +28,7 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > (300vh) sticky, seated character + CSS/SVG laptop, static 3D first (GSAP Commit 12).
 > **Read every line of Section 4 before implementing** (Safari `preserve-3d`, sticky height in CSS).
 > **Git state:** copy pass + skill-chip category committed + pushed; working tree clean.
-> **Last completed:** About "Production & MLOps" skill category (2026-08-08)
+> **Last completed:** Hero layout refined (contained/centered, responsive gap) (2026-08-08)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -327,6 +327,15 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
   bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
   Next: About/Skills section.**
+- 2026-08-08 — **Hero layout refined (spacing + alignment).** Owner felt the hero looked off: a
+  big void between the left-aligned text and the right-side frame. Rendered several variants
+  (centered single-column, tightened split, mirrored split), owner chose the **tightened split**
+  and then dialed the gap up until it felt right. Implemented as a **contained, centered** group:
+  `.hero-inner` `max-width: 1150px; margin: 0 auto; justify-content: center` with a **responsive
+  gap** `clamp(2.5rem, 10vw, 8rem)` (caps at 8rem wide, shrinks on narrower screens so it never
+  crowds/overflows), text `flex: 1 1 auto; max-width: 460px`, frame `max-width: 390px` (was 420).
+  Verified real page at desktop / ~940px / mobile. Only `css/style.css` changed; docs synced
+  (build-specs §2). Next: Laptop scene (Commit 11).
 - 2026-08-08 — **About bio readability: two paragraphs + green emphasis.** The bio read as one
   dense block. Split it into two `<p class="about-text">` paragraphs (who + Tatari / from-scratch +
   values) with `.about-text + .about-text { margin-top: 1rem }`, and emphasized one standout phrase

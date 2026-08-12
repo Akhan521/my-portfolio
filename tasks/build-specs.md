@@ -176,9 +176,14 @@ background-color: var(--duo-canvas);
 background-image: radial-gradient(circle, rgba(55, 70, 79, 0.7) 1px, transparent 1px);
 background-size: 28px 28px;
 ```
-Layout: `.hero-inner` is `display: flex; align-items: center; gap: 4rem` — text left (~55%),
-framed character right (~45%). Stacks to `column` (text first) on mobile < 768px. Copy: see
-`tasks/content.md` (hero). **No streak badge, no emoji** — dropped as AI-generic filler.
+Layout (refined 2026-08-08): `.hero-inner` is a **contained, centered** flex group
+(`max-width: 1150px; margin: 0 auto; justify-content: center; align-items: center`) with a
+**responsive gap** `clamp(2.5rem, 10vw, 8rem)` (caps at 8rem on wide screens, eases down on
+narrower ones so the two columns never crowd or overflow before the mobile stack). Text column
+`flex: 1 1 auto; max-width: 460px`; framed character `flex: 0 1 auto` (frame `max-width: 390px`).
+Stacks to `column` (text first) on mobile < 768px. This replaced the earlier edge-to-edge
+`text-55% / character-45%` split, which left an awkward void in the middle. Copy: see
+`tasks/content.md` (hero). No streak badge, no emoji (dropped as AI-generic filler).
 
 - **Greeting** `.hero-greeting`: `clamp(2.6rem, 5.6vw, 4.4rem)`, weight 900.
 - **Role** `.hero-role`: 1.5rem, weight 800, `var(--duo-green)`.

@@ -272,11 +272,16 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 .hero-inner {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  justify-content: center;
+  /* Contained, centered composition. Gap caps at 8rem on wide screens (the approved look) and
+     shrinks on narrower screens so the two columns never crowd or overflow before the mobile stack. */
+  gap: clamp(2.5rem, 10vw, 8rem);
   width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
 }
-.hero-text { flex: 1 1 54%; min-width: 0; }
-.hero-portrait { flex: 1 1 46%; display: flex; justify-content: center; }
+.hero-text { flex: 1 1 auto; max-width: 460px; min-width: 0; }
+.hero-portrait { flex: 0 1 auto; display: flex; justify-content: center; }
 
 .hero-greeting { font-size: clamp(2.6rem, 5.6vw, 4.4rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.01em; }
 .hero-role { font-size: 1.5rem; font-weight: 800; color: var(--duo-green); margin: 0.6rem 0 1.1rem; }
@@ -319,7 +324,7 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 .hero-frame {
   position: relative;
   width: 100%;
-  max-width: 420px;
+  max-width: 390px;
   aspect-ratio: 1 / 1.06;
   background: #16241C;                      /* green-tinted dark panel (local shade of the neutral ramp) */
   border: 3px solid var(--duo-green);
@@ -365,6 +370,7 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 @media (max-width: 767px) {
   .hero-inner { flex-direction: column; text-align: center; gap: 2.25rem; }
   .hero-text, .hero-portrait { flex: 1 1 100%; }
+  .hero-text { max-width: none; }
   .hero-buttons { justify-content: center; }
   .hero-value { margin-left: auto; margin-right: auto; }
   .hero-frame { max-width: 300px; }
