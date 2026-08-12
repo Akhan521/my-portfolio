@@ -59,8 +59,8 @@ owner decides by reacting to what he sees.
   `hero-tight.png` (hero), `src/` masters, `reference/style-north-star.png`. Also
   `seated-neutral`/`seated-excited` masters exist in `src/` for the future laptop scene.
 
-**Everything through the 2026-08-08 copy repositioning is committed AND pushed** to `origin/main`.
-Working tree clean.
+**Everything through the 2026-08-08 copy repositioning + the new About "Production & MLOps" skill
+category is committed AND pushed** to `origin/main`. Working tree clean.
 
 ## 4. Recently done: copy repositioning (2026-08-08)
 
@@ -86,9 +86,12 @@ Tatari (through Sep 2026). MS CS @ UCR (4.0), grad Dec 2026. Seeking both full-t
 to name Tatari + cite metrics. Target company = Decagon (conversational-AI agents). All copy stays
 **em-dash free** (avoid "end to end" too).
 
-**Still open (worth raising):** the skill chips could gain a small "production ML systems" signal
-(his real differentiator: MLflow / Databricks serving / FastAPI / feature stores), curated and
-application-leaning, not overloaded. Not done yet.
+**DONE (2026-08-08): production ML systems signal added to the skill chips.** Added a new 4th
+About category **"Production & MLOps"** (owner chose the name and a new category over folding into
+Tools): MLflow · Databricks · Model serving · Monitoring · CI/CD (curated to 5, one even row, no
+orphan). Signals Aamir's differentiator (ships/operates AI in production) without tipping the
+overall positioning toward ML engineer. Deeper terms (feature stores, Airflow, champion/challenger,
+shadow deployment) deliberately left out to stay curated and application-leaning.
 
 ## 5. Then continue the roadmap
 

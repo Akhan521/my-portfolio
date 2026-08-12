@@ -82,10 +82,14 @@ Rendered as solid-tactile `.skill-chip`s under green category labels. See
 - **Languages:** Python · SQL · JavaScript · C++
 - **AI / ML:** PyTorch · LLMs & NLP · Agentic AI · RAG · Fine-tuning (LoRA/PEFT) · Transformers
 - **Tools & Frameworks:** Hugging Face · LangChain · FastAPI · Docker · Git
+- **Production & MLOps:** MLflow · Databricks · Model serving · Monitoring · CI/CD
+  _(added 2026-08-08: signals Aamir's differentiator, he ships/operates AI in production. Owner
+  chose the label "Production & MLOps" (ampersand matches "Tools & Frameworks").)_
 
 _Set aside to avoid overload (easy to add back): generic "Machine Learning", standalone Vector
-DBs/embeddings (implied by RAG), React / Node (web-leaning), and NumPy / Pandas (trimmed
-2026-08-07 so Tools is one even row like Languages; largely assumed alongside PyTorch)._
+DBs/embeddings (implied by RAG), React / Node (web-leaning), NumPy / Pandas (assumed alongside
+PyTorch), and deeper production-ML terms (feature stores, Airflow, champion/challenger, shadow
+deployment) kept out of the "Shipping to Production" row to keep it curated and application-leaning._
 
 **Retired:** the earlier XP-bar skills (`level`/`icon` array with "SKILL TREE" eyebrow). The
 game-y XP/% and emoji read as AI-generic, replaced per the clean-professional north star.

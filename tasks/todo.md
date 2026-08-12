@@ -21,16 +21,14 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up: the Laptop scene (Commit 11).** The 2026-08-08 copy repositioning pass is DONE +
-> committed + pushed (see Review Log; hero value/credentials/status + About bio rewritten to the
-> AI-software-engineer-application-side positioning, Tatari-forward, from `tasks/aamir-info-bank.md`).
+> **Next up: the Laptop scene (Commit 11).** The About skill chips now include a 4th category,
+> **"Production & MLOps"** (MLflow · Databricks · Model serving · Monitoring · CI/CD), added
+> 2026-08-08 to signal Aamir's ship-to-production differentiator. Copy repositioning also done.
 > **Laptop scene** (Section 4 in `tasks/build-specs.md`) — `#projects` anchor + `#laptop-scene`
 > (300vh) sticky, seated character + CSS/SVG laptop, static 3D first (GSAP Commit 12).
 > **Read every line of Section 4 before implementing** (Safari `preserve-3d`, sticky height in CSS).
-> **Still worth raising:** skill chips could gain a small "production ML systems" signal (curated,
-> not overloaded). All copy stays em-dash free (and avoid "end to end").
-> **Git state:** everything through the copy pass is committed + pushed; working tree clean.
-> **Last completed:** copy repositioning pass, 4 wording commits + info bank (2026-08-08)
+> **Git state:** copy pass + skill-chip category committed + pushed; working tree clean.
+> **Last completed:** About "Production & MLOps" skill category (2026-08-08)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -329,6 +327,14 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (navbar already shows full name; fixes the orphaned "Khan" wrap); (c) tightened column gap +
   bumped frame to 420px to use the space. Verified desktop+mobile in headless. **Hero done.
   Next: About/Skills section.**
+- 2026-08-08 — **Added "Production & MLOps" skill category to the About section.** The chips lacked
+  any signal that Aamir ships/operates AI in production (his differentiator). Added a 4th
+  `.skill-group` "Production & MLOps": MLflow · Databricks · Model serving · Monitoring · CI/CD
+  (curated to 5, one even row). Owner chose a new category over folding into "Tools & Frameworks,"
+  and the label "Production & MLOps" (initially "Shipping to Production," changed on review). Deeper
+  MLOps terms (feature stores, Airflow, champion/challenger, shadow deployment) left out to stay
+  curated + application-leaning. GSAP reveal covers the new chips automatically (class selectors).
+  Verified in headless. Committed + pushed. Next: Laptop scene (Commit 11).
 - 2026-08-08 — **Copy repositioning pass (hero + About).** Ingested Aamir's factual info bank
   (`tasks/aamir-info-bank.md`, committed this session) and rewrote the generic + stale copy (it
   still said "currently at Handshake AI," which ended Jun 2026). New positioning: **AI software
