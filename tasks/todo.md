@@ -21,17 +21,25 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up: the Laptop scene (Commit 11).** Full orientation for it + the whole remaining
-> roadmap is in the refreshed **`docs/HANDOFF.md` (read §5 + §6 first)**. **Read every line of
-> `tasks/build-specs.md` Section 4 before writing code** (Safari `preserve-3d`, sticky 300vh
-> height must live in CSS).
-> **Prerequisites still pending (do as part of / before the scene):** (a) size + import the seated
-> character pair (Commit 5, masters exist in `assets/character/src/`); (b) build `assets/laptop.svg`
-> with separable base + lid groups (Commit 6). Also remove the TEMP 40vh spacer in `index.html`.
+> **Next up: the Laptop GSAP timeline (Commit 12).** The static laptop scene (Commit 11) is
+> BUILT — the closed MacBook opens/zooms on scroll is what's still missing. Read
+> **`docs/HANDOFF.md` §5** for the exact hinge convention and design decisions before writing the
+> GSAP.
+> **Laptop scene status (Commit 11, done):** the seated character pair is sized + imported; the
+> laptop is a **CSS-drawn silver MacBook** (NOT the green-lid SVG from the old spec — see below),
+> built as one hinged object; `#projects` anchor + `#laptop-scene` (300vh, in CSS) + sticky are in;
+> mobile shows a static open fallback; the TEMP spacer is gone.
+> **Key implementation facts for Commit 12:** the lid is `.laptop-lid`; it animates its own
+> `rotateX` from **0deg (closed, silver + engraved "AK" up) -> 110deg (open, screen to viewer)**.
+> Note the **+110** sign (the lid sits in a pre-tilted pivot), not the spec's -110. The screen
+> content lives in `.laptop-screen-content` (abstract placeholder now; carousel in Commit 13) and
+> is on a `rotateX(180)` back face so it reads upright when open.
 > **Then, in order:** laptop GSAP timeline (12), project carousel (13), character mood reactions
 > (14), footer + confetti (8 + 15, footer is still an empty stub), polish passes (16-20).
-> **Git state:** everything through the hero layout refinement is committed + pushed; tree clean.
-> **Last completed:** Hero layout refined + handoff refreshed for the laptop scene (2026-08-08)
+> **Follow-up parked for next session:** an overall look cleanup pass on the scene (owner's note).
+> **Git state:** Commit 11 committed + pushed to main; tree clean.
+> **Last completed:** Laptop scene static 3D built (Commit 11) — CSS-drawn silver MacBook, seated
+> character, flat desk, mobile open fallback (2026-08-12)
 
 Update this block after every commit so a cold start knows exactly where to pick up.
 
@@ -115,16 +123,17 @@ outputs in; Claude processes/wires them. Generate the whole set in one session f
 - **Done when:** avatar + hero render crisp at their display sizes on the dark chrome.
 - **Commit:** `Import and size avatar and hero character images.`
 
-### [ ] Commit 5 — Import seated pair (mood crossfade assets)
-- [ ] Process `seated-neutral.png` + `seated-excited.png`; verify pixel alignment for crossfade
+### [x] Commit 5 — Import seated pair (mood crossfade assets)  *(done in the laptop-scene commit)*
+- [x] Process `seated-neutral.png` + `seated-excited.png` (both 720x720, scaled identically from the
+      1254px masters so they stay pixel-aligned); stacked in `.character-seated` for the crossfade
 - **Done when:** stacking + toggling `.excited` crossfades in place with no jump (per build-specs §6).
-- **Commit:** `Import seated neutral/excited character images.`
 
-### [ ] Commit 6 — laptop.svg (base + lid groups)
-- [ ] `viewBox="0 0 340 260"`, `#laptop-base` (keys/trackpad) + `#laptop-lid` (green/bezel/screen)
-- [ ] ~2px hinge gap; groups separate cleanly into two HTML elements
-- **Done when:** both groups render and can be split without visual glue.
-- **Commit:** `Add laptop SVG with separable base and lid groups.`
+### [~] Commit 6 — laptop device  *(SUPERSEDED: CSS-drawn, no SVG file)*
+- Owner chose a **CSS-drawn silver MacBook** over an `assets/laptop.svg`, after rendering both.
+  No `laptop.svg` exists; the device is built from CSS boxes/gradients in `css/style.css` with a
+  hinged `.laptop-lid` (silver `.laptop-lid-back` + engraved "AK" `.laptop-mark`, and a
+  `.laptop-screen-face`). Base/lid are separate elements, so the lid rotates independently.
+- **Superseded, not built as spec'd.** Design decisions live in `docs/HANDOFF.md` §5.
 
 ---
 
@@ -176,12 +185,13 @@ north star. Design doc: `docs/superpowers/specs/2026-08-07-about-skills-design.m
       scroll; reduced motion snaps to final. ✅ verified in headless (desktop + mobile + reveal).
 - **Commit:** `Build About/Skills section with categorized skill chips.`
 
-### [ ] Commit 11 — Laptop scene (static 3D)
-- [ ] `#projects` invisible anchor + `#laptop-scene` (300vh) / `.laptop-sticky` structure
-- [ ] Inline seated + laptop groups; CSS 3D (`perspective`, `preserve-3d`, hinge origin)
-- [ ] Lid starts `rotateX(0deg)` (flat); desk strip; mobile static override
-- [ ] `-webkit-` prefixes for Safari; **no GSAP yet**
-- **Done when:** flat closed laptop looks correct; mobile shows static open fallback.
+### [x] Commit 11 — Laptop scene (static 3D)
+- [x] `#projects` invisible anchor + `#laptop-scene` (300vh, in CSS) / `.laptop-sticky` structure
+- [x] Seated character + CSS-drawn laptop; CSS 3D (`perspective`, `preserve-3d`, hinge origin)
+- [x] Lid starts `rotateX(0deg)` (closed, silver + AK up); flat desk band; mobile static open override
+- [x] `-webkit-` prefixes; `will-change` only on `.laptop-lid` + `.scene-container`; **no GSAP yet**
+- **Done when:** closed MacBook looks correct on desktop; mobile shows static open fallback. ✅
+      Verified in headless (desktop closed + mobile open). TEMP spacer removed.
 - **Commit:** `Build laptop scene structure and CSS 3D (static).`
 
 ### [ ] Commit 12 — Laptop GSAP timeline
@@ -417,3 +427,20 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   ledge). Rebuilt to mirror the green recipe: new `--duo-surface-3` lighter face, no border (same
   size), `--duo-surface` edge (darker than face, lighter than canvas → visible). Now a proper
   matched tactile pair. Docs synced.
+- 2026-08-12 — **Laptop scene built (Commit 11, static 3D) + prereqs.** Long design-iteration
+  session on the laptop DEVICE first (owner reviewed rendered options throughout): rejected the
+  generic/abstract first passes and the individually-drawn-keycap MacBook, landed on a **CSS-drawn
+  silver MacBook** with the ORIGINAL simple grid keyboard, a wide MacBook trackpad, the original
+  abstract screen (green badge + title + line placeholders, no text), a clean front lip, and a
+  **closed clamshell with an engraved tone-on-tone "AK" mark** (chosen over a green badge / green
+  ring / Apple logo). **Green lid dropped** in favor of full silver MacBook realism. Then built the
+  scene: sized + imported the seated pair (720x720), composed character-behind-a-flat-desk with the
+  laptop in front, and solved the unified hinge — one `.laptop-lid` whose own `rotateX` goes
+  **0deg (closed) -> 110deg (open)** inside a deck-tilted pivot (found via an angle sweep). Screen
+  is a `rotateX(180)` back face so it reads upright when open (an earlier `rotateY(180)` rendered it
+  upside-down). `#laptop-scene` 300vh + sticky (height in CSS), `-webkit-` prefixes, `will-change`
+  only on `.laptop-lid` + `.scene-container`, mobile static-open fallback, TEMP spacer removed.
+  Owner review: flattened the desk (was domed) + tightened mobile spacing. Verified in headless
+  (desktop closed + mobile open). **No GSAP yet — that's Commit 12.** Deviations from the old spec
+  (silver not green, +110 not -110, CSS not SVG) noted in CLAUDE.md + build-specs §4. Committed +
+  pushed. **Follow-up parked:** overall look-cleanup pass on the scene.

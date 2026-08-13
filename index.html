@@ -98,8 +98,46 @@
     </section>
 
     <!-- ===== SECTION: LAPTOP SCENE ===== -->
-    <!-- TEMP: spacer so there's scroll room until the Laptop scene lands -->
-    <div style="height: 40vh;"></div>
+    <!-- invisible scroll anchor: nav "Projects" + hero "View Projects" target this -->
+    <div id="projects" style="position: relative; top: -80px;"></div>
+    <section id="laptop-scene">
+      <div class="laptop-sticky">
+        <div class="scene-container">
+          <!-- seated character behind the desk (neutral <-> excited crossfade) -->
+          <div class="character-seated">
+            <img class="mood mood-neutral" src="assets/character/seated-neutral.png" alt="Illustration of Aamir Khan at his laptop">
+            <img class="mood mood-excited" src="assets/character/seated-excited.png" alt="" aria-hidden="true">
+          </div>
+          <div class="desk-surface"></div>
+          <!-- CSS-drawn MacBook: base (keyboard) + hinged lid (silver outside, screen inside) -->
+          <div class="laptop-3d-wrapper">
+            <div class="laptop">
+              <div class="laptop-base">
+                <div class="laptop-keys"></div>
+                <div class="laptop-trackpad"></div>
+              </div>
+              <div class="laptop-lip"></div>
+              <div class="laptop-lid-pivot">
+                <div class="laptop-lid">
+                  <div class="laptop-lid-back"><span class="laptop-mark">AK</span></div>
+                  <div class="laptop-screen-face">
+                    <div class="laptop-screen">
+                      <div class="laptop-cam"></div>
+                      <div class="laptop-screen-content">
+                        <div class="ph-badge"></div>
+                        <div class="ph-title"></div>
+                        <div class="ph-line"></div>
+                        <div class="ph-line short"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <div id="footer-root"></div>

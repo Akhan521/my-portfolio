@@ -80,7 +80,7 @@ portfolio/
 ├── tasks/                     ← build plan, lessons, and reference docs (not shipped)
 └── assets/
     ├── og-image.png           ← 1200×630 social preview
-    ├── laptop.svg             ← CSS/SVG-drawn device: base and lid as separate SVG groups
+    │                              (no laptop.svg — the device is CSS-drawn in style.css, silver MacBook)
     ├── reference/owner-photo.jpg    ← real photo, for likeness reference
     └── character/             ← generated raster art (see tasks/duolingo-style.md)
         ├── src/               ← full-res generation masters
@@ -172,11 +172,14 @@ are in `tasks/build-specs.md`.
 - **Dark theme:** canvas `#0F181C`, surfaces `#1B262C`/`#32414A`, text white/`#AFAFAF`. Accents
   stay bright — do not desaturate for dark mode. The laptop screen is the sole light island;
   in-screen cards use `--island-*` dark-text tokens. No theme toggle, no dual palette.
-- **Laptop 3D:** `perspective` on `.laptop-3d-wrapper`; `transform-style: preserve-3d` on
-  `.laptop-lid`; `transform-origin: top center` = hinge at back edge. Start `rotateX(0deg)`
-  (flat/closed), end `rotateX(-110deg)` (open toward viewer). `.laptop-screen-content` is
-  `position: absolute; inset: 10px` inside the `position: relative` `.laptop-lid`. Add
-  `-webkit-` prefixes and **test in Safari** — `preserve-3d` differs from Chrome.
+- **Laptop 3D (as built, Commit 11 — differs from the older spec below):** the device is a
+  **CSS-drawn silver MacBook** (no `laptop.svg`, no green lid). `perspective` on
+  `.laptop-3d-wrapper`; the `.laptop-lid` sits in a pre-tilted `.laptop-lid-pivot`, so **the lid's
+  own `rotateX` runs `0deg` (closed, silver + engraved "AK" up) -> `110deg` (open)** — note **+110**,
+  not -110. Keep the `translateX(-50%)` in the lid transform. The screen lives on
+  `.laptop-screen-face` (a **`rotateX(180)` back face** so content reads upright when open) →
+  `.laptop-screen` → `.laptop-screen-content` (carousel target). Add `-webkit-` prefixes and **test
+  in Safari** — `preserve-3d` differs from Chrome.
 - **Sticky scroll:** `#laptop-scene` height `300vh` must be in `style.css`, never inline
   (inline would override the mobile `height: auto` without needing `!important`). At only
   `100vh` ScrollTrigger has no room to scrub.

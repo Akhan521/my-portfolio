@@ -61,12 +61,12 @@ decides by reacting to rendered options you put in front of him.
   reveal, "Balanced" timing (0.55s fades, 50ms stagger), reduced-motion guarded. Design spec:
   `docs/superpowers/specs/2026-08-07-about-skills-design.md`.
 - **Character art** (locked, in `assets/character/`): `avatar.png` (navbar), `hero.png` +
-  `hero-tight.png` (hero), `src/` masters, `reference/style-north-star.png`. The
-  `seated-neutral` / `seated-excited` masters exist in `src/` for the laptop scene (not yet sized/imported).
+  `hero-tight.png` (hero), `src/` masters, `reference/style-north-star.png`. The seated pair is
+  now sized + imported: `seated-neutral.png` / `seated-excited.png` (both 720x720, stacked for the crossfade).
+- **Laptop scene** (`#laptop-scene`, static 3D): built (Commit 11) — see §5. The TEMP spacer is gone.
 
 **NOT built yet:** the footer (`js/footer.js` is an empty stub, `#footer-root` renders nothing),
-and everything from the Laptop scene onward. There is a **TEMP `<div style="height: 40vh">` spacer**
-after `#about` in `index.html` for scroll room, remove it when the laptop scene lands.
+the laptop GSAP open/zoom (Commit 12), the project carousel (13), mood reactions (14), and confetti (15).
 
 ## 4. Who Aamir is (locked positioning, read before any copy/content work)
 
@@ -84,32 +84,42 @@ Full detail in `tasks/aamir-info-bank.md` (+ memory). The essentials:
 - **All copy stays em-dash free** (use commas / colons / split sentences). Also avoid "end to end"
   (owner finds it buzzwordy).
 
-## 5. NEXT SESSION: the Laptop scene (Commit 11)
+## 5. The Laptop scene (Commit 11, BUILT) + what Commit 12 needs
 
-The next build. **Read every line of `tasks/build-specs.md` Section 4 before writing any code.**
-It is a sticky-scroll 3D scene: as you scroll, a closed laptop opens and its screen (a project
-carousel) fades in and zooms.
+**Status: the static 3D scene is built and pushed.** Desktop shows a closed silver MacBook on a
+desk with Aamir seated behind it; mobile (<768px) shows a static OPEN fallback. **Next is Commit 12:
+the GSAP scroll timeline that opens the lid + zooms.** The structure below is what you animate.
 
-**Prerequisites to handle first (Commits 5 and 6, still pending):**
-1. **Size + import the seated character pair.** `assets/character/src/seated-neutral` and
-   `seated-excited` masters exist; process them (like the hero/avatar) into display-sized PNGs and
-   verify pixel alignment so a neutral<->excited crossfade has no jump (build-specs §6 + `tasks/duolingo-style.md`).
-2. **Create `assets/laptop.svg`** with separable `#laptop-base` and `#laptop-lid` groups (a ~2px
-   hinge gap), so the lid can be a distinct element that rotates. Spec: build-specs Commit 6.
+**Design decisions locked this session (do not re-litigate; they came from many rendered options):**
+- The device is a **CSS-drawn silver MacBook**, NOT the old spec's green-lid `laptop.svg`. There is
+  **no `laptop.svg`** — it's all CSS in `css/style.css`. Green lid was dropped for full MacBook realism.
+- Keyboard is the **original simple grid** (a `repeating-linear-gradient`, no individually drawn
+  keycaps — the owner rejected the detailed-keycap version), plus a **wide MacBook trackpad**.
+- Screen is the **original abstract placeholder** (green badge + title + line blocks, NO real text).
+- Closed lid shows an **engraved tone-on-tone "AK" mark** (`.laptop-mark`), chosen over green-badge /
+  green-ring / Apple-logo options.
 
-**The scene itself (Commit 11, static 3D first, no GSAP yet):**
-- Two IDs, two jobs: a separate invisible `#projects` anchor (the nav "Projects" link + the hero
-  "View Projects" button both target `#projects`) AND a `#laptop-scene`. An element cannot have two ids.
-- `#laptop-scene` is `height: 300vh` with a `.laptop-sticky` inner that is `position: sticky`. **The
-  300vh height MUST live in `css/style.css`, not inline** (inline would override the mobile
-  `height: auto` without `!important`). At only 100vh, ScrollTrigger has no room to scrub.
-- CSS 3D: `perspective` on the wrapper, `transform-style: preserve-3d` on `.laptop-lid`,
-  `transform-origin: top center` (hinge at back edge). Lid starts `rotateX(0deg)` (flat/closed).
-- **Safari gotcha:** add `-webkit-` prefixes and TEST in Safari, `preserve-3d` differs from Chrome.
-- Mobile: a static open-laptop fallback (no sticky-scrub) below 768px.
-- Remove the TEMP 40vh spacer in `index.html` when this lands.
+**Structure + the hinge convention Commit 12 must use:**
+- `#projects` is a separate invisible anchor (nav "Projects" + hero "View Projects" target it);
+  `#laptop-scene` is the GSAP trigger. Two elements, two ids.
+- `#laptop-scene { height: 300vh }` lives **in `css/style.css`, not inline**; `.laptop-sticky` is the
+  `position: sticky` inner. At 100vh ScrollTrigger has no scrub room.
+- The laptop is one object: a static tilted `.laptop-base` (keyboard) + a `.laptop-lip` (front
+  thickness) + a `.laptop-lid-pivot` holding the `.laptop-lid`. The lid has two faces:
+  `.laptop-lid-back` (silver + AK, seen closed) and `.laptop-screen-face` (dark bezel + `.laptop-screen`
+  > `.laptop-screen-content`, seen open). The screen-face is a **`rotateX(180)` back face** so content
+  reads upright when open (a `rotateY(180)` would render it upside-down — already fixed).
+- **Animate `.laptop-lid`'s own `rotateX`: `0deg` (closed) -> `110deg` (open).** Keep the
+  `translateX(-50%)` in its transform (`translateX(-50%) rotateX(<n>deg)`). The **+110** sign differs
+  from the old spec's -110 because the lid sits in a pre-tilted (rotateX 62) pivot. Perspective/3D
+  already have `-webkit-` prefixes; `will-change` is only on `.laptop-lid` + `.scene-container`.
+- Also fade `.laptop-screen-content` in and zoom `.scene-container` (spec §4 timeline), and toggle the
+  seated character mood: `.character-seated.excited` past ~55% (`updateCharacterMood`, spec §6).
+- **Reduced motion:** snap the lid to `rotateX(110)` + screen visible immediately (no scrub).
+- Mobile fallback (already in CSS) sets the lid open + statics the sticky below 768px.
 
-Then GSAP (Commit 12) scrubs the open + zoom; see §6 roadmap.
+**Owner follow-up parked:** an overall look-cleanup pass on the scene (spacing/polish) — do alongside
+or after Commit 12. Then GSAP timeline details are in §6 + build-specs §4.
 
 ## 6. Remaining roadmap after the laptop scene (the moving parts)
 

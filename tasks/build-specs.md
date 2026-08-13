@@ -249,6 +249,14 @@ CSS default (safe fallback).
 ## Section 4 — Laptop Scene
 `id="projects"` · **Read every line before implementing.**
 
+> **BUILT 2026-08-12 — the implementation deviates from the recipe below (kept for reference).**
+> The device is a **CSS-drawn silver MacBook** (no `laptop.svg`, no green lid), with the original
+> simple grid keyboard, a wide trackpad, an abstract screen, and an engraved "AK" mark on the closed
+> lid. The lid animates its **own `rotateX` 0deg (closed) -> 110deg (open)** (it sits in a tilted
+> pivot, hence +110 not -110), and the screen is on a **`rotateX(180)` back face**. See `docs/HANDOFF.md`
+> §5 for the actual structure/classes and the Commit-12 GSAP contract. The timeline + light-island
+> carousel notes below still apply in spirit.
+
 Two IDs, two purposes — use a separate invisible anchor (an element can't have two `id`s):
 ```html
 <div id="projects" style="position: relative; top: -80px;"></div>  <!-- nav/hero scroll anchor -->
