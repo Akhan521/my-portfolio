@@ -1,12 +1,19 @@
 # Portfolio Information Bank: Aamir Khan
 
-> Provided by Aamir on 2026-08-07 as the factual source of truth about him, to replace generic
-> portfolio copy with specific, evidence-backed wording. Facts and background only (who he is,
-> experience, projects, skills); it does not contain build/design guidance. Sourced from Aamir's
-> resume, his Tatari internship record, and his project READMEs. All content is factual and, per
-> Aamir, free to use publicly (including naming Tatari and citing the specific metrics).
+> Provided by Aamir as the factual source of truth about him, to replace generic portfolio copy with
+> specific, evidence-backed wording. Facts and background only (who he is, experience, projects,
+> skills); it does not contain build/design guidance. Sourced from Aamir's resume, his Tatari
+> internship record, and his project READMEs.
 >
-> Use with `tasks/copy-repositioning` notes in `docs/HANDOFF.md` (positioning spine + drafted copy).
+> **Clearance: Aamir has explicitly cleared ALL of this for free public use, including naming Tatari
+> and citing every specific metric.** There is an internal "metric-clearance caveat" that lives in
+> the Tatari source docs; Aamir has said to **ignore it and use everything freely** (updated 2026-08-14).
+>
+> **For the fuller Tatari internship detail, see `tasks/tatari-accomplishments-report.md`** (a
+> sanitized, outward-facing summary: the major workstreams, the multi-month serving outage, the batch
+> routing client, the self-correction record, skills, and a plain-English glossary; private details
+> like ticket names/numbers, teammate/manager names, and repo/release lists have been removed). The
+> §4 Tatari summary below is a condensed view of it.
 
 ---
 
@@ -59,12 +66,18 @@ Python is the primary language. Most infra/MLOps tools below are working, produc
 
 ### Tatari: AI/ML Software Engineer Intern, Media Intelligence (Jun 2026 to Sep 2026, Culver City, CA)
 
-**Context:** Tatari is a TV advertising measurement/optimization company. Aamir works on the ML platform team, on the "performance" models that predict advertising performance metrics for linear (broadcast) and streaming TV, served in production and retrained nightly on Databricks. His central project was adding inference logging and monitoring to the linear-performance model, which expanded into a much larger production-debugging and MLOps body of work.
+**Context:** Tatari is a TV advertising measurement/optimization company. Aamir works on the ML platform team (Media Intelligence / MINT), on the "performance" models that predict advertising performance metrics for linear (broadcast) and streaming TV, served in production and retrained nightly on Databricks. Over 9 weeks he delivered dozens of shipped changes across many of the platform's repositories, taking multiple workstreams from investigation through production rollout and permanent regression guards.
 
-**Key highlights:**
-- Diagnosed a ~4-month production outage that silently failed ~3.9M daily ML predictions, traced it to a Databricks feature-store key-ordering bug spanning four repositories, and shipped a fix that restored full prediction volume and prevented further downtime.
-- Migrated a production ML model to Databricks' MLOps framework, verified valid predictions across 100% of test data, and eliminated a ~40-minute processing bottleneck by parallelizing ~3,900 daily requests covering 1.5M+ predictions.
-- Reduced daily writes to a production ML feature database by ~49% (7.98M to 4.07M rows) by identifying and removing an entire data category no model used, cutting infrastructure cost with zero impact on training or predictions.
+**>> Full canonical detail is in `tasks/tatari-accomplishments-report.md`.** This is a condensed view.
+
+**Headline accomplishments:**
+- **Root-caused and fixed a multi-month production serving outage** that silently returned NaN for every online feature lookup (~3.9M daily lookups, ~4 months). Traced it byte-level to a publish-vs-serve key-order mismatch in the platform's feature store; the finding was adopted into the platform team's own postmortem. Fixed in prod and sealed with a permanent regression test.
+- **Built and shipped the generic batch routing client** (the largest build of the internship): registry-driven champion/challenger fan-out with its own OAuth2 M2M auth layer. Verified in prod at 3,435,473 rows, 100% non-null, 424 companies, then optimized so champion and challenger scoring overlap (measured 80.0 min vs. ~145 min, ~45% faster).
+- **Found a real security vulnerability in his own code before it shipped** (an unvalidated registry-supplied URL that could redirect a live auth credential to an attacker-controlled host), and held a security bar on a teammate's PRs through an incident close-out, proven right three review rounds later.
+- **Prevented at least two production incidents:** a proposed data prune that would have silently dropped 3.44M daily predictions, and a stale branch that would have deleted a teammate's already-merged work.
+- **Unusually strong evidence-and-correction discipline:** overturned ~a dozen claims (most his own, several already published to the team), including a parity number corrected in the team's favor, an impact estimate that measured to exactly zero, and a headline figure that would have made a correct result look like a regression.
+
+Other shipped work: reduced online feature-store write volume ~49% (7.98M to 4.07M rows/day) by removing an unused metric type; ported the linear LightGBM model into the standardized mlops-stacks framework (495/495 rows non-NaN); proved serving parity (linear 100% bit-exact across 3 dates); stood up production inference logging + monitoring dashboards (blue and green).
 
 **Deeper detail:**
 

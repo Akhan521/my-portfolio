@@ -28,6 +28,7 @@ decides by reacting to rendered options you put in front of him.
 | `tasks/build-specs.md` | Deep implementation detail: HTML shell, nav/footer, component CSS, per-section specs, animation system. **Read Section 4 before the laptop scene.** |
 | `tasks/content.md` | Verbatim copy + data (projects, skills, hero/footer text). |
 | `tasks/aamir-info-bank.md` | **Factual source of truth about Aamir** (background, Tatari work, projects, skills). Drove the copy. |
+| `tasks/tatari-accomplishments-report.md` | **Sanitized, outward-facing Tatari accomplishments summary** (major workstreams, both prod outages, batch routing client, self-correction record, skills, glossary; no ticket numbers, names, repos, or ledgers). Cleared for public use. |
 | `tasks/duolingo-style.md` | Character-art bible: the AI image-generation pipeline + rules. |
 | `tasks/lessons.md` | Correction lessons, review at session start. |
 | `docs/superpowers/specs/2026-08-04-hero-redesign-design.md` | Hero redesign spec. |
@@ -79,6 +80,9 @@ Full detail in `tasks/aamir-info-bank.md` (+ memory). The essentials:
 - **MS CS @ UC Riverside (4.0)**, grad Dec 2026; BS CS 3.98 Summa Cum Laude. Also AI Trainer @
   Handshake AI (ended Jun 2026), AI Product Tester @ DeepLearning.AI (ongoing), Anthropic x CodePath.
 - Seeking **both full-time and internship** roles. Target dream company: **Decagon** (conversational-AI agents).
+- **Tatari metrics are fully cleared:** Aamir has explicitly said to use ALL of it, including every
+  specific number, freely in public copy. The internal "metric-clearance caveat" inside
+  `tasks/tatari-accomplishments-report.md` is retained for context only; **ignore it** (per Aamir, 2026-08-14).
 - Differentiator: builds AI/ML from scratch (custom transformers, from-scratch GPT, LoRA fine-tunes)
   AND ships/operates it in production, and debugs hard production failures to root cause.
 - **All copy stays em-dash free** (use commas / colons / split sentences). Also avoid "end to end"
