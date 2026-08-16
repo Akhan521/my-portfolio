@@ -82,14 +82,17 @@ Rendered as solid-tactile `.skill-chip`s under green category labels. See
 - **Languages:** Python · SQL · JavaScript · C++
 - **AI / ML:** PyTorch · LLMs & NLP · Agentic AI · RAG · Fine-tuning (LoRA/PEFT) · Transformers
 - **Tools & Frameworks:** Hugging Face · LangChain · FastAPI · Docker · Git
-- **Production & MLOps:** MLflow · Databricks · Model serving · Monitoring · CI/CD
+- **Production & MLOps:** MLflow · Databricks · Airflow · Model serving · Feature stores · Shadow deployment · Monitoring · CI/CD
   _(added 2026-08-08: signals Aamir's differentiator, he ships/operates AI in production. Owner
-  chose the label "Production & MLOps" (ampersand matches "Tools & Frameworks").)_
+  chose the label "Production & MLOps" (ampersand matches "Tools & Frameworks"). Expanded
+  2026-08-15 with Airflow, Feature stores, and Shadow deployment, all backed by real depth in
+  `tasks/tatari-accomplishments-report.md`; these are the vocabulary ML-platform hiring managers
+  scan for.)_
 
 _Set aside to avoid overload (easy to add back): generic "Machine Learning", standalone Vector
 DBs/embeddings (implied by RAG), React / Node (web-leaning), NumPy / Pandas (assumed alongside
-PyTorch), and deeper production-ML terms (feature stores, Airflow, champion/challenger, shadow
-deployment) kept out of the "Shipping to Production" row to keep it curated and application-leaning._
+PyTorch), and deeper infra terms (Kubernetes, Terraform, OAuth2/M2M, champion/challenger as a
+separate chip, it's implied by Shadow deployment) kept out to stay curated and application-leaning._
 
 **Retired:** the earlier XP-bar skills (`level`/`icon` array with "SKILL TREE" eyebrow). The
 game-y XP/% and emoji read as AI-generic, replaced per the clean-professional north star.
@@ -108,16 +111,21 @@ game-y XP/% and emoji read as AI-generic, replaced per the clean-professional no
   pulsing green availability dot (updated 2026-08-08: Aamir is seeking both full-time and internship)
 - Retired: the `"🔥 Streak: 365 days"` badge and the `👋` emoji (read as AI-generic filler).
 
-## About section copy (verbatim) — updated 2026-08-07
+## About section copy (verbatim) — updated 2026-08-15
 
 - Eyebrow: `"About Me"` (was `"SKILL TREE"` — dropped the game framing)
 - Heading: `"What I've Learned"`
 - Bio (repositioned 2026-08-08 to AI software engineer / application side; leads with shipping to
-  production + failure diagnosis, features Tatari as proof; "end to end" dropped per Aamir).
-  Rendered as **two paragraphs** (readability), with one phrase per paragraph in **brand-green
-  bold** via `<strong>` + `.about-text strong { color: var(--duo-green) }` (green chosen 2026-08-08;
-  weight-only white was too subtle on the already-white body):
-  > I'm Aamir, an AI software engineer focused on building AI-powered software and getting it into production. At Tatari, I work on a production AI platform serving millions of predictions a day, where I **diagnosed and fixed a multi-month outage** that had been silently failing ~3.9M predictions daily, and shipped new serving and monitoring features.
+  production + failure diagnosis, features Tatari as proof; "end to end" dropped per Aamir.
+  P1 rewritten 2026-08-15 from `tasks/tatari-accomplishments-report.md`: added the
+  champion/challenger routing build with its 3.4M+ rows and ~45% speedup, replacing the weak
+  "shipped new serving and monitoring features" closer. Owner validated the ~3.9M figure and
+  chose to omit the postmortem-adoption detail. P1 now carries **two** brand-green bolds, a
+  deliberate exception to the one-bold-per-paragraph rule so the fix and the build get equal
+  billing.) Rendered as **two paragraphs** (readability), bolds via `<strong>` +
+  `.about-text strong { color: var(--duo-green) }` (green chosen 2026-08-08; weight-only white
+  was too subtle on the already-white body):
+  > I'm Aamir, an AI software engineer focused on building AI systems and getting them into production. At Tatari, I work on a production ML platform serving millions of predictions a day. I **root-caused and fixed a multi-month outage** that had been silently failing ~3.9M predictions daily, and I **built the champion/challenger routing system** that scores 3.4M+ rows nightly, which I then optimized to run about 45% faster.
   >
   > I've also **built AI systems from scratch**, from an image-captioning library to a hand-written GPT and a fine-tuned text-to-SQL model, so I understand what's happening under the hood. I care about shipping AI software that holds up in production, not just in a demo.
 
