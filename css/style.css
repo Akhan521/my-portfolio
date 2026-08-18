@@ -485,9 +485,10 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
   border-radius: 14px 14px 0 0; box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* the 3D laptop */
+/* the 3D laptop — scaled down + raised so it sits close in front of the character */
 .laptop-3d-wrapper {
-  position: absolute; left: 50%; bottom: 150px; transform: translateX(-50%);
+  position: absolute; left: 50%; bottom: 205px;
+  transform: translateX(-50%) scale(0.62); transform-origin: 50% 100%;
   perspective: 2000px; -webkit-perspective: 2000px; perspective-origin: 50% 32%;
 }
 .laptop { position: relative; width: 300px; height: 101px;   /* height = deck's projected footprint */
@@ -505,11 +506,18 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 .laptop-trackpad { position: absolute; left: 50%; transform: translateX(-50%); bottom: 9%; width: 46%; height: 28%;
   background: linear-gradient(180deg, #dee1e3, #cbcfd2); border-radius: 7px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.16), inset 0 0 0 1px rgba(0, 0, 0, 0.05); }
-/* front lip = the visible thickness of the base */
-.laptop-lip { position: absolute; left: 0; top: 101px; width: 300px; height: 14px; transform-origin: top center;
+/* front edge of the CLOSED lid: one clean, flush bright-silver edge (a single
+   solid piece — no groove/gap, so the lid reads as completely shut). Depth comes
+   from the grounding shadow beneath, not from any seam. */
+.laptop-lip { position: absolute; left: 0; top: 101px; width: 300px; height: 8px; transform-origin: top center;
   transform: rotateX(-28deg); -webkit-transform: rotateX(-28deg);   /* tilt-90 = stands the lip up at the front */
-  background: linear-gradient(180deg, #c8cccf, #a7abaf); border-radius: 0 0 7px 7px;
-  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.5); }
+  background: linear-gradient(180deg, #f1f3f4 0%, #dce0e3 55%, #cbcfd2 100%);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 11px 18px rgba(0, 0, 0, 0.42); }
+/* whisper of a centered finger recess — a faint shadow, kept off the bottom edge
+   so it never breaks the closed silhouette */
+.laptop-lip::after { content: ""; position: absolute; left: 50%; top: 16%; transform: translateX(-50%);
+  width: 22%; height: 44%; background: rgba(0, 0, 0, 0.09); border-radius: 0 0 4px 4px; }
 
 /* pivot sits in the deck's plane; the lid rotates relative to it */
 .laptop-lid-pivot { position: absolute; left: 0; top: 0; width: 300px; height: 216px; transform-origin: top center;

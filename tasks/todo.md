@@ -444,3 +444,12 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   (desktop closed + mobile open). **No GSAP yet — that's Commit 12.** Deviations from the old spec
   (silver not green, +110 not -110, CSS not SVG) noted in CLAUDE.md + build-specs §4. Committed +
   pushed. **Follow-up parked:** overall look-cleanup pass on the scene.
+- 2026-08-17 — **Laptop scene tweaks (owner review of the built scene).** Three fixes, all in
+  `css/style.css`: (1) the laptop was oversized vs the character — scaled `.laptop-3d-wrapper` to
+  `scale(0.62)` (transform-origin bottom center) so it reads natural on the desk; (2) too much
+  gap to the character — raised it (`bottom` 150 -> 205) to sit close in front of him; (3) the
+  closed lid didn't read as shut. First tried a two-strip front edge with a dark seam groove +
+  scoop — that made it look AJAR (worse), so reverted to **one clean flush bright-silver front
+  edge** (`.laptop-lip`, single gradient, no groove) with just a faint centered finger recess that
+  doesn't break the bottom silhouette; depth comes from the grounding drop-shadow. Verified in
+  headless (full scene + zoomed closed edge). Still no GSAP — Commit 12 next.
