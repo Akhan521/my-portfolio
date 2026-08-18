@@ -506,32 +506,31 @@ h3 { font-size: 1.1rem;                     font-weight: 700; line-height: 1.4; 
 .laptop-trackpad { position: absolute; left: 50%; transform: translateX(-50%); bottom: 9%; width: 46%; height: 28%;
   background: linear-gradient(180deg, #dee1e3, #cbcfd2); border-radius: 7px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.16), inset 0 0 0 1px rgba(0, 0, 0, 0.05); }
-/* front edge of the CLOSED lid: one clean, flush bright-silver edge (a single
-   solid piece — no groove/gap, so the lid reads as completely shut). Depth comes
-   from the grounding shadow beneath, not from any seam. */
-.laptop-lip { position: absolute; left: 0; top: 101px; width: 300px; height: 8px; transform-origin: top center;
+/* front edge of the CLOSED lid: a minimal, tone-matched sliver that continues the
+   top surface seamlessly (no groove line at all). It just rounds the front corners
+   and grounds the shape with a shadow — the closed laptop reads as one flat wedge. */
+.laptop-lip { position: absolute; left: 0; top: 101px; width: 300px; height: 4px; transform-origin: top center;
   transform: rotateX(-28deg); -webkit-transform: rotateX(-28deg);   /* tilt-90 = stands the lip up at the front */
-  background: linear-gradient(180deg, #f1f3f4 0%, #dce0e3 55%, #cbcfd2 100%);
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 11px 18px rgba(0, 0, 0, 0.42); }
-/* whisper of a centered finger recess — a faint shadow, kept off the bottom edge
-   so it never breaks the closed silhouette */
-.laptop-lip::after { content: ""; position: absolute; left: 50%; top: 16%; transform: translateX(-50%);
-  width: 22%; height: 44%; background: rgba(0, 0, 0, 0.09); border-radius: 0 0 4px 4px; }
+  background: #cdd0d3;                                              /* == lid-back bottom tone: no visible seam */
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 9px 15px rgba(0, 0, 0, 0.36); }
 
 /* pivot sits in the deck's plane; the lid rotates relative to it */
 .laptop-lid-pivot { position: absolute; left: 0; top: 0; width: 300px; height: 216px; transform-origin: top center;
   transform: rotateX(62deg); -webkit-transform: rotateX(62deg);
   transform-style: preserve-3d; -webkit-transform-style: preserve-3d; }
-.laptop-lid { position: absolute; left: 50%; top: 0; width: 300px; height: 186px; transform-origin: top center;
+/* lid depth == deck depth (216) so the closed lid fully covers the deck — no
+   exposed base strip poking out in front, which was reading as a seam/jut. */
+.laptop-lid { position: absolute; left: 50%; top: 0; width: 300px; height: 216px; transform-origin: top center;
   transform: translateX(-50%) rotateX(0deg);                 /* START closed; GSAP -> rotateX(110deg) */
   -webkit-transform: translateX(-50%) rotateX(0deg);
   transform-style: preserve-3d; -webkit-transform-style: preserve-3d; will-change: transform; }
 .laptop-lid-back, .laptop-screen-face { position: absolute; inset: 0; border-radius: 13px 13px 6px 6px;
   backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-/* silver outer lid + engraved AK mark — the face you see when closed */
-.laptop-lid-back { background: linear-gradient(160deg, #e3e5e7, #cdd0d3); box-shadow: inset 0 0 0 1px #c2c5c8;
-  display: flex; align-items: center; justify-content: center; }
+/* silver outer lid + engraved AK mark — the face you see when closed. Square the
+   bottom corners so the top surface meets the front edge with no rounded-corner line. */
+.laptop-lid-back { background: linear-gradient(160deg, #e3e5e7, #cdd0d3); border-radius: 13px 13px 0 0;
+  box-shadow: inset 0 0 0 1px #c2c5c8; display: flex; align-items: center; justify-content: center; }
 .laptop-mark { font-weight: 900; font-size: 34px; letter-spacing: -2px; color: #c3c7ca;
   text-shadow: 0 1.5px 0 rgba(255, 255, 255, 0.75), 0 -1px 0 rgba(0, 0, 0, 0.14); }
 /* dark bezel + screen — the face you see when open. The lid opens about the X

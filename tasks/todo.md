@@ -453,3 +453,12 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   edge** (`.laptop-lip`, single gradient, no groove) with just a faint centered finger recess that
   doesn't break the bottom silhouette; depth comes from the grounding drop-shadow. Verified in
   headless (full scene + zoomed closed edge). Still no GSAP — Commit 12 next.
+- 2026-08-17 — **Closed-lid front edge: chased "make it look actually closed" to root cause.**
+  Owner rejected several front-edge treatments (plain single edge → "juts out"; two-halves + seam
+  groove + scoop → "ajar / too busy"). The real bug: the lid (`.laptop-lid` height 186) was SHORTER
+  than the base deck (216), so ~30px of deck poked out in front of the lid edge — that protruding
+  strip was the "seam/jutting half." Fix: set lid height = deck height (216) so the closed lid fully
+  covers the deck, plus a minimal tone-matched 4px front lip (no seam, no scoop) and squared the
+  lid-back bottom corners → one seamless flat wedge, no groove. Side effect: closed top is a touch
+  deeper and the open screen slightly squarer (300x216) — accepted. Verified closed (desktop) +
+  open (mobile) in headless. Owner: lock + commit.
