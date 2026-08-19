@@ -21,27 +21,33 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **Next up: the Laptop GSAP timeline (Commit 12).** The static laptop scene (Commit 11) is
-> BUILT — the closed MacBook opens/zooms on scroll is what's still missing. Read
-> **`docs/HANDOFF.md` §5** for the exact hinge convention and design decisions before writing the
-> GSAP.
-> **Laptop scene status (Commit 11, done):** the seated character pair is sized + imported; the
-> laptop is a **CSS-drawn silver MacBook** (NOT the green-lid SVG from the old spec — see below),
-> built as one hinged object; `#projects` anchor + `#laptop-scene` (300vh, in CSS) + sticky are in;
-> mobile shows a static open fallback; the TEMP spacer is gone.
-> **Key implementation facts for Commit 12:** the lid is `.laptop-lid`; it animates its own
-> `rotateX` from **0deg (closed, silver + engraved "AK" up) -> 110deg (open, screen to viewer)**.
-> Note the **+110** sign (the lid sits in a pre-tilted pivot), not the spec's -110. The screen
-> content lives in `.laptop-screen-content` (abstract placeholder now; carousel in Commit 13) and
-> is on a `rotateX(180)` back face so it reads upright when open.
-> **Then, in order:** laptop GSAP timeline (12), project carousel (13), character mood reactions
-> (14), footer + confetti (8 + 15, footer is still an empty stub), polish passes (16-20).
-> **Follow-up parked for next session:** an overall look cleanup pass on the scene (owner's note).
-> **Git state:** Commit 11 committed + pushed to main; tree clean.
-> **Last completed:** Laptop scene static 3D built (Commit 11) — CSS-drawn silver MacBook, seated
-> character, flat desk, mobile open fallback (2026-08-12)
+> **PIVOT IN PROGRESS (2026-08-18): revamping to a retro handheld-console theme.**
+> The Duolingo Night Mode build below (Commits 1-11 done; 12-20 unbuilt) is **PARKED, not
+> abandoned** — fully backed up: git tag `duolingo-night-mode-v1`, branch
+> `backup/duolingo-night-mode`, offline copy `~/Developer/my-portfolio-duolingo-backup-2026-08-18`,
+> and `origin/main`. **Do NOT resume Commit 12** (laptop GSAP) unless the revamp is called off;
+> if it is, everything below is still valid and on `main`.
+>
+> **New direction:** reskin into a Game Boy Color-style console theme (inspired by Branon
+> Eusebio, branon.dev), **scoped specifically to an AI software engineering portfolio** so it
+> never reads as a game-dev portfolio. Palette flips **dark -> light** (warm paper). Stack
+> moves to **Next.js + React + TypeScript + GSAP + MDX** (a new app; `main` here stays vanilla
+> until cutover). Reference clone: `~/Developer/branon-portfolio-ref`.
+>
+> **Feasibility proven (2026-08-18):** built a near pixel-perfect replica of Branon's landing
+> (throwaway, in scratchpad) — faithful emulation works.
+>
+> **Full revamp roadmap + all decisions:** `~/.claude/plans/as-i-was-working-deep-crayon.md`
+> (lives outside this repo). Day-to-day progress is tracked here: this block + the Review Log +
+> git history.
+>
+> **Next up:** plan the AI-SWE scoping (make the AI-engineer signal unmistakable), then build
+> the "make it ours" version — swap identity/copy/console art, regenerate pixel-Aamir.
+>
+> **Git state:** `main` = the Duolingo build, tree clean; no revamp code committed yet.
+> **Last activity:** 2026-08-18 — direction + stack locked, feasibility proven (no code committed).
 
-Update this block after every commit so a cold start knows exactly where to pick up.
+Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
 ---
 
@@ -462,3 +468,17 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   lid-back bottom corners → one seamless flat wedge, no groove. Side effect: closed top is a touch
   deeper and the open screen slightly squarer (300x216) — accepted. Verified closed (desktop) +
   open (mobile) in headless. Owner: lock + commit.
+- 2026-08-18 — **PIVOT: exploring a full theme revamp (Duolingo Night Mode -> retro handheld
+  console).** No product code committed today — exploration, decisions, and throwaway mockups
+  only. Studied Branon Eusebio's Game Boy Color portfolio (branon.dev) as the north star and
+  cloned it for reference (`~/Developer/branon-portfolio-ref`). Backed up the Duolingo build
+  four ways before any revamp work (tag `duolingo-night-mode-v1`, branch
+  `backup/duolingo-night-mode`, offline copy `~/Developer/my-portfolio-duolingo-backup-2026-08-18`,
+  `origin/main`). Locked decisions: adopt his warm-paper GBC palette (site flips dark->light);
+  hero = console-boot splash into a content hero; stack moves to **Next.js + React + TypeScript
+  + GSAP + MDX**; regenerate the character as a pixel sprite; build the console shell as a
+  swappable layer. Built two "inspired-by" hero mockups + a **near pixel-perfect replica of
+  Branon's landing** (scratchpad) — **faithful emulation proven possible** (the replica reuses
+  his identity/art, so it's a proof, not shippable). **Critical constraint for next session:**
+  scope the design specifically to AI software engineering so the console reads as a stylistic
+  frame, not a game-dev statement. Full plan + roadmap: `~/.claude/plans/as-i-was-working-deep-crayon.md`.
