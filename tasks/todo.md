@@ -21,31 +21,44 @@ its spec. This file only sequences that work into digestible, resumable commits.
 
 ## Current Position
 
-> **PIVOT IN PROGRESS (2026-08-18): revamping to a retro handheld-console theme.**
-> The Duolingo Night Mode build below (Commits 1-11 done; 12-20 unbuilt) is **PARKED, not
-> abandoned** — fully backed up: git tag `duolingo-night-mode-v1`, branch
-> `backup/duolingo-night-mode`, offline copy `~/Developer/my-portfolio-duolingo-backup-2026-08-18`,
-> and `origin/main`. **Do NOT resume Commit 12** (laptop GSAP) unless the revamp is called off;
-> if it is, everything below is still valid and on `main`.
+> **DIRECTION LOCKED (2026-08-18): retro TERMINAL / vintage-computer theme, AI work as the hero.**
+> The Duolingo Night Mode build below (Commits 1-11 done; 12-20 unbuilt) remains **PARKED, not
+> abandoned**, fully backed up (tag `duolingo-night-mode-v1`, branch `backup/duolingo-night-mode`,
+> offline copy `~/Developer/my-portfolio-duolingo-backup-2026-08-18`, `origin/main`). **Do NOT
+> resume Commit 12** unless the revamp is called off; if it is, everything below is still valid on `main`.
 >
-> **New direction:** reskin into a Game Boy Color-style console theme (inspired by Branon
-> Eusebio, branon.dev), **scoped specifically to an AI software engineering portfolio** so it
-> never reads as a game-dev portfolio. Palette flips **dark -> light** (warm paper). Stack
-> moves to **Next.js + React + TypeScript + GSAP + MDX** (a new app; `main` here stays vanilla
-> until cutover). Reference clone: `~/Developer/branon-portfolio-ref`.
+> **The concept, refined:** We first went toward a Game Boy Color *console* theme (inspired by
+> Branon Eusebio, branon.dev) and PROVED we can emulate that craft (near-pixel-perfect replica
+> built, in scratchpad). But a *game* console misreads as a game-dev portfolio, which is wrong for
+> an AI software engineer. So the device pivots to a **retro terminal / vintage computer /
+> workstation**: same retro-hardware craft, warmth, and delight, but it reads as "a machine an
+> engineer built," and AI content (agents, models, code) sits natively in a terminal. **AI work is
+> the hero; the retro shell is the frame.**
 >
-> **Feasibility proven (2026-08-18):** built a near pixel-perfect replica of Branon's landing
-> (throwaway, in scratchpad) — faithful emulation works.
+> **Carry over from Branon (what Aamir loves):** his warm paper palette + colors, his interaction
+> quality/polish, and above all the "**feels original, hand-made, NOT AI-generated**" quality. Fold
+> these into the terminal direction meaningfully — inspiration, not copy.
 >
-> **Full revamp roadmap + all decisions:** `~/.claude/plans/as-i-was-working-deep-crayon.md`
-> (lives outside this repo). Day-to-day progress is tracked here: this block + the Review Log +
-> git history.
+> **AI-SWE scoping decisions (this session):**
+> - Sections (classic, recruiter-legible; AI signal lives in the content): ABOUT · PROJECTS ·
+>   EXPERIENCE · WRITING · CONTACT.
+> - "AI flavor at the seams": boot sequence reframed as an AI system initializing; the screen is a
+>   TERMINAL (monospace log/output), not a game title screen.
+> - No live AI demo in v1, but architect the terminal screen as a swappable surface so a live
+>   agent/chat demo can drop in later.
+> - Drop game tropes (PLAYER 1 / LV / XP / streaks / "unlocked"); keep retro HARDWARE (boot, screen,
+>   tactile chrome). Projects framed as "programs/disks."
+> - Bonus synergy: Pixelate (pixel-art editor) + bat-code (themed TUI) are natively on-theme.
 >
-> **Next up:** plan the AI-SWE scoping (make the AI-engineer signal unmistakable), then build
-> the "make it ours" version — swap identity/copy/console art, regenerate pixel-Aamir.
+> **Stack (unchanged):** Next.js + React + TypeScript + GSAP + MDX. New app; `main` here stays
+> vanilla until cutover. Reference clone: `~/Developer/branon-portfolio-ref`. Full plan:
+> `~/.claude/plans/as-i-was-working-deep-crayon.md`.
 >
-> **Git state:** `main` = the Duolingo build, tree clean; no revamp code committed yet.
-> **Last activity:** 2026-08-18 — direction + stack locked, feasibility proven (no code committed).
+> **Next up:** mock up the retro-terminal direction with Aamir's real content, and compare it side
+> by side against the Game Boy replica and the Duolingo original before committing to the build.
+>
+> **Git state:** `main` = Duolingo build, tree clean; no revamp code committed yet.
+> **Last activity:** 2026-08-18 — pivoted from game console to retro terminal; AI-SWE scoping locked.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
@@ -482,3 +495,16 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   his identity/art, so it's a proof, not shippable). **Critical constraint for next session:**
   scope the design specifically to AI software engineering so the console reads as a stylistic
   frame, not a game-dev statement. Full plan + roadmap: `~/.claude/plans/as-i-was-working-deep-crayon.md`.
+- 2026-08-18 (later same session) — **DIRECTION PIVOT: game console -> retro terminal / vintage
+  computer.** Talked through fit: a *game* console, however beautifully executed, risks reading as a
+  game-dev portfolio, which is wrong for an AI SWE (Branon can pull it off because he's a *design*
+  engineer — his toy-portfolio IS his skill demo; for Aamir the AI work must be the hero). Also
+  reframed "retreat to Duolingo" as a false safety (it's also a gimmick theme that doesn't signal
+  AI). Decision: keep the retro-hardware craft + Branon's palette/interactions/originality, but
+  pivot the device from a Game Boy to a **retro terminal / vintage computer**, where AI content is
+  native and the read is "engineer," not "gamer." Locked AI-SWE scoping this session: classic
+  sections (ABOUT/PROJECTS/EXPERIENCE/WRITING/CONTACT), "AI flavor at the seams" (boot = AI system
+  init, screen = terminal), no live demo in v1 but architect for one, drop game tropes / keep retro
+  hardware, Pixelate + bat-code as natural on-theme synergy. **Next session: mock up the terminal
+  direction with real content, compare vs the Game Boy replica and the Duolingo original.** No code
+  committed today.
