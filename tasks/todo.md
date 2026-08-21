@@ -54,11 +54,18 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > vanilla until cutover. Reference clone: `~/Developer/branon-portfolio-ref`. Full plan:
 > `~/.claude/plans/as-i-was-working-deep-crayon.md`.
 >
-> **Next up:** mock up the retro-terminal direction with Aamir's real content, and compare it side
-> by side against the Game Boy replica and the Duolingo original before committing to the build.
+> **Hero mockup DONE (2026-08-18):** the retro-terminal hero is designed + validated in Branon's
+> design language — a terminal window (agent session resolving to Aamir's identity + `you> ask me
+> anything`) beside a `SELECT A PROGRAM` menu (his INSERT-CARTRIDGE UX). Throwaway mockup lives at
+> `docs/design-explorations/terminal-hero/` (see its README to view). Full orientation for
+> resuming: **`docs/revamp-handoff.md`**.
 >
-> **Git state:** `main` = Duolingo build, tree clean; no revamp code committed yet.
-> **Last activity:** 2026-08-18 — pivoted from game console to retro terminal; AI-SWE scoping locked.
+> **Next up:** design one "program"/section screen (start with PROJECTS or ABOUT) in the same
+> terminal language, to prove the concept holds beyond the hero. See `docs/revamp-handoff.md`.
+>
+> **Git state:** `main` = Duolingo build + revamp docs/mockups; tree clean. No Next.js app yet.
+> **Last activity:** 2026-08-18 — retro-terminal hero mockup designed + validated; agentic
+> tool-call trace parked for design iteration.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
@@ -508,3 +515,18 @@ Append a one-line note per completed commit (date + what shipped + anything to r
   hardware, Pixelate + bat-code as natural on-theme synergy. **Next session: mock up the terminal
   direction with real content, compare vs the Game Boy replica and the Duolingo original.** No code
   committed today.
+- 2026-08-18 (hero mockup session) — **Designed + validated the retro-terminal HERO** in Branon's
+  design language. Iterated through: a warm amber-CRT vintage workstation ("AK Micro", CSS-drawn),
+  then pivoted to Branon's actual kit — his exact paper palette + `PAPER_BG_SX` background, RetroCard
+  panels, Press Start 2P + IBM Plex Mono, his accent set, and his INSERT-CARTRIDGE menu UX reframed
+  as `SELECT A PROGRAM`. Final composition: a terminal window (left) beside the section menu (right),
+  height-matched as a deliberate pair. Terminal shows an "agent session" resolving to Aamir's
+  identity, ending on `you> ask me anything` (the swappable slot where a real live agent demo lands
+  later). Made the terminal larger to match the menu; wrote the on-screen copy to blend Aamir's
+  builder + debugger story. Tried a Claude-Code-style agentic tool-call trace (`● Search/Task` + `⎿`
+  results populated with real Tatari accomplishments) but **removed it pending design iteration**
+  (owner: read as too generic above the intro) — parked, preserved in git history. Saved the
+  throwaway mockup into the repo at `docs/design-explorations/terminal-hero/` (+ README + preview.png)
+  and wrote `docs/revamp-handoff.md` (single fresh-session orientation doc, incl. a paste-prompt).
+  **Next session (per handoff): design one "program"/section screen (PROJECTS or ABOUT) to prove the
+  concept holds beyond the hero.**
