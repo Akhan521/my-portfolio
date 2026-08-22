@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aamir — PROJECTS (filter-pill index, polished)</title>
+<style>
+  @font-face{font-family:"Pixel";src:url("assets/press-start-2p.ttf") format("truetype");font-display:swap}
+  @font-face{font-family:"Mono";src:url("assets/ibm-plex-mono-400.ttf") format("truetype");font-weight:400;font-display:swap}
+  @font-face{font-family:"Mono";src:url("assets/ibm-plex-mono-500.ttf") format("truetype");font-weight:500;font-display:swap}
+
+  :root{
+    --paper:#EEE6D3; --surface:#F7F2E4; --border:rgba(75,90,46,0.25); --border-strong:rgba(75,90,46,0.5);
+    --ink:#332C1C; --ink2:#2A3318; --olive:#4B5A2E; --muted:#5C6B44; --screen:#1D2A0C;
+    --red:#f05032; --yellow:#fbbf24; --green:#22c55e; --blue:#61dafb; --purple:#a78bfa;
+    --p-base:#c7d59a; --p-dim:#7f9a54; --p-cream:#f1ead4; --p-ok:#9be36b; --p-path:#7fd7f0; --p-faint:#5f7640;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{height:100%}
+  body{
+    min-height:100vh; overflow-x:hidden; color:var(--ink); font-family:"Mono",ui-monospace,monospace;
+    background-color:#EEE6D3;
+    background-image:
+      radial-gradient(ellipse 120% 90% at 50% 24%, rgba(255,251,241,0.95), rgba(233,222,198,0.55) 55%, rgba(196,180,148,0.42) 100%),
+      url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='matrix'%20values='0%200%200%200%200%20%200%200%200%200%200%20%200%200%200%200%200%20%200%200%200%200.07%200'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
+    background-blend-mode:normal, overlay; background-size:cover, 180px 180px; background-attachment:fixed;
+  }
+  .stage{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:64px 40px 40px}
+
+  /* fixed corner chrome (Branon: no navbar on inner routes) */
+  .esc{position:fixed; top:26px; left:30px; z-index:10; display:flex; align-items:center; gap:7px;
+    font-family:"Pixel"; font-size:8px; letter-spacing:.04em; color:var(--ink);
+    background:rgba(97,208,246,.12); border:2px solid rgba(60,140,170,.45); border-radius:9px; padding:8px 10px 7px}
+  .wordmark{position:fixed; top:26px; right:30px; z-index:10; font-family:"Pixel"; font-size:9px; letter-spacing:.06em; color:var(--olive); opacity:.9}
+
+  .terminal{width:min(940px,100%); max-width:100%; min-width:0; display:flex}
+  .term-card{display:flex; flex-direction:column; width:100%; min-width:0; max-width:100%;
+    background:var(--surface); border:2px solid var(--border); border-radius:12px; overflow:hidden;
+    box-shadow:0 14px 0 rgba(75,90,46,0.06), 0 20px 40px -18px rgba(51,44,28,.4)}
+  .term-bar{display:flex; align-items:center; gap:12px; min-width:0; padding:12px 16px; border-bottom:2px solid var(--border); background:var(--surface)}
+  .dots{display:flex; gap:7px; flex:0 0 auto}
+  .dots i{width:11px; height:11px; border-radius:50%; display:block}
+  .dots .r{background:var(--red)} .dots .y{background:var(--yellow)} .dots .g{background:var(--green)}
+  .term-path{font-family:"Mono"; font-size:11px; color:var(--olive); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; flex:0 1 auto}
+  .term-path b{color:#2f83a6; font-weight:500}
+  .term-status{margin-left:auto; font-family:"Mono"; font-size:10px; color:var(--muted); display:flex; align-items:center; gap:7px; flex:0 0 auto}
+  .term-status .live{width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 7px rgba(34,197,94,.7)}
+
+  .screen{position:relative; margin:14px; border-radius:8px; padding:24px 28px 20px;
+    background:radial-gradient(130% 120% at 50% 10%, #24350f, var(--screen) 74%, #141d09 100%);
+    box-shadow:inset 0 0 26px 6px rgba(0,0,0,.5), inset 0 0 0 2px rgba(0,0,0,.35);
+    color:var(--p-base); font-family:"Mono"; font-size:13px; line-height:1.7; text-shadow:0 0 5px rgba(120,190,70,.28)}
+  .screen::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:5;
+    background:linear-gradient(115deg, rgba(255,255,255,.05), rgba(255,255,255,0) 34%),
+      repeating-linear-gradient(rgba(0,0,0,.16) 0 1px, rgba(0,0,0,0) 1px 3px); mix-blend-mode:soft-light}
+  .screen > *{position:relative; z-index:1}
+
+  .cmd-line{color:var(--p-base)} .cmd-line .p{color:var(--p-dim)} .cmd-line .flag{color:var(--p-path)}
+
+  /* pixel page heading */
+  .heading{margin:18px 0 4px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+  .heading .h1{font-family:"Pixel"; font-size:17px; color:var(--p-cream); letter-spacing:.02em; text-shadow:0 0 10px rgba(155,227,107,.35)}
+  .heading .sub{font-size:12.5px; color:var(--p-dim)}
+
+  /* filter pills */
+  .filters{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 6px}
+  .pill{font-size:11.5px; letter-spacing:.02em; padding:5px 11px; border-radius:8px;
+    border:2px solid rgba(155,190,110,.28); color:var(--p-dim); background:rgba(0,0,0,.12); white-space:nowrap}
+  .pill.on{border-color:var(--p-path); color:var(--p-cream); background:rgba(127,215,240,.12)}
+
+  /* list */
+  .list{margin-top:4px}
+  .prow{position:relative; display:flex; align-items:center; gap:14px;
+    padding:12px 12px; border-radius:9px; border:2px solid transparent}
+  .prow + .prow::before{content:""; position:absolute; top:-1px; left:8px; right:8px; height:2px; background:rgba(120,150,80,.22)}
+  .prow .arw{flex:0 0 auto; width:10px; color:transparent; font-size:12px; text-align:center}
+  .prow .mid{flex:1 1 auto; min-width:0}
+  .prow .nm{color:var(--p-base); font-size:14px; letter-spacing:.01em}
+  .prow .desc{color:var(--p-faint); font-size:11.5px; line-height:1.5; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .prow .rt{flex:0 0 auto; display:flex; align-items:center; gap:12px}
+  .prow .meta{color:var(--p-dim); font-size:12px; white-space:nowrap}
+  .badge{font-family:"Mono"; font-size:9.5px; font-weight:500; letter-spacing:.08em; color:var(--yellow);
+    border:1px solid rgba(251,191,36,.5); border-radius:4px; padding:3px 6px 2px; background:rgba(251,191,36,.08)}
+  /* keyboard-selected row (the ↑↓ cursor position; also the ENTER target) */
+  .prow.sel{border-color:rgba(127,215,240,.45); background:rgba(127,215,240,.10); transform:translateX(4px)}
+  .prow.sel::before, .prow.sel + .prow::before{background:transparent}
+  .prow.sel .arw{color:var(--p-path)}
+  .prow.sel .nm{color:var(--p-cream)}
+  .prow.sel .desc{color:var(--p-dim)}
+
+  .foot{margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .foot .hint{font-size:11px; color:var(--p-faint); letter-spacing:.02em}
+  .foot .count{font-size:11px; color:var(--p-dim); white-space:nowrap}
+  .cur{display:inline-block; width:8px; height:15px; background:var(--p-cream); vertical-align:-2px; margin-left:6px;
+    box-shadow:0 0 7px rgba(155,227,107,.75); animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){ .cur{animation:none} }
+
+  /* ---- narrow / mobile reflow ---- */
+  @media (max-width:640px){
+    .stage{padding:58px 12px 20px}
+    .esc{top:14px; left:14px} .wordmark{top:16px; right:14px}
+    .screen{margin:10px; padding:18px 15px 16px}
+    .heading{gap:4px}
+    .heading .h1{font-size:14px} .heading .sub{font-size:12px}
+    .prow{align-items:flex-start; flex-wrap:wrap; padding:12px 8px}
+    .prow .desc{white-space:normal}
+    .prow .rt{flex-basis:100%; padding-left:24px; margin-top:8px; justify-content:flex-start}
+    .foot{flex-direction:column; align-items:flex-start; gap:6px}
+    .term-status{display:none}
+  }
+</style>
+</head>
+<body>
+  <div class="esc">&#9099; ESC &middot; MENU</div>
+  <div class="wordmark">AAMIR KHAN</div>
+
+  <div class="stage">
+    <section class="terminal">
+      <div class="term-card">
+        <div class="term-bar">
+          <span class="dots"><i class="r"></i><i class="y"></i><i class="g"></i></span>
+          <span class="term-path">aamir@ak&#8209;micro: <b>~/projects</b></span>
+          <span class="term-status"><span class="live"></span> 5 programs</span>
+        </div>
+        <div class="screen">
+          <div class="cmd-line"><span class="p">$</span> ak projects <span class="flag">--list</span></div>
+
+          <div class="heading">
+            <span class="h1">PROJECTS</span>
+            <span class="sub">Things I've built, by hand and in production.</span>
+          </div>
+
+          <div class="filters">
+            <span class="pill on">all</span>
+            <span class="pill">deep-learning</span>
+            <span class="pill">llm-fine-tuning</span>
+            <span class="pill">vision + nlp</span>
+            <span class="pill">agentic-ai</span>
+            <span class="pill">accessibility</span>
+          </div>
+
+          <div class="list">
+            <div class="prow">
+              <span class="arw">&#9656;</span>
+              <span class="mid">
+                <div class="nm">gpt-from-scratch</div>
+                <div class="desc">Multi-head self-attention, transformer blocks, and autoregressive decoding, by hand in PyTorch.</div>
+              </span>
+              <span class="rt"><span class="meta">deep-learning</span></span>
+            </div>
+
+            <div class="prow sel">
+              <span class="arw">&#9656;</span>
+              <span class="mid">
+                <div class="nm">text2sql-llama</div>
+                <div class="desc">Fine-tuned LLaMA-2-7B to translate natural language into SQL with LoRA + 4-bit quantization.</div>
+              </span>
+              <span class="rt"><span class="meta">llm-fine-tuning</span></span>
+            </div>
+
+            <div class="prow">
+              <span class="arw">&#9656;</span>
+              <span class="mid">
+                <div class="nm">snaption</div>
+                <div class="desc">End-to-end image captioning combining computer vision and NLP, trained on Flickr8k in PyTorch.</div>
+              </span>
+              <span class="rt"><span class="meta">vision + nlp</span></span>
+            </div>
+
+            <div class="prow">
+              <span class="arw">&#9656;</span>
+              <span class="mid">
+                <div class="nm">bat-code</div>
+                <div class="desc">A Batman-themed AI coding TUI powered by agentic AI (deepagents). In active development.</div>
+              </span>
+              <span class="rt"><span class="badge">BUILDING</span><span class="meta">agentic-ai</span></span>
+            </div>
+
+            <div class="prow">
+              <span class="arw">&#9656;</span>
+              <span class="mid">
+                <div class="nm">pixelate</div>
+                <div class="desc">Colorblind-friendly pixel-art editor with an AI assistant and real-time accessibility filters.</div>
+              </span>
+              <span class="rt"><span class="meta">accessibility + ai</span></span>
+            </div>
+          </div>
+
+          <div class="foot">
+            <span class="hint"><span style="color:var(--p-path)">&#8593;&#8595;</span> select &middot; <span style="color:var(--p-path)">&#8629;</span> open disk<span class="cur"></span></span>
+            <span class="count">showing 5 of 5</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
