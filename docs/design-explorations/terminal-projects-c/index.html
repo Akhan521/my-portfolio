@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aamir — PROJECTS (two-pane TUI browser)</title>
+<style>
+  @font-face{font-family:"Pixel";src:url("assets/press-start-2p.ttf") format("truetype");font-display:swap}
+  @font-face{font-family:"Mono";src:url("assets/ibm-plex-mono-400.ttf") format("truetype");font-weight:400;font-display:swap}
+  @font-face{font-family:"Mono";src:url("assets/ibm-plex-mono-500.ttf") format("truetype");font-weight:500;font-display:swap}
+
+  :root{
+    --paper:#EEE6D3; --surface:#F7F2E4; --border:rgba(75,90,46,0.25); --border-strong:rgba(75,90,46,0.5);
+    --ink:#332C1C; --ink2:#2A3318; --olive:#4B5A2E; --muted:#5C6B44; --screen:#1D2A0C;
+    --red:#f05032; --yellow:#fbbf24; --green:#22c55e; --blue:#61dafb; --purple:#a78bfa;
+    --p-base:#c7d59a; --p-dim:#7f9a54; --p-cream:#f1ead4; --p-ok:#9be36b; --p-path:#7fd7f0; --p-faint:#5f7640;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{height:100%}
+  body{
+    min-height:100vh; overflow:hidden; color:var(--ink); font-family:"Mono",ui-monospace,monospace;
+    background-color:#EEE6D3;
+    background-image:
+      radial-gradient(ellipse 120% 90% at 50% 24%, rgba(255,251,241,0.95), rgba(233,222,198,0.55) 55%, rgba(196,180,148,0.42) 100%),
+      url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='matrix'%20values='0%200%200%200%200%20%200%200%200%200%200%20%200%200%200%200%200%20%200%200%200%200.07%200'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
+    background-blend-mode:normal, overlay; background-size:cover, 180px 180px;
+  }
+  .stage{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:40px}
+
+  .esc{position:fixed; top:26px; left:30px; display:flex; align-items:center; gap:7px;
+    font-family:"Pixel"; font-size:8px; letter-spacing:.04em; color:var(--ink);
+    background:rgba(97,208,246,.12); border:2px solid rgba(60,140,170,.45); border-radius:9px; padding:8px 10px 7px}
+  .wordmark{position:fixed; top:26px; right:30px; font-family:"Pixel"; font-size:9px; letter-spacing:.06em; color:var(--olive); opacity:.9}
+
+  .terminal{width:940px; display:flex}
+  .term-card{display:flex; flex-direction:column; width:100%;
+    background:var(--surface); border:2px solid var(--border); border-radius:12px; overflow:hidden;
+    box-shadow:0 14px 0 rgba(75,90,46,0.06), 0 20px 40px -18px rgba(51,44,28,.4)}
+  .term-bar{display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:2px solid var(--border); background:var(--surface)}
+  .dots{display:flex; gap:7px}
+  .dots i{width:11px; height:11px; border-radius:50%; display:block}
+  .dots .r{background:var(--red)} .dots .y{background:var(--yellow)} .dots .g{background:var(--green)}
+  .term-path{font-family:"Mono"; font-size:11px; color:var(--olive)}
+  .term-path b{color:#2f83a6; font-weight:500}
+  .term-status{margin-left:auto; font-family:"Mono"; font-size:10px; color:var(--muted); display:flex; align-items:center; gap:7px}
+  .term-status .live{width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 7px rgba(34,197,94,.7)}
+
+  .screen{position:relative; margin:14px; border-radius:8px; padding:22px 26px 18px;
+    background:radial-gradient(130% 120% at 50% 12%, #24350f, var(--screen) 74%, #141d09 100%);
+    box-shadow:inset 0 0 26px 6px rgba(0,0,0,.5), inset 0 0 0 2px rgba(0,0,0,.35);
+    color:var(--p-base); font-family:"Mono"; font-size:13px; line-height:1.7; text-shadow:0 0 5px rgba(120,190,70,.28)}
+  .screen::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:5;
+    background:linear-gradient(115deg, rgba(255,255,255,.05), rgba(255,255,255,0) 34%),
+      repeating-linear-gradient(rgba(0,0,0,.16) 0 1px, rgba(0,0,0,0) 1px 3px); mix-blend-mode:soft-light}
+  .screen > *{position:relative; z-index:1}
+
+  .cmd-line{color:var(--p-base); margin-bottom:14px} .cmd-line .p{color:var(--p-dim)} .cmd-line .flag{color:var(--p-path)}
+
+  .panes{display:grid; grid-template-columns:312px 1fr; gap:0}
+
+  /* ---- LEFT: package list ---- */
+  .pane-l{padding-right:24px}
+  .pane-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:12px;
+    padding-bottom:9px; border-bottom:1px dashed rgba(155,190,110,.26)}
+  .pane-head .lbl{font-size:10px; letter-spacing:.22em; color:var(--p-ok)}
+  .pane-head .f{font-size:10.5px; color:var(--p-dim)}
+  .plist{display:flex; flex-direction:column; gap:2px}
+  .prow{display:grid; grid-template-columns:16px 28px 1fr 12px; align-items:center; gap:9px;
+    padding:9px 9px; border-radius:7px; border-left:2px solid transparent}
+  .prow .arw{color:transparent; font-size:11px}
+  .prow .idx{color:var(--p-faint); font-size:11px}
+  .prow .nm{color:var(--p-dim); font-size:12.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .prow .dot{width:7px; height:7px; border-radius:50%; justify-self:end}
+  .prow .dot.ok{background:rgba(155,190,110,.4)}
+  .prow .dot.bd{background:var(--yellow); box-shadow:0 0 6px rgba(251,191,36,.55)}
+  .prow.sel{background:rgba(127,215,240,.10); border-left-color:var(--p-path)}
+  .prow.sel .arw{color:var(--p-path)}
+  .prow.sel .idx{color:var(--p-path)}
+  .prow.sel .nm{color:var(--p-cream)}
+  .pane-l .lhint{margin-top:14px; padding-top:12px; border-top:1px dashed rgba(155,190,110,.26);
+    font-size:10.5px; color:var(--p-faint)}
+
+  /* ---- RIGHT: detail ---- */
+  .pane-r{padding-left:26px; border-left:1px dashed rgba(155,190,110,.28); min-height:340px; display:flex; flex-direction:column}
+  .d-eyebrow{font-size:10px; letter-spacing:.2em; color:var(--p-path); display:flex; align-items:center; gap:10px}
+  .d-eyebrow .cat{color:var(--p-dim); letter-spacing:.06em}
+  .d-title{font-family:"Mono"; font-weight:500; font-size:25px; color:var(--p-cream); letter-spacing:.005em;
+    text-shadow:0 0 11px rgba(155,227,107,.34); margin:11px 0 14px}
+  .d-desc{color:var(--p-base); font-size:14px; line-height:1.78; max-width:48ch}
+  .d-meta{margin-top:20px; display:grid; grid-template-columns:56px 1fr; row-gap:11px; column-gap:14px; align-items:center}
+  .d-meta .k{font-size:10px; letter-spacing:.16em; color:var(--p-dim); text-transform:uppercase}
+  .tokens{display:flex; gap:8px; flex-wrap:wrap}
+  .tok{font-size:11px; color:var(--p-cream); padding:2px 9px; border-radius:5px; border:1px solid rgba(155,190,110,.3); background:rgba(155,190,110,.07)}
+  .tok .br{color:var(--p-dim)}
+  .stat-ok{font-size:12.5px; color:var(--p-ok)} .stat-ok::before{content:"\25CF  "; color:var(--p-ok)}
+  .d-actions{margin-top:auto; padding-top:22px; display:flex; gap:12px}
+  .act{display:inline-flex; align-items:center; gap:9px; padding:8px 14px; border-radius:6px;
+    border:1px solid rgba(127,215,240,.4); background:rgba(127,215,240,.06); color:var(--p-cream); font-size:12px}
+  .act .dollar{color:var(--p-path)} .act .ret{color:var(--p-dim); font-size:11px}
+  .act.ghost{border-color:rgba(155,190,110,.28); background:transparent} .act.ghost .dollar{color:var(--p-dim)}
+
+  .term-prompt{margin-top:16px; padding-top:14px; border-top:1px dashed rgba(155,190,110,.22); color:var(--p-ok); font-size:12px}
+  .term-prompt .p{color:var(--p-dim)}
+  .cur{display:inline-block; width:8px; height:15px; background:var(--p-cream); vertical-align:-2px; margin-left:5px;
+    box-shadow:0 0 7px rgba(155,227,107,.75); animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){ .cur{animation:none} }
+</style>
+</head>
+<body>
+  <div class="esc">&#9099; ESC &middot; MENU</div>
+  <div class="wordmark">AAMIR KHAN</div>
+
+  <div class="stage">
+    <section class="terminal">
+      <div class="term-card">
+        <div class="term-bar">
+          <span class="dots"><i class="r"></i><i class="y"></i><i class="g"></i></span>
+          <span class="term-path">aamir@ak&#8209;micro: <b>~/projects</b></span>
+          <span class="term-status"><span class="live"></span> browsing 5 disks</span>
+        </div>
+        <div class="screen">
+          <div class="cmd-line"><span class="p">$</span> ak projects <span class="flag">--browse</span></div>
+
+          <div class="panes">
+            <!-- LEFT: list -->
+            <div class="pane-l">
+              <div class="pane-head"><span class="lbl">DISKS</span><span class="f">filter: all</span></div>
+              <div class="plist">
+                <div class="prow sel">
+                  <span class="arw">&#9656;</span><span class="idx">01</span>
+                  <span class="nm">gpt-from-scratch</span><span class="dot ok"></span>
+                </div>
+                <div class="prow">
+                  <span class="arw">&#9656;</span><span class="idx">02</span>
+                  <span class="nm">text2sql-llama</span><span class="dot ok"></span>
+                </div>
+                <div class="prow">
+                  <span class="arw">&#9656;</span><span class="idx">03</span>
+                  <span class="nm">snaption</span><span class="dot ok"></span>
+                </div>
+                <div class="prow">
+                  <span class="arw">&#9656;</span><span class="idx">04</span>
+                  <span class="nm">bat-code</span><span class="dot bd"></span>
+                </div>
+                <div class="prow">
+                  <span class="arw">&#9656;</span><span class="idx">05</span>
+                  <span class="nm">pixelate</span><span class="dot ok"></span>
+                </div>
+              </div>
+              <div class="lhint">&#8593;&#8595; move &middot; &#8629; open &middot; / filter</div>
+            </div>
+
+            <!-- RIGHT: detail -->
+            <div class="pane-r">
+              <div class="d-eyebrow">DISK 01 <span class="cat">&middot; deep-learning</span></div>
+              <div class="d-title">gpt-from-scratch</div>
+              <div class="d-desc">Built multi-head self-attention, transformer blocks, and
+                autoregressive decoding entirely from scratch in PyTorch.</div>
+              <div class="d-meta">
+                <span class="k">stack</span>
+                <span class="tokens">
+                  <span class="tok"><span class="br">[</span>python<span class="br">]</span></span>
+                  <span class="tok"><span class="br">[</span>pytorch<span class="br">]</span></span>
+                  <span class="tok"><span class="br">[</span>transformers<span class="br">]</span></span>
+                </span>
+                <span class="k">status</span>
+                <span class="stat-ok">stable &middot; source on github</span>
+              </div>
+              <div class="d-actions">
+                <span class="act"><span class="dollar">$</span> open --github <span class="ret">&#8629;</span></span>
+                <span class="act ghost"><span class="dollar">$</span> run --demo <span class="ret">&#8629;</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="term-prompt"><span class="p">$</span> <span style="color:var(--p-faint)">select a disk to inspect</span><span class="cur"></span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

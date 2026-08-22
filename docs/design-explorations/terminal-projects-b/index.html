@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aamir — PROJECTS program (focused-disk view)</title>
+<style>
+  @font-face{font-family:"Pixel";src:url("assets/press-start-2p.ttf") format("truetype");font-display:swap}
+  @font-face{font-family:"Mono";src:url("assets/ibm-plex-mono-400.ttf") format("truetype");font-weight:400;font-display:swap}
+  @font-face{font-family:"Mono";src:url("assets/ibm-plex-mono-500.ttf") format("truetype");font-weight:500;font-display:swap}
+
+  :root{
+    --paper:#EEE6D3; --surface:#F7F2E4; --surface-hover:#EFE6D0;
+    --border:rgba(75,90,46,0.25); --border-strong:rgba(75,90,46,0.5);
+    --ink:#332C1C; --ink2:#2A3318; --olive:#4B5A2E; --muted:#5C6B44;
+    --screen:#1D2A0C;
+    --red:#f05032; --yellow:#fbbf24; --green:#22c55e; --blue:#61dafb; --purple:#a78bfa;
+    --p-base:#c7d59a; --p-dim:#7f9a54; --p-cream:#f1ead4; --p-ok:#9be36b; --p-path:#7fd7f0;
+    --p-faint:#5f7640;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{height:100%}
+  body{
+    min-height:100vh; overflow:hidden; color:var(--ink); font-family:"Mono",ui-monospace,monospace;
+    background-color:#EEE6D3;
+    background-image:
+      radial-gradient(ellipse 120% 90% at 50% 28%, rgba(255,251,241,0.95), rgba(233,222,198,0.55) 55%, rgba(196,180,148,0.42) 100%),
+      url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='matrix'%20values='0%200%200%200%200%20%200%200%200%200%200%20%200%200%200%200%200%20%200%200%200%200.07%200'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
+    background-blend-mode:normal, overlay; background-size:cover, 180px 180px;
+  }
+
+  .stage{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:40px}
+  .row{display:flex; align-items:stretch; gap:40px}
+
+  /* ============ TERMINAL ============ */
+  .terminal{flex:0 0 auto; width:760px; display:flex}
+  .term-card{
+    display:flex; flex-direction:column; width:100%;
+    background:var(--surface); border:2px solid var(--border); border-radius:12px; overflow:hidden;
+    box-shadow:0 14px 0 rgba(75,90,46,0.06), 0 20px 40px -18px rgba(51,44,28,.4);
+  }
+  .term-bar{
+    display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:2px solid var(--border);
+    background:var(--surface); flex:0 0 auto;
+  }
+  .dots{display:flex; gap:7px}
+  .dots i{width:11px; height:11px; border-radius:50%; display:block}
+  .dots .r{background:var(--red)} .dots .y{background:var(--yellow)} .dots .g{background:var(--green)}
+  .term-path{font-family:"Mono"; font-size:11px; color:var(--olive); letter-spacing:.02em}
+  .term-path b{color:#2f83a6; font-weight:500}
+  .term-status{margin-left:auto; font-family:"Mono"; font-size:10px; color:var(--muted); display:flex; align-items:center; gap:7px}
+  .term-status .live{width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 7px rgba(34,197,94,.7)}
+
+  .screen{
+    position:relative; flex:1; margin:14px; border-radius:8px; padding:22px 26px 18px;
+    background:radial-gradient(130% 120% at 50% 18%, #24350f, var(--screen) 72%, #141d09 100%);
+    box-shadow:inset 0 0 26px 6px rgba(0,0,0,.5), inset 0 0 0 2px rgba(0,0,0,.35);
+    color:var(--p-base); font-family:"Mono"; font-size:13px; line-height:1.7;
+    text-shadow:0 0 5px rgba(120,190,70,.28);
+    display:flex; flex-direction:column;
+  }
+  .screen::after{
+    content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:5;
+    background:
+      linear-gradient(115deg, rgba(255,255,255,.05), rgba(255,255,255,0) 34%),
+      repeating-linear-gradient(rgba(0,0,0,.16) 0 1px, rgba(0,0,0,0) 1px 3px);
+    mix-blend-mode:soft-light;
+  }
+  .screen > *{position:relative; z-index:1}
+
+  .cmd-line{color:var(--p-base)}
+  .cmd-line .p{color:var(--p-dim)}
+  .cmd-line .flag{color:var(--p-path)}
+  .cmd-line .arg{color:var(--p-cream)}
+
+  /* ---- disk selector strip (all 5, current lit) ---- */
+  .strip{display:flex; align-items:center; gap:9px; margin:16px 0 2px}
+  .strip .nav{color:var(--p-dim); font-size:13px; padding:0 2px}
+  .tabs{display:flex; gap:8px; flex:1}
+  .tab{flex:1; min-height:34px; display:flex; align-items:center; gap:7px; padding:8px 10px; border-radius:6px;
+    border:1px solid rgba(155,190,110,.22); background:rgba(0,0,0,.14)}
+  .tab .ti{font-size:10.5px; color:var(--p-faint); letter-spacing:.04em}
+  .tab .tn{font-size:11.5px; color:var(--p-dim); display:flex; align-items:center; gap:5px}
+  .tab.on{border-color:var(--p-path); background:rgba(127,215,240,.11)}
+  .tab.on .ti{color:var(--p-path)}
+  .tab.on .tn{color:var(--p-cream)}
+  .tab .bdot{width:6px; height:6px; border-radius:50%; background:var(--yellow); box-shadow:0 0 6px rgba(251,191,36,.6)}
+
+  /* ---- focused disk card ---- */
+  .disk-view{display:grid; grid-template-columns:1fr 128px; gap:22px; margin-top:20px;
+    padding-top:20px; border-top:1px dashed rgba(155,190,110,.26)}
+  .dv-eyebrow{font-size:10px; letter-spacing:.22em; color:var(--p-path); margin-bottom:12px;
+    display:flex; align-items:center; gap:10px}
+  .dv-eyebrow .cat{margin-left:auto; color:var(--p-dim); letter-spacing:.05em; text-transform:none; font-size:11px}
+  .dv-title{font-family:"Mono"; font-weight:500; font-size:27px; letter-spacing:.005em; color:var(--p-cream);
+    text-shadow:0 0 11px rgba(155,227,107,.34); margin-bottom:16px}
+  .dv-desc{color:var(--p-base); font-size:14.5px; line-height:1.78; max-width:52ch}
+
+  .dv-meta{margin-top:22px; display:grid; grid-template-columns:60px 1fr; row-gap:12px; column-gap:16px; align-items:center}
+  .dv-meta .k{font-size:10px; letter-spacing:.16em; color:var(--p-dim); text-transform:uppercase}
+  .tokens{display:flex; gap:8px; flex-wrap:wrap}
+  .tok{font-size:11px; color:var(--p-cream); padding:2px 9px; border-radius:5px;
+    border:1px solid rgba(155,190,110,.3); background:rgba(155,190,110,.07)}
+  .tok .br{color:var(--p-dim)}
+  .stat-ok{font-size:12.5px; color:var(--p-ok)}
+  .stat-ok::before{content:"\25CF  "; color:var(--p-ok)}
+
+  .dv-actions{margin-top:24px; display:flex; gap:12px}
+  .act{display:inline-flex; align-items:center; gap:9px; padding:8px 14px; border-radius:6px;
+    border:1px solid rgba(127,215,240,.4); background:rgba(127,215,240,.06); color:var(--p-cream); font-size:12px}
+  .act .dollar{color:var(--p-path)}
+  .act .ret{color:var(--p-dim); font-size:11px}
+  .act.ghost{border-color:rgba(155,190,110,.28); background:transparent}
+  .act.ghost .dollar{color:var(--p-dim)}
+
+  /* ---- the loaded disk (right column): pixel floppy in the drive ---- */
+  .drive{display:flex; flex-direction:column; align-items:center; gap:12px}
+  .floppy{width:112px; height:112px}
+  .drive .loaded{font-size:9px; letter-spacing:.18em; color:var(--p-faint)}
+  .drive .pos{font-size:11px; color:var(--p-dim); letter-spacing:.08em}
+  .drive .pos b{color:var(--p-cream); font-weight:500}
+
+  .term-prompt{margin-top:auto; padding-top:16px; color:var(--p-ok); font-size:12.5px}
+  .term-prompt .p{color:var(--p-dim)}
+  .cur{display:inline-block; width:8px; height:15px; background:var(--p-cream); vertical-align:-2px; margin-left:5px;
+    box-shadow:0 0 7px rgba(155,227,107,.75); animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  /* ============ MENU (persistent nav) ============ */
+  .menu{flex:0 0 auto; width:300px; display:flex}
+  .menu-card{display:flex; flex-direction:column; width:100%;
+    background:var(--surface); border:2px solid var(--border); border-radius:10px; padding:18px}
+  .menu-title{font-family:"Pixel"; font-size:10px; letter-spacing:.16em; color:var(--olive); margin-bottom:16px; line-height:1.5}
+  .list{list-style:none; display:flex; flex-direction:column; gap:7px}
+  .item{display:flex; align-items:center; gap:11px; padding:11px 13px; border-radius:9px;
+    border:2px solid var(--border); background:rgba(255,255,255,0.32)}
+  .item .arrow{font-family:"Pixel"; font-size:9px; color:transparent; line-height:1}
+  .item .cmd{font-family:"Pixel"; font-size:9.5px; letter-spacing:.05em; color:var(--muted); line-height:1.3}
+  .item .blurb{font-family:"Mono"; font-size:11.5px; line-height:1.35; color:var(--muted); margin-top:3px; opacity:.75}
+  .item .run{margin-left:auto; font-family:"Pixel"; font-size:7px; letter-spacing:.08em; color:#2f83a6;
+    border:1px solid rgba(47,131,166,.4); border-radius:4px; padding:4px 6px 3px; line-height:1}
+  .item.on{border-color:var(--sel); background:color-mix(in srgb, var(--sel) 14%, transparent)}
+  .item.on .arrow{color:var(--sel)}
+  .item.on .cmd{color:var(--ink2)}
+  .item.on .blurb{color:var(--olive); opacity:1}
+  .foot{margin-top:auto; padding-top:18px; display:flex; align-items:center; justify-content:space-between; min-height:28px}
+  .hint{font-family:"Pixel"; font-size:8px; letter-spacing:.05em; color:var(--muted); line-height:1.6}
+  .kbtn{width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:6px;
+    border:2px solid var(--border-strong); background:rgba(255,255,255,0.5); color:var(--olive);
+    font-family:"Mono"; font-size:12px; font-weight:500}
+
+  @media (prefers-reduced-motion:reduce){ .cur{animation:none} }
+</style>
+</head>
+<body>
+  <div class="stage">
+   <div class="row">
+
+    <!-- ============ TERMINAL: PROJECTS, focused-disk view ============ -->
+    <section class="terminal">
+      <div class="term-card">
+        <div class="term-bar">
+          <span class="dots"><i class="r"></i><i class="y"></i><i class="g"></i></span>
+          <span class="term-path">aamir@ak&#8209;micro: <b>~/projects</b></span>
+          <span class="term-status"><span class="live"></span> disk 01 loaded</span>
+        </div>
+        <div class="screen">
+          <div class="cmd-line"><span class="p">$</span> ak projects <span class="flag">--open</span> <span class="arg">gpt-from-scratch</span></div>
+
+          <!-- disk selector strip -->
+          <div class="strip">
+            <span class="nav">&#9666;</span>
+            <div class="tabs">
+              <div class="tab on"><span class="ti">01</span><span class="tn">gpt</span></div>
+              <div class="tab"><span class="ti">02</span><span class="tn">text2sql</span></div>
+              <div class="tab"><span class="ti">03</span><span class="tn">snaption</span></div>
+              <div class="tab"><span class="ti">04</span><span class="tn">bat-code <span class="bdot"></span></span></div>
+              <div class="tab"><span class="ti">05</span><span class="tn">pixelate</span></div>
+            </div>
+            <span class="nav">&#9656;</span>
+          </div>
+
+          <!-- focused disk -->
+          <div class="disk-view">
+            <div class="dv-main">
+              <div class="dv-eyebrow">NOW LOADED <span class="cat">deep-learning</span></div>
+              <div class="dv-title">gpt-from-scratch</div>
+              <div class="dv-desc">Built multi-head self-attention, transformer blocks, and
+                autoregressive decoding entirely from scratch in PyTorch.</div>
+
+              <div class="dv-meta">
+                <span class="k">stack</span>
+                <span class="tokens">
+                  <span class="tok"><span class="br">[</span>python<span class="br">]</span></span>
+                  <span class="tok"><span class="br">[</span>pytorch<span class="br">]</span></span>
+                  <span class="tok"><span class="br">[</span>transformers<span class="br">]</span></span>
+                </span>
+                <span class="k">status</span>
+                <span class="stat-ok">stable &middot; source on github</span>
+              </div>
+
+              <div class="dv-actions">
+                <span class="act"><span class="dollar">$</span> open --github <span class="ret">&#8629;</span></span>
+                <span class="act ghost"><span class="dollar">$</span> run --demo <span class="ret">&#8629;</span></span>
+              </div>
+            </div>
+
+            <!-- loaded disk graphic -->
+            <div class="drive">
+              <svg class="floppy" viewBox="0 0 96 96" fill="none" role="img" aria-label="3.5 inch floppy disk, label 01">
+                <!-- body -->
+                <path d="M8 12 h64 l16 16 v56 a4 4 0 0 1 -4 4 H12 a4 4 0 0 1 -4 -4 V16 a4 4 0 0 1 4 -4 Z"
+                      stroke="#7f9a54" stroke-width="2.5" fill="rgba(155,190,110,0.05)"/>
+                <!-- metal shutter -->
+                <rect x="24" y="12" width="36" height="26" rx="1.5" stroke="#7f9a54" stroke-width="2.2" fill="rgba(127,215,240,0.10)"/>
+                <rect x="44" y="16" width="9" height="18" rx="1" stroke="#7f9a54" stroke-width="2"/>
+                <!-- label -->
+                <rect x="18" y="48" width="60" height="34" rx="2" stroke="#c7d59a" stroke-width="2" fill="rgba(0,0,0,0.22)"/>
+                <line x1="22" y1="58" x2="74" y2="58" stroke="#5f7640" stroke-width="1.4"/>
+                <text x="24" y="74" font-family="Mono, monospace" font-size="15" font-weight="500" fill="#f1ead4" letter-spacing="1">DISK 01</text>
+              </svg>
+              <div class="loaded">IN DRIVE</div>
+              <div class="pos"><b>01</b> / 05</div>
+            </div>
+          </div>
+
+          <div class="term-prompt"><span class="p">$</span> next &#8629; <span style="color:var(--p-faint)">loads disk 02</span><span class="cur"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MENU ============ -->
+    <aside class="menu">
+      <div class="menu-card">
+        <div class="menu-title">SELECT A<br>PROGRAM</div>
+        <ul class="list">
+          <li class="item" style="--sel:var(--red)">
+            <span class="arrow">&#9654;</span>
+            <span><span class="cmd">ABOUT</span><div class="blurb">Who I am</div></span>
+          </li>
+          <li class="item on" style="--sel:var(--blue)">
+            <span class="arrow">&#9654;</span>
+            <span><span class="cmd">PROJECTS</span><div class="blurb">Things I've built</div></span>
+            <span class="run">RUNNING</span>
+          </li>
+          <li class="item" style="--sel:var(--green)">
+            <span class="arrow">&#9654;</span>
+            <span><span class="cmd">EXPERIENCE</span><div class="blurb">Where I've shipped</div></span>
+          </li>
+          <li class="item" style="--sel:var(--yellow)">
+            <span class="arrow">&#9654;</span>
+            <span><span class="cmd">WRITING</span><div class="blurb">Notes &amp; write-ups</div></span>
+          </li>
+          <li class="item" style="--sel:var(--purple)">
+            <span class="arrow">&#9654;</span>
+            <span><span class="cmd">CONTACT</span><div class="blurb">Let's talk</div></span>
+          </li>
+        </ul>
+        <div class="foot">
+          <span class="hint">&#9666;&#9656; SWITCH DISK<br>ESC &middot; BACK TO MENU</span>
+          <span class="kbtn" aria-hidden="true">&gt;_</span>
+        </div>
+      </div>
+    </aside>
+
+   </div>
+  </div>
+</body>
+</html>
