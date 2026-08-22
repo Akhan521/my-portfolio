@@ -36,8 +36,10 @@ decide scaffold-the-Next.js-app vs design ABOUT next (and, deferred, the single-
 
 ## What exists right now
 
-- **Hero mockup (validated):** `docs/design-explorations/terminal-hero/` — see its README to
-  view (`python3 -m http.server 8096`). `preview.png` is a static capture.
+- **Design mockups (removed from repo):** the throwaway HTML mockups (hero + the four PROJECTS
+  variations) were deleted once their decisions were captured here and in memory — they were only
+  mockups, not final designs. Still recoverable from git history if ever needed: hero `a880e68`,
+  PROJECTS variations `f7beb76`, locked PROJECTS index `1d8bfaf`.
 - **Reference clone of Branon's repo:** `~/Developer/branon-portfolio-ref` (read-only). His
   tokens: `src/app/theme.ts`; menu UX: `src/components/boot-intro/BootIntro.tsx`; screen/paper
   formulas: `src/lib/consoleTheme.ts`.
@@ -57,9 +59,11 @@ decide scaffold-the-Next.js-app vs design ABOUT next (and, deferred, the single-
 Explored the PROJECTS section screen. Owner leans toward a **package-manager / catalog** feel
 (a filterable list of all projects) over a one-at-a-time view. Owner dislikes the cramped inline
 "loaded project" detail; that loaded/detail view needs its own treatment (revisit when we build
-this section for real). Mockups tested live in `docs/design-explorations/`: `terminal-projects/`
-(catalog list + inline detail, v A), `terminal-projects-b/` (focused single-disk viewer + pixel
-floppy, v B), plus new catalog variations from this session.
+this section for real). Four mockups were tested then removed from the repo (recoverable in git,
+`f7beb76` + `1d8bfaf`): **A** catalog list + inline detail, **B** focused single-disk viewer with a
+hand-drawn pixel floppy, **C** two-pane TUI browser (list + full detail), **D** the filter-pill
+index list. Owner chose **D**, polished with real per-project descriptions, a keyboard-selected
+row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mobile reflow.
 
 **Branon's real inner-page patterns (draw from these, tweak per section when we build each):**
 - His Projects page IS a package-manager list: `RetroCard` > `PageHeading` (pixel title +
@@ -80,8 +84,8 @@ floppy, v B), plus new catalog variations from this session.
 
 ## NEXT TASK (do this first next session)
 
-The metaphor is now de-risked past the hero (PROJECTS locked as the filter-pill index, mockup in
-`docs/design-explorations/terminal-projects-d/`). Two live options, pick with Aamir:
+The metaphor is now de-risked past the hero (PROJECTS locked as the filter-pill index; mockups
+removed, recoverable in git `1d8bfaf`). Two live options, pick with Aamir:
 1. **Scaffold the Next.js app** — hero + PROJECTS-D are enough proof to start the real build
    (Next.js + React + TS + GSAP + MDX; new app, `main` stays vanilla until cutover).
 2. **Design ABOUT next** in the same terminal language, to confirm the system flexes across a

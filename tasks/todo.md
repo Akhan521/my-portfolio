@@ -56,24 +56,26 @@ its spec. This file only sequences that work into digestible, resumable commits.
 >
 > **Hero mockup DONE (2026-08-18):** the retro-terminal hero is designed + validated in Branon's
 > design language — a terminal window (agent session resolving to Aamir's identity + `you> ask me
-> anything`) beside a `SELECT A PROGRAM` menu (his INSERT-CARTRIDGE UX). Throwaway mockup lives at
-> `docs/design-explorations/terminal-hero/` (see its README to view). Full orientation for
+> anything`) beside a `SELECT A PROGRAM` menu (his INSERT-CARTRIDGE UX). Full orientation for
 > resuming: **`docs/revamp-handoff.md`**.
 >
 > **PROJECTS section screen DONE + LOCKED (2026-08-21):** tested 4 mockups (catalog, focused-disk,
-> two-pane TUI, filter-pill index) in `docs/design-explorations/`; Aamir locked the **filter-pill
-> index list** (`terminal-projects-d/`), polished with real per-project descriptions, a keyboard-
-> selected state, and a verified mobile reflow. Grounded in Branon's real inner-page patterns
-> (package-manager list + no navbar on inner routes; ESC/wordmark corner chrome). Details in
-> `docs/revamp-handoff.md`.
+> two-pane TUI, filter-pill index); Aamir locked the **filter-pill index list**, polished with real
+> per-project descriptions, a keyboard-selected state, and a verified mobile reflow. Grounded in
+> Branon's real inner-page patterns (package-manager list + no navbar on inner routes; ESC/wordmark
+> corner chrome). Details in `docs/revamp-handoff.md`.
+>
+> **Mockups removed from the repo (throwaway, not final designs):** the hero + all 4 PROJECTS
+> mockups were deleted once decisions were captured in the docs + memory. Recoverable in git
+> history: hero `a880e68`, PROJECTS variations `f7beb76`, locked PROJECTS index `1d8bfaf`.
 >
 > **Next up:** pick with Aamir — (a) scaffold the Next.js app, or (b) design ABOUT next; deferred
 > either way is the single-project detail screen reached from the PROJECTS index. See `docs/revamp-handoff.md`.
 >
-> **Git state:** `main` = Duolingo build + revamp docs/mockups; tree clean before this session's
-> uncommitted mockup work. No Next.js app yet.
-> **Last activity:** 2026-08-21 — PROJECTS section screen designed, 4 variations explored, index
-> list (D) locked + polished (desktop + mobile).
+> **Git state:** `main` = Duolingo build + revamp docs (mockups explored then removed; in history).
+> Tree clean. No Next.js app yet.
+> **Last activity:** 2026-08-21 — PROJECTS section screen designed (4 variations explored, index
+> list locked + polished, desktop + mobile), then the throwaway mockups were removed from the repo.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
