@@ -1,5 +1,13 @@
 # Portfolio, Session Handoff (as of 2026-08-08)
 
+> ⛔ **PARKED / ARCHIVE — this is the OLD handoff for the Duolingo Night Mode build.**
+> The project pivoted on 2026-08-18 to a **retro-terminal revamp**. For active work, start at
+> **`docs/revamp-handoff.md`** (the current orientation doc). This file predates the pivot and does
+> **not** mention it; keep it only as the reference for the **parked** Duolingo build (still fully
+> backed up: tag `duolingo-night-mode-v1`, branch `backup/duolingo-night-mode`, `origin/main`). Its
+> laptop-scene design decisions (§5) are still cited by `tasks/build-specs.md` and `tasks/todo.md`,
+> which is why it is kept rather than deleted. Do not treat anything below as current status.
+
 A single-file orientation for resuming work on Aamir Khan's Duolingo-themed portfolio.
 Read this first, then `tasks/todo.md` (the authoritative roadmap + Current Position).
 

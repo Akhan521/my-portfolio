@@ -1,7 +1,8 @@
 # Revamp Handoff — start here for a fresh session
 
-Single orientation doc for the **portfolio revamp**. For the parked Duolingo build, see
-`tasks/todo.md` (roadmap below the Current Position block) — it is fully backed up and untouched.
+Single orientation doc for the **portfolio revamp** (this is the live handoff, start here). For the
+parked Duolingo build, see `tasks/todo.md` (roadmap below the Current Position block) and the archived
+`docs/HANDOFF.md` (its pre-pivot orientation) — that build is fully backed up and untouched.
 
 ---
 
