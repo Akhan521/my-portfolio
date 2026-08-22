@@ -60,12 +60,20 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > `docs/design-explorations/terminal-hero/` (see its README to view). Full orientation for
 > resuming: **`docs/revamp-handoff.md`**.
 >
-> **Next up:** design one "program"/section screen (start with PROJECTS or ABOUT) in the same
-> terminal language, to prove the concept holds beyond the hero. See `docs/revamp-handoff.md`.
+> **PROJECTS section screen DONE + LOCKED (2026-08-21):** tested 4 mockups (catalog, focused-disk,
+> two-pane TUI, filter-pill index) in `docs/design-explorations/`; Aamir locked the **filter-pill
+> index list** (`terminal-projects-d/`), polished with real per-project descriptions, a keyboard-
+> selected state, and a verified mobile reflow. Grounded in Branon's real inner-page patterns
+> (package-manager list + no navbar on inner routes; ESC/wordmark corner chrome). Details in
+> `docs/revamp-handoff.md`.
 >
-> **Git state:** `main` = Duolingo build + revamp docs/mockups; tree clean. No Next.js app yet.
-> **Last activity:** 2026-08-18 — retro-terminal hero mockup designed + validated; agentic
-> tool-call trace parked for design iteration.
+> **Next up:** pick with Aamir — (a) scaffold the Next.js app, or (b) design ABOUT next; deferred
+> either way is the single-project detail screen reached from the PROJECTS index. See `docs/revamp-handoff.md`.
+>
+> **Git state:** `main` = Duolingo build + revamp docs/mockups; tree clean before this session's
+> uncommitted mockup work. No Next.js app yet.
+> **Last activity:** 2026-08-21 — PROJECTS section screen designed, 4 variations explored, index
+> list (D) locked + polished (desktop + mobile).
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

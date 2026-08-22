@@ -12,8 +12,10 @@ vintage-computer** theme, built in **Branon Eusebio's design language** (branon.
 scoped so it reads unmistakably as an **AI software engineer's** portfolio (the retro shell is
 a frame; the AI work is the hero). We proved we can faithfully emulate Branon, then pivoted the
 device from a Game Boy console to a terminal so it never reads as game-dev. The **hero is
-designed and validated** (see the mockup). Next up: prove the concept holds beyond the hero by
-designing one "program" (section) screen.
+designed and validated**, and the **PROJECTS section screen is now designed and locked** (2026-08-21):
+after testing 4 variations, Aamir chose the **filter-pill index list** (a package-manager index),
+polished with real descriptions, a keyboard-selected state, and a verified mobile reflow. Next up:
+decide scaffold-the-Next.js-app vs design ABOUT next (and, deferred, the single-project detail screen).
 
 ## Decisions locked
 
@@ -50,12 +52,43 @@ designing one "program" (section) screen.
 - Terminal has some empty mid-screen space now the trace is gone.
 - Not yet designed: menu hover/active states, a peeking "program disk," boot lines typing in.
 
+## Section-screen findings (2026-08-21)
+
+Explored the PROJECTS section screen. Owner leans toward a **package-manager / catalog** feel
+(a filterable list of all projects) over a one-at-a-time view. Owner dislikes the cramped inline
+"loaded project" detail; that loaded/detail view needs its own treatment (revisit when we build
+this section for real). Mockups tested live in `docs/design-explorations/`: `terminal-projects/`
+(catalog list + inline detail, v A), `terminal-projects-b/` (focused single-disk viewer + pixel
+floppy, v B), plus new catalog variations from this session.
+
+**Branon's real inner-page patterns (draw from these, tweak per section when we build each):**
+- His Projects page IS a package-manager list: `RetroCard` > `PageHeading` (pixel title +
+  muted subtitle) > **filter pills** by category (`RetroFilterPill`: mono 12px, chunky 2px
+  border, active = `{color}18` bg / `{color}55` border) > a vertical **list of rows**
+  (`TopLevelListItem`: hover-arrow, title, `category · date` meta right-aligned, `IN PROG`
+  badge, a 2px top divider that collapses on hover, row hover = `{accent}14` bg + translateX).
+  Selecting a project navigates to a **separate detail/post page** — detail is never an inline
+  panel. Source: `src/app/(product)/projects/{page.tsx,consts.ts}`, `TopLevelListItem.tsx`,
+  `PageHeading.tsx`, `RetroFilterPill.tsx`.
+- **No navbar on inner routes.** Persistent chrome lives in `src/app/(product)/layout.tsx`: a
+  fixed **ESC / power button** top-left (returns to the console home, themed to the section's
+  accent) + a sound-toggle, and the **wordmark logo** top-right (also powers off). In-console
+  navigation is the persistent `CartridgeNav` row, not a top nav bar. Our terminal equivalent:
+  the `SELECT A PROGRAM` menu is only the home/hero selector; inner section screens should drop
+  it and use a slim ESC-to-menu affordance + section switcher instead. Design each section's
+  chrome one at a time, borrowing from Branon and tweaking.
+
 ## NEXT TASK (do this first next session)
 
-**Design one "program" screen** — what a section looks like when you "run" it from the menu
-(recommend starting with **PROJECTS** or **ABOUT**), in the same Branon terminal language. Goal:
-de-risk the whole build by proving the metaphor sustains for real content, not just the landing.
-Then decide: keep iterating mockups, or scaffold the Next.js app.
+The metaphor is now de-risked past the hero (PROJECTS locked as the filter-pill index, mockup in
+`docs/design-explorations/terminal-projects-d/`). Two live options, pick with Aamir:
+1. **Scaffold the Next.js app** — hero + PROJECTS-D are enough proof to start the real build
+   (Next.js + React + TS + GSAP + MDX; new app, `main` stays vanilla until cutover).
+2. **Design ABOUT next** in the same terminal language, to confirm the system flexes across a
+   different content shape (bio + skills chips) before committing to the framework.
+Deferred either way: the **single-project detail screen** you reach from the PROJECTS-D index
+(Branon opens a separate page; ours should too). See "Section-screen findings" below for the
+4 variations tested and the Branon patterns to draw from.
 
 ## Paste-prompt for the fresh session
 
