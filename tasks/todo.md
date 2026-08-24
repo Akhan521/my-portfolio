@@ -69,13 +69,22 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > mockups were deleted once decisions were captured in the docs + memory. Recoverable in git
 > history: hero `a880e68`, PROJECTS variations `f7beb76`, locked PROJECTS index `1d8bfaf`.
 >
-> **Next up:** pick with Aamir — (a) scaffold the Next.js app, or (b) design ABOUT next; deferred
-> either way is the single-project detail screen reached from the PROJECTS index. See `docs/revamp-handoff.md`.
+> **NEXT.JS BUILD STARTED ON `main` (2026-08-23):** Aamir decided to build the new app directly on
+> `main` (backup: `my-portfolio-backup` + git tags/branches), not a separate branch. Scaffolded Next
+> 15.5 + React 19 + TS (App Router, `src/`, Turbopack), stripped the vanilla Duolingo site + Next
+> boilerplate to a bare home route. Styling stack chosen: **Chakra UI v2 + Emotion** (Branon's). See
+> the rewritten `CLAUDE.md` for the current stack/structure and `docs/revamp-handoff.md` NEXT TASK.
 >
-> **Git state:** `main` = Duolingo build + revamp docs (mockups explored then removed; in history).
-> Tree clean. No Next.js app yet.
-> **Last activity:** 2026-08-21 — PROJECTS section screen designed (4 variations explored, index
-> list locked + polished, desktop + mobile), then the throwaway mockups were removed from the repo.
+> **Next up:** continue Phase 0/1 in small commits — add Chakra + provider, port design tokens as a
+> `theme.ts`, self-host the OFL fonts, global paper background, then the terminal shell + hero.
+> Deferred: the single-project detail screen from the PROJECTS index, and designing ABOUT.
+>
+> **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
+>
+> **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
+> `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
+> **Last activity:** 2026-08-23 — scaffolded the Next.js app on `main`, stripped to a bare route,
+> refreshed the project docs (CLAUDE.md rewrite).
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

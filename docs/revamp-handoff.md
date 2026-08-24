@@ -15,8 +15,9 @@ a frame; the AI work is the hero). We proved we can faithfully emulate Branon, t
 device from a Game Boy console to a terminal so it never reads as game-dev. The **hero is
 designed and validated**, and the **PROJECTS section screen is now designed and locked** (2026-08-21):
 after testing 4 variations, Aamir chose the **filter-pill index list** (a package-manager index),
-polished with real descriptions, a keyboard-selected state, and a verified mobile reflow. Next up:
-decide scaffold-the-Next.js-app vs design ABOUT next (and, deferred, the single-project detail screen).
+polished with real descriptions, a keyboard-selected state, and a verified mobile reflow. As of
+2026-08-23 the **Next.js app is scaffolded on `main`** (see "What exists right now"); next is
+Chakra + tokens + fonts + the terminal shell.
 
 ## Decisions locked
 
@@ -31,12 +32,19 @@ decide scaffold-the-Next.js-app vs design ABOUT next (and, deferred, the single-
 - **Terminal content:** an "agent session" that resolves to Aamir's identity, ending on
   `you> ask me anything` (the swappable surface where a real live agent demo lands later — no
   live demo in v1, but architect for it). Builder + debugger both foregrounded.
-- **Stack (for the real build):** Next.js + React + TypeScript + GSAP + MDX. New app; this repo's
-  `main` stays the vanilla Duolingo build until cutover.
+- **Stack (for the real build):** Next.js + React + TypeScript + GSAP + MDX, with **Chakra UI v2 +
+  Emotion** for styling (Branon's stack, chosen 2026-08-23 so his components/tokens port nearly 1:1).
+- **Where it's built (changed 2026-08-23):** directly on this repo's **`main`** (Aamir's call; the
+  vanilla build is backed up via `my-portfolio-backup` + git tags/branches). Vercel **auto-deploy is
+  paused** during the rebuild so the live URL is not replaced mid-build.
 - **Character:** regenerate Aamir as a pixel sprite (not yet started).
 
 ## What exists right now
 
+- **Next.js app scaffolded on `main` (2026-08-23):** Next 15.5 + React 19 + TypeScript, App Router,
+  `src/` dir, ESLint, Turbopack, `@/*` alias. Stripped to a bare home route; vanilla Duolingo site
+  removed (recoverable in git + `my-portfolio-backup`). Chakra UI, design tokens, fonts, and the
+  terminal shell are **not built yet**. `CLAUDE.md` describes the current stack + conventions.
 - **Design mockups (removed from repo):** the throwaway HTML mockups (hero + the four PROJECTS
   variations) were deleted once their decisions were captured here and in memory — they were only
   mockups, not final designs. Still recoverable from git history if ever needed: hero `a880e68`,
@@ -85,15 +93,17 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 
 ## NEXT TASK (do this first next session)
 
-The metaphor is now de-risked past the hero (PROJECTS locked as the filter-pill index; mockups
-removed, recoverable in git `1d8bfaf`). Two live options, pick with Aamir:
-1. **Scaffold the Next.js app** — hero + PROJECTS-D are enough proof to start the real build
-   (Next.js + React + TS + GSAP + MDX; new app, `main` stays vanilla until cutover).
-2. **Design ABOUT next** in the same terminal language, to confirm the system flexes across a
-   different content shape (bio + skills chips) before committing to the framework.
-Deferred either way: the **single-project detail screen** you reach from the PROJECTS-D index
-(Branon opens a separate page; ours should too). See "Section-screen findings" below for the
-4 variations tested and the Branon patterns to draw from.
+The Next.js app is scaffolded on `main` (Phase 0 started). Continue Phase 0/1 in small commits:
+1. **Add Chakra UI v2 + Emotion** — install, wire the App-Router provider (`@chakra-ui/next-js`
+   CacheProvider + ChakraProvider) in `src/app/layout.tsx` for correct SSR.
+2. **Port design tokens as a Chakra theme** (`theme.ts`) — warm-paper + phosphor palette, cartridge
+   accents, radii, semantic tokens (adapt Branon's `theme.ts` + the design language in `CLAUDE.md`).
+3. **Self-host the OFL fonts** — Press Start 2P + IBM Plex Mono via `next/font/local`.
+4. **Global paper background** — port `PAPER_BG_SX` (grain + vignette) + a placeholder home to verify.
+Then Phase 1: the terminal shell + hero. **Deferred:** the single-project detail screen from the
+PROJECTS index (Branon opens a separate page; ours should too), and designing ABOUT.
+
+**Live deploy:** Vercel auto-deploy is paused during the rebuild; deploy intentionally at cutover.
 
 ## Paste-prompt for the fresh session
 
