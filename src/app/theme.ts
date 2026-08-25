@@ -52,6 +52,14 @@ const radii = {
   lg: "12px",
 };
 
+// Self-hosted fonts (see fonts.ts, applied as CSS vars on <html> in
+// layout.tsx). Pixel for headings/labels, IBM Plex Mono for body + terminal.
+const fonts = {
+  heading: "var(--font-pixel)",
+  body: "var(--font-mono)",
+  mono: "var(--font-mono)",
+};
+
 const styles = {
   global: {
     body: {
@@ -61,4 +69,4 @@ const styles = {
   },
 };
 
-export const theme = extendTheme({ colors, config, radii, styles });
+export const theme = extendTheme({ colors, config, radii, fonts, styles });

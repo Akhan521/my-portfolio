@@ -1,28 +1,28 @@
 "use client";
 
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
-// Temporary token-preview page: confirms the theme (paper surfaces,
-// cartridge accents, CRT phosphor tiers) resolves. Replaced when the
-// terminal shell + hero are built.
+// Temporary token + font preview: confirms the theme (paper surfaces,
+// cartridge accents, CRT phosphor) and the self-hosted fonts (Press Start 2P
+// pixel + IBM Plex Mono) resolve. Replaced when the terminal shell + hero
+// are built.
 export default function Home() {
   const accents = ["red", "yellow", "green", "blue", "purple"] as const;
   const phosphor = ["base", "dim", "cream", "ok", "path", "faint"] as const;
 
   return (
     <Box p={10}>
-      <Heading size="lg" color="brand.ink">
-        Aamir Khan
-      </Heading>
-      <Text mt={1} color="brand.muted">
-        Theme check: warm paper, cartridge accents, CRT phosphor.
+      {/* pixel font: short label only */}
+      <Text fontFamily="heading" fontSize="14px" color="brand.olive" letterSpacing="0.06em">
+        SELECT A PROGRAM
       </Text>
-
-      <Box mt={8} p={5} bg="brand.surface" border="2px solid" borderColor="brand.border" borderRadius="lg">
-        <Text color="brand.olive" fontSize="sm">
-          brand.surface card on brand.bg, brand.border, radius lg
-        </Text>
-      </Box>
+      {/* mono font: body */}
+      <Text mt={4} fontFamily="body" fontSize="lg" color="brand.ink">
+        Aamir Khan, IBM Plex Mono body.
+      </Text>
+      <Text mt={1} fontFamily="body" color="brand.muted">
+        Theme + font check: warm paper, cartridge accents, CRT phosphor.
+      </Text>
 
       <Flex mt={6} gap={3}>
         {accents.map((a) => (
@@ -30,10 +30,10 @@ export default function Home() {
         ))}
       </Flex>
 
-      <Box mt={8} p={5} bg="screen.bg" borderRadius="lg" fontFamily="mono">
+      <Box mt={8} p={5} bg="screen.bg" borderRadius="lg">
         {phosphor.map((p) => (
-          <Text key={p} color={`screen.${p}`} fontSize="sm">
-            screen.{p} — the quick brown fox
+          <Text key={p} fontFamily="mono" color={`screen.${p}`} fontSize="sm">
+            screen.{p} :: the quick brown fox
           </Text>
         ))}
       </Box>
