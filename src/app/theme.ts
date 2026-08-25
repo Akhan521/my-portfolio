@@ -1,6 +1,7 @@
 "use client";
 
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { PAPER_BG_SX } from "@/lib/consoleTheme";
 
 /**
  * Retro-terminal design tokens. Three groups:
@@ -63,8 +64,9 @@ const fonts = {
 const styles = {
   global: {
     body: {
-      bg: "brand.bg",
+      ...PAPER_BG_SX,
       color: "brand.ink",
+      minHeight: "100vh",
     },
   },
 };
