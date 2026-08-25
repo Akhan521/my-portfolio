@@ -75,16 +75,22 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > boilerplate to a bare home route. Styling stack chosen: **Chakra UI v2 + Emotion** (Branon's). See
 > the rewritten `CLAUDE.md` for the current stack/structure and `docs/revamp-handoff.md` NEXT TASK.
 >
-> **Next up:** continue Phase 0/1 in small commits — add Chakra + provider, port design tokens as a
-> `theme.ts`, self-host the OFL fonts, global paper background, then the terminal shell + hero.
-> Deferred: the single-project detail screen from the PROJECTS index, and designing ABOUT.
+> **PHASE 0 FOUNDATION DONE + PUSHED (2026-08-24):** Chakra UI v2 + Emotion provider, design tokens
+> (`src/app/theme.ts`: brand/cartridge/screen groups), self-hosted fonts (`src/app/fonts.ts`), and the
+> global paper background (`src/lib/consoleTheme.ts` `PAPER_BG_SX`). `src/app/page.tsx` is a temporary
+> token/font preview. Each step verified via headless Chrome.
+>
+> **Next up: Phase 1 — the terminal shell + hero.** Build the reusable window frame + phosphor CRT
+> screen components, then the hero (terminal window + `SELECT A PROGRAM` menu), replacing the preview
+> page; then inner-page ESC/wordmark chrome + the first section. Deferred: the single-project detail
+> screen from the PROJECTS index, and designing ABOUT.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-08-23 — scaffolded the Next.js app on `main`, stripped to a bare route,
-> refreshed the project docs (CLAUDE.md rewrite).
+> **Last activity:** 2026-08-24 — built Phase 0 of the Next.js app on `main` (Chakra, tokens, fonts,
+> paper background), all pushed. Next session starts Phase 1 (terminal shell + hero).
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

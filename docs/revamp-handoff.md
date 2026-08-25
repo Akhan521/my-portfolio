@@ -16,8 +16,9 @@ device from a Game Boy console to a terminal so it never reads as game-dev. The 
 designed and validated**, and the **PROJECTS section screen is now designed and locked** (2026-08-21):
 after testing 4 variations, Aamir chose the **filter-pill index list** (a package-manager index),
 polished with real descriptions, a keyboard-selected state, and a verified mobile reflow. As of
-2026-08-23 the **Next.js app is scaffolded on `main`** (see "What exists right now"); next is
-Chakra + tokens + fonts + the terminal shell.
+2026-08-24 the **Next.js Phase 0 foundation is built on `main`** (scaffold, Chakra UI v2 + Emotion,
+design tokens, self-hosted fonts, paper background; see "What exists right now"); next is the
+terminal shell + hero (Phase 1).
 
 ## Decisions locked
 
@@ -41,10 +42,14 @@ Chakra + tokens + fonts + the terminal shell.
 
 ## What exists right now
 
-- **Next.js app scaffolded on `main` (2026-08-23):** Next 15.5 + React 19 + TypeScript, App Router,
-  `src/` dir, ESLint, Turbopack, `@/*` alias. Stripped to a bare home route; vanilla Duolingo site
-  removed (recoverable in git + `my-portfolio-backup`). Chakra UI, design tokens, fonts, and the
-  terminal shell are **not built yet**. `CLAUDE.md` describes the current stack + conventions.
+- **Next.js Phase 0 foundation, built + pushed on `main` (2026-08-24):** Next 15.5 + React 19 + TS
+  (App Router, `src/`, Turbopack, `@/*`); vanilla Duolingo site removed (recoverable in git +
+  `my-portfolio-backup`). **Chakra UI v2 + Emotion** wired via `src/app/providers.tsx`. Design tokens
+  in `src/app/theme.ts` (`brand.*` paper, `cartridge.*` accents, `screen.*` phosphor tiers; radii;
+  light color mode). Self-hosted fonts in `src/app/fonts.ts` (Press Start 2P + IBM Plex Mono, as CSS
+  vars). Paper background (`PAPER_BG_SX` grain + vignette) in `src/lib/consoleTheme.ts`, applied
+  globally. `src/app/page.tsx` is a **temporary token/font preview** (replace when building the shell).
+  The terminal shell + hero + sections are **not built yet**. `CLAUDE.md` has the current stack.
 - **Design mockups (removed from repo):** the throwaway HTML mockups (hero + the four PROJECTS
   variations) were deleted once their decisions were captured here and in memory — they were only
   mockups, not final designs. Still recoverable from git history if ever needed: hero `a880e68`,
@@ -93,15 +98,17 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 
 ## NEXT TASK (do this first next session)
 
-The Next.js app is scaffolded on `main` (Phase 0 started). Continue Phase 0/1 in small commits:
-1. **Add Chakra UI v2 + Emotion** — install, wire the App-Router provider (`@chakra-ui/next-js`
-   CacheProvider + ChakraProvider) in `src/app/layout.tsx` for correct SSR.
-2. **Port design tokens as a Chakra theme** (`theme.ts`) — warm-paper + phosphor palette, cartridge
-   accents, radii, semantic tokens (adapt Branon's `theme.ts` + the design language in `CLAUDE.md`).
-3. **Self-host the OFL fonts** — Press Start 2P + IBM Plex Mono via `next/font/local`.
-4. **Global paper background** — port `PAPER_BG_SX` (grain + vignette) + a placeholder home to verify.
-Then Phase 1: the terminal shell + hero. **Deferred:** the single-project detail screen from the
-PROJECTS index (Branon opens a separate page; ours should too), and designing ABOUT.
+**Phase 0 foundation is done** (scaffold, Chakra, tokens, fonts, paper background; all pushed).
+Next is **Phase 1: the terminal shell + hero**, in small commits:
+1. **Terminal shell components** — the reusable window frame (title bar + traffic-light dots +
+   path) and the phosphor CRT `screen` surface (scanline overlay, inset shadow), built from the
+   `brand.*`/`screen.*` tokens. Reference Branon's `RetroCard` + our locked mockups.
+2. **Hero composition** — the terminal window (agent session resolving to Aamir's identity, ending on
+   `you> ask me anything`) beside the `SELECT A PROGRAM` menu. Replace the temporary preview in
+   `src/app/page.tsx`.
+3. Then the ESC/wordmark inner-page chrome + the first section (PROJECTS index or ABOUT).
+**Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
+ours should too), and designing ABOUT.
 
 **Live deploy:** Vercel auto-deploy is paused during the rebuild; deploy intentionally at cutover.
 
