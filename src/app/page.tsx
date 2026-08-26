@@ -1,42 +1,42 @@
 "use client";
 
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { TerminalWindow } from "@/components/terminal/TerminalWindow";
 
-// Temporary token + font preview: confirms the theme (paper surfaces,
-// cartridge accents, CRT phosphor) and the self-hosted fonts (Press Start 2P
-// pixel + IBM Plex Mono) resolve. Replaced when the terminal shell + hero
-// are built.
+// Temporary preview: verifies the TerminalWindow frame (title bar + dots +
+// path + status). The phosphor screen and hero content come next.
 export default function Home() {
-  const accents = ["red", "yellow", "green", "blue", "purple"] as const;
-  const phosphor = ["base", "dim", "cream", "ok", "path", "faint"] as const;
-
   return (
-    <Box p={10}>
-      {/* pixel font: short label only */}
-      <Text fontFamily="heading" fontSize="14px" color="brand.olive" letterSpacing="0.06em">
-        SELECT A PROGRAM
-      </Text>
-      {/* mono font: body */}
-      <Text mt={4} fontFamily="body" fontSize="lg" color="brand.ink">
-        Aamir Khan, IBM Plex Mono body.
-      </Text>
-      <Text mt={1} fontFamily="body" color="brand.muted">
-        Theme + font check: warm paper, cartridge accents, CRT phosphor.
-      </Text>
-
-      <Flex mt={6} gap={3}>
-        {accents.map((a) => (
-          <Box key={a} w="56px" h="56px" borderRadius="md" bg={`cartridge.${a}`} title={a} />
-        ))}
-      </Flex>
-
-      <Box mt={8} p={5} bg="screen.bg" borderRadius="lg">
-        {phosphor.map((p) => (
-          <Text key={p} fontFamily="mono" color={`screen.${p}`} fontSize="sm">
-            screen.{p} :: the quick brown fox
-          </Text>
-        ))}
-      </Box>
-    </Box>
+    <Flex minH="100vh" align="center" justify="center" p={10}>
+      <TerminalWindow
+        w="full"
+        maxW="560px"
+        path={
+          <>
+            aamir@ak-micro:{" "}
+            <Box as="span" color="#2f83a6" fontWeight="500">
+              ~
+            </Box>
+          </>
+        }
+        status={
+          <Flex align="center" gap={2}>
+            <Box
+              w="8px"
+              h="8px"
+              borderRadius="full"
+              bg="cartridge.green"
+              boxShadow="0 0 7px rgba(34,197,94,.7)"
+            />
+            agent online
+          </Flex>
+        }
+      >
+        <Box p={6} fontFamily="mono" fontSize="13px" color="brand.ink">
+          <Text>TerminalWindow frame check.</Text>
+          <Text color="brand.muted">The phosphor screen goes here next.</Text>
+        </Box>
+      </TerminalWindow>
+    </Flex>
   );
 }
