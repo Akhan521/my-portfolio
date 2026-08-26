@@ -2,9 +2,10 @@
 
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { TerminalWindow } from "@/components/terminal/TerminalWindow";
+import { TerminalScreen } from "@/components/terminal/TerminalScreen";
 
-// Temporary preview: verifies the TerminalWindow frame (title bar + dots +
-// path + status). The phosphor screen and hero content come next.
+// Temporary preview: verifies the TerminalWindow frame + the TerminalScreen
+// phosphor surface. Real hero content comes next.
 export default function Home() {
   return (
     <Flex minH="100vh" align="center" justify="center" p={10}>
@@ -32,10 +33,37 @@ export default function Home() {
           </Flex>
         }
       >
-        <Box p={6} fontFamily="mono" fontSize="13px" color="brand.ink">
-          <Text>TerminalWindow frame check.</Text>
-          <Text color="brand.muted">The phosphor screen goes here next.</Text>
-        </Box>
+        <TerminalScreen>
+          <Text>
+            <Box as="span" color="screen.dim">
+              $
+            </Box>{" "}
+            ak whoami
+          </Text>
+          <Text mt={2}>
+            <Box as="span" color="screen.dim">
+              identity:
+            </Box>{" "}
+            <Box as="span" color="screen.cream">
+              Aamir Khan
+            </Box>
+          </Text>
+          <Text>
+            <Box as="span" color="screen.dim">
+              role:
+            </Box>{" "}
+            AI software engineer
+          </Text>
+          <Text mt={2} color="screen.ok">
+            ● online
+          </Text>
+          <Text mt={2}>
+            <Box as="span" color="screen.path">
+              you&gt;
+            </Box>{" "}
+            ask me anything
+          </Text>
+        </TerminalScreen>
       </TerminalWindow>
     </Flex>
   );
