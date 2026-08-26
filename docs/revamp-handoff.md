@@ -48,8 +48,11 @@ terminal shell + hero (Phase 1).
   in `src/app/theme.ts` (`brand.*` paper, `cartridge.*` accents, `screen.*` phosphor tiers; radii;
   light color mode). Self-hosted fonts in `src/app/fonts.ts` (Press Start 2P + IBM Plex Mono, as CSS
   vars). Paper background (`PAPER_BG_SX` grain + vignette) in `src/lib/consoleTheme.ts`, applied
-  globally. `src/app/page.tsx` is a **temporary token/font preview** (replace when building the shell).
-  The terminal shell + hero + sections are **not built yet**. `CLAUDE.md` has the current stack.
+  globally. The **terminal shell pair is built** (`src/components/terminal/TerminalWindow.tsx` +
+  `TerminalScreen.tsx`): the paper window frame (title bar, traffic-light dots, path, status slot) and
+  the phosphor CRT surface (radial glow, inset shadow, scanline overlay, phosphor text tiers).
+  `src/app/page.tsx` is a **temporary preview** demoing the shell (replace when building the hero). The
+  hero + sections are **not built yet**. `CLAUDE.md` has the current stack.
 - **Design mockups (removed from repo):** the throwaway HTML mockups (hero + the four PROJECTS
   variations) were deleted once their decisions were captured here and in memory — they were only
   mockups, not final designs. Still recoverable from git history if ever needed: hero `a880e68`,
@@ -98,15 +101,12 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 
 ## NEXT TASK (do this first next session)
 
-**Phase 0 foundation is done** (scaffold, Chakra, tokens, fonts, paper background; all pushed).
-Next is **Phase 1: the terminal shell + hero**, in small commits:
-1. **Terminal shell components** — the reusable window frame (title bar + traffic-light dots +
-   path) and the phosphor CRT `screen` surface (scanline overlay, inset shadow), built from the
-   `brand.*`/`screen.*` tokens. Reference Branon's `RetroCard` + our locked mockups.
-2. **Hero composition** — the terminal window (agent session resolving to Aamir's identity, ending on
-   `you> ask me anything`) beside the `SELECT A PROGRAM` menu. Replace the temporary preview in
-   `src/app/page.tsx`.
-3. Then the ESC/wordmark inner-page chrome + the first section (PROJECTS index or ABOUT).
+**Phase 0 + the terminal shell pair are done** (scaffold, Chakra, tokens, fonts, paper background,
+and `TerminalWindow` + `TerminalScreen`; all pushed). Next, in small commits:
+1. **Hero composition** — the terminal window (an agent session resolving to Aamir's identity, ending
+   on `you> ask me anything`) beside the `SELECT A PROGRAM` menu. Compose it from the shell pair;
+   replace the temporary preview in `src/app/page.tsx`.
+2. Then the ESC/wordmark inner-page chrome + the first section (PROJECTS index or ABOUT).
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
 ours should too), and designing ABOUT.
 

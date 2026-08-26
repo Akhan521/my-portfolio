@@ -80,17 +80,21 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > global paper background (`src/lib/consoleTheme.ts` `PAPER_BG_SX`). `src/app/page.tsx` is a temporary
 > token/font preview. Each step verified via headless Chrome.
 >
-> **Next up: Phase 1 — the terminal shell + hero.** Build the reusable window frame + phosphor CRT
-> screen components, then the hero (terminal window + `SELECT A PROGRAM` menu), replacing the preview
-> page; then inner-page ESC/wordmark chrome + the first section. Deferred: the single-project detail
-> screen from the PROJECTS index, and designing ABOUT.
+> **PHASE 1 STARTED — terminal shell pair DONE + PUSHED (2026-08-24):** `TerminalWindow`
+> (paper frame + title bar) and `TerminalScreen` (phosphor CRT surface) in
+> `src/components/terminal/`. `src/app/page.tsx` is a temporary preview demoing the shell.
+>
+> **Next up:** the **hero composition** — the terminal window (agent session resolving to Aamir's
+> identity, ending on `you> ask me anything`) beside the `SELECT A PROGRAM` menu, composed from the
+> shell pair, replacing the preview page. Then inner-page ESC/wordmark chrome + the first section.
+> Deferred: the single-project detail screen from the PROJECTS index, and designing ABOUT.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-08-24 — built Phase 0 of the Next.js app on `main` (Chakra, tokens, fonts,
-> paper background), all pushed. Next session starts Phase 1 (terminal shell + hero).
+> **Last activity:** 2026-08-24 — Phase 1 started: built + pushed the terminal shell pair
+> (TerminalWindow + TerminalScreen). Next session: the hero composition.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
