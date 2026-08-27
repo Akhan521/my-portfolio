@@ -50,9 +50,11 @@ terminal shell + hero (Phase 1).
   vars). Paper background (`PAPER_BG_SX` grain + vignette) in `src/lib/consoleTheme.ts`, applied
   globally. The **terminal shell pair is built** (`src/components/terminal/TerminalWindow.tsx` +
   `TerminalScreen.tsx`): the paper window frame (title bar, traffic-light dots, path, status slot) and
-  the phosphor CRT surface (radial glow, inset shadow, scanline overlay, phosphor text tiers).
-  `src/app/page.tsx` is a **temporary preview** demoing the shell (replace when building the hero). The
-  hero + sections are **not built yet**. `CLAUDE.md` has the current stack.
+  the phosphor CRT surface (radial glow, inset shadow, scanline overlay, phosphor text tiers). The
+  **hero is built** (`src/components/hero/`): `HeroTerminal` (the `ak agent` identity session ending on
+  `you> ask me anything`, blinking cursor), `ProgramMenu` (the SELECT A PROGRAM section selector), and
+  `Hero` (the height-matched two-column layout, stacks on mobile), rendered at `src/app/page.tsx`. All
+  ported verbatim from the locked hero mockup. Sections are **not built yet**. `CLAUDE.md` has the stack.
 - **Design mockups (removed from repo):** the throwaway HTML mockups (hero + the four PROJECTS
   variations) were deleted once their decisions were captured here and in memory — they were only
   mockups, not final designs. Still recoverable from git history if ever needed: hero `a880e68`,
@@ -101,12 +103,13 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 
 ## NEXT TASK (do this first next session)
 
-**Phase 0 + the terminal shell pair are done** (scaffold, Chakra, tokens, fonts, paper background,
-and `TerminalWindow` + `TerminalScreen`; all pushed). Next, in small commits:
-1. **Hero composition** — the terminal window (an agent session resolving to Aamir's identity, ending
-   on `you> ask me anything`) beside the `SELECT A PROGRAM` menu. Compose it from the shell pair;
-   replace the temporary preview in `src/app/page.tsx`.
-2. Then the ESC/wordmark inner-page chrome + the first section (PROJECTS index or ABOUT).
+**Phase 0, the terminal shell pair, and the hero are done** (scaffold, Chakra, tokens, fonts, paper
+background, `TerminalWindow` + `TerminalScreen`, and `HeroTerminal` + `ProgramMenu` + `Hero`; all
+pushed). Next, in small commits:
+1. **Inner-page chrome** — the fixed `ESC · MENU` chip + wordmark corners (Branon's no-navbar inner
+   routes), as a shared layout piece for the section routes.
+2. **First section route** — build **PROJECTS** (the locked filter-pill index) or **ABOUT** as a real
+   route, reusing the shell + tokens. Wire the ProgramMenu items to navigate.
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
 ours should too), and designing ABOUT.
 

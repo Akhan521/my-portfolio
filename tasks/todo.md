@@ -80,21 +80,23 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > global paper background (`src/lib/consoleTheme.ts` `PAPER_BG_SX`). `src/app/page.tsx` is a temporary
 > token/font preview. Each step verified via headless Chrome.
 >
-> **PHASE 1 STARTED — terminal shell pair DONE + PUSHED (2026-08-24):** `TerminalWindow`
-> (paper frame + title bar) and `TerminalScreen` (phosphor CRT surface) in
-> `src/components/terminal/`. `src/app/page.tsx` is a temporary preview demoing the shell.
+> **PHASE 1 — SHELL PAIR + HERO DONE + PUSHED (2026-08-24):** `src/components/terminal/`
+> (`TerminalWindow` + `TerminalScreen`) and `src/components/hero/` (`HeroTerminal` = the `ak agent`
+> identity session; `ProgramMenu` = SELECT A PROGRAM; `Hero` = height-matched two-column layout,
+> stacks on mobile). `src/app/page.tsx` renders the real hero. All ported from the locked mockup,
+> verified desktop + mobile via headless Chrome.
 >
-> **Next up:** the **hero composition** — the terminal window (agent session resolving to Aamir's
-> identity, ending on `you> ask me anything`) beside the `SELECT A PROGRAM` menu, composed from the
-> shell pair, replacing the preview page. Then inner-page ESC/wordmark chrome + the first section.
-> Deferred: the single-project detail screen from the PROJECTS index, and designing ABOUT.
+> **Next up:** (1) inner-page chrome (fixed `ESC · MENU` chip + wordmark, Branon's no-navbar inner
+> routes) as a shared layout; (2) the first real section route — **PROJECTS** (locked filter-pill
+> index) or **ABOUT** — reusing the shell + tokens, wiring ProgramMenu to navigate. Deferred: the
+> single-project detail screen from the PROJECTS index, and designing ABOUT.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-08-24 — Phase 1 started: built + pushed the terminal shell pair
-> (TerminalWindow + TerminalScreen). Next session: the hero composition.
+> **Last activity:** 2026-08-24 — built + pushed the terminal shell pair and the full hero
+> (HeroTerminal + ProgramMenu + Hero). Next session: inner-page chrome + the first section route.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
