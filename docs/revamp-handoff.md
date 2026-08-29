@@ -54,7 +54,11 @@ terminal shell + hero (Phase 1).
   **hero is built** (`src/components/hero/`): `HeroTerminal` (the `ak agent` identity session ending on
   `you> ask me anything`, blinking cursor), `ProgramMenu` (the SELECT A PROGRAM section selector), and
   `Hero` (the height-matched two-column layout, stacks on mobile), rendered at `src/app/page.tsx`. All
-  ported verbatim from the locked hero mockup. Sections are **not built yet**. `CLAUDE.md` has the stack.
+  ported verbatim from the locked hero mockup. **Inner-page chrome is built**
+  (`src/components/chrome/ConsoleChrome.tsx` = fixed `ESC · MENU` chip + wordmark, both link home),
+  applied via the `src/app/(console)/` route-group `layout.tsx`; the hero's `ProgramMenu` items now
+  link to their section routes. A `/projects` **stub** exists (to verify the chrome); real section
+  content is **not built yet**. `CLAUDE.md` has the stack.
 - **Design mockups (removed from repo):** the throwaway HTML mockups (hero + the four PROJECTS
   variations) were deleted once their decisions were captured here and in memory — they were only
   mockups, not final designs. Still recoverable from git history if ever needed: hero `a880e68`,
@@ -103,13 +107,14 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 
 ## NEXT TASK (do this first next session)
 
-**Phase 0, the terminal shell pair, and the hero are done** (scaffold, Chakra, tokens, fonts, paper
-background, `TerminalWindow` + `TerminalScreen`, and `HeroTerminal` + `ProgramMenu` + `Hero`; all
-pushed). Next, in small commits:
-1. **Inner-page chrome** — the fixed `ESC · MENU` chip + wordmark corners (Branon's no-navbar inner
-   routes), as a shared layout piece for the section routes.
-2. **First section route** — build **PROJECTS** (the locked filter-pill index) or **ABOUT** as a real
-   route, reusing the shell + tokens. Wire the ProgramMenu items to navigate.
+**Phase 0, the shell pair, the hero, and the inner-page chrome are done** (all pushed; the hero menu
+links to section routes and `ESC · MENU` returns to the hero). Next, in small commits:
+1. **Build the real PROJECTS section** into `src/app/(console)/projects/page.tsx` (replace the stub):
+   the locked **filter-pill index** — pixel `PROJECTS` heading, category filter pills, list rows with
+   one-line descriptions + a keyboard-selected state + a `BUILDING` badge for bat-code. Content from
+   `tasks/content.md`; design recoverable from git (`1d8bfaf`) + Branon's patterns below. Compose from
+   the `TerminalWindow`/`TerminalScreen` shell + tokens.
+2. Then the other section routes (ABOUT, EXPERIENCE, WRITING, CONTACT) so their menu links resolve.
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
 ours should too), and designing ABOUT.
 
@@ -117,11 +122,11 @@ ours should too), and designing ABOUT.
 
 ## Paste-prompt for the fresh session
 
-> Continue the portfolio revamp. Read `docs/revamp-handoff.md`, the Current Position block in
-> `tasks/todo.md`, and your memory on the retro-terminal revamp. We've locked the retro-terminal
-> hero (Branon's design language, AI-agent-forward, mockup in
-> `docs/design-explorations/terminal-hero/`). Today's task: design one "program"/section screen
-> (start with PROJECTS or ABOUT) in the same terminal language, using my real content in
-> `tasks/content.md`, to prove the concept holds beyond the hero. Build it as a throwaway HTML
-> mockup and render it with headless Chrome for me to react to (extension isn't connected). Keep
-> originality the top priority — no generic/AI-generic looks. No em dashes.
+> Continue the portfolio revamp. Read `docs/revamp-handoff.md` (NEXT TASK), the Current Position
+> block in `tasks/todo.md`, and your memory on the retro-terminal revamp. The Next.js app is live on
+> `main` (Chakra + tokens + fonts + paper bg; the terminal shell pair; the hero; inner-page chrome
+> with the menu wired to section routes). Today: build the real **PROJECTS** section into
+> `src/app/(console)/projects/page.tsx` (replace the stub) as the locked filter-pill index, using my
+> real content in `tasks/content.md` and the shell components. Work in very small, single-focus
+> commits and verify each with headless Chrome (extension isn't connected). Keep originality the top
+> priority, no generic/AI-generic looks. No em dashes.

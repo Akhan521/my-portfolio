@@ -86,17 +86,22 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > stacks on mobile). `src/app/page.tsx` renders the real hero. All ported from the locked mockup,
 > verified desktop + mobile via headless Chrome.
 >
-> **Next up:** (1) inner-page chrome (fixed `ESC · MENU` chip + wordmark, Branon's no-navbar inner
-> routes) as a shared layout; (2) the first real section route — **PROJECTS** (locked filter-pill
-> index) or **ABOUT** — reusing the shell + tokens, wiring ProgramMenu to navigate. Deferred: the
-> single-project detail screen from the PROJECTS index, and designing ABOUT.
+> **INNER-PAGE CHROME + MENU WIRING DONE + PUSHED (2026-08-24):** `ConsoleChrome` (fixed `ESC · MENU`
+> chip + wordmark) in `src/components/chrome/`, applied via the `src/app/(console)/` route-group
+> layout; hero's `ProgramMenu` items now link to their section routes. `/projects` is a stub (chrome
+> verify). Loop works: hero menu → section → ESC back.
+>
+> **Next up:** build the real **PROJECTS** filter-pill index into `src/app/(console)/projects/page.tsx`
+> (replace the stub), from `tasks/content.md` + the shell components (design recoverable in git
+> `1d8bfaf`). Then the other section routes so their menu links resolve. Deferred: the single-project
+> detail screen from the PROJECTS index, and designing ABOUT.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-08-24 — built + pushed the terminal shell pair and the full hero
-> (HeroTerminal + ProgramMenu + Hero). Next session: inner-page chrome + the first section route.
+> **Last activity:** 2026-08-24 — built + pushed the inner-page chrome (ConsoleChrome + (console)
+> layout) and wired the ProgramMenu to section routes. Next session: the real PROJECTS index.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
