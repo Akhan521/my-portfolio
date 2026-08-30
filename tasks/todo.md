@@ -91,17 +91,22 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > layout; hero's `ProgramMenu` items now link to their section routes. `/projects` is a stub (chrome
 > verify). Loop works: hero menu → section → ESC back.
 >
-> **Next up:** build the real **PROJECTS** filter-pill index into `src/app/(console)/projects/page.tsx`
-> (replace the stub), from `tasks/content.md` + the shell components (design recoverable in git
-> `1d8bfaf`). Then the other section routes so their menu links resolve. Deferred: the single-project
-> detail screen from the PROJECTS index, and designing ABOUT.
+> **NAVIGABLE SKELETON DONE + PUSHED (2026-08-24):** `/projects` is the **fully-built filter-pill
+> index** (`src/app/(console)/projects/page.tsx`: heading, filter pills, 5 rows with descriptions +
+> category meta + BUILDING badge + selected row, footer, mobile reflow). The other four sections
+> (`/about`, `/experience`, `/writing`, `/contact`) are on-theme stubs via
+> `src/components/section/SectionStub.tsx`, so every menu link resolves. Full loop works.
+>
+> **Next up:** build a real section (recommend **ABOUT**: bio + skill chips from `tasks/content.md`)
+> into its route, replacing the stub. Then EXPERIENCE/WRITING/CONTACT. Optional: make PROJECTS
+> interactive (filter clicks + row open). Deferred: the single-project detail screen.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-08-24 — built + pushed the inner-page chrome (ConsoleChrome + (console)
-> layout) and wired the ProgramMenu to section routes. Next session: the real PROJECTS index.
+> **Last activity:** 2026-08-24 — built + pushed the full PROJECTS filter-pill index and on-theme
+> stubs for the other four sections. Site is a fully navigable skeleton. Next: build ABOUT for real.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

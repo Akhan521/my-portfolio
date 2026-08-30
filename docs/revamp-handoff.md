@@ -56,9 +56,13 @@ terminal shell + hero (Phase 1).
   `Hero` (the height-matched two-column layout, stacks on mobile), rendered at `src/app/page.tsx`. All
   ported verbatim from the locked hero mockup. **Inner-page chrome is built**
   (`src/components/chrome/ConsoleChrome.tsx` = fixed `ESC · MENU` chip + wordmark, both link home),
-  applied via the `src/app/(console)/` route-group `layout.tsx`; the hero's `ProgramMenu` items now
-  link to their section routes. A `/projects` **stub** exists (to verify the chrome); real section
-  content is **not built yet**. `CLAUDE.md` has the stack.
+  applied via the `src/app/(console)/` route-group `layout.tsx`; the hero's `ProgramMenu` items link to
+  their section routes. **`/projects` is fully built** (`src/app/(console)/projects/page.tsx`): the
+  locked filter-pill index (pixel heading, category filter pills, five project rows with descriptions +
+  category meta + `BUILDING` badge + a keyboard-selected row, footer, mobile reflow; content from
+  `tasks/content.md`). The other four sections (`/about`, `/experience`, `/writing`, `/contact`) are
+  **on-theme stubs** via a shared `src/components/section/SectionStub.tsx` (so every menu link resolves).
+  `CLAUDE.md` has the stack.
 - **Design mockups (removed from repo):** the throwaway HTML mockups (hero + the four PROJECTS
   variations) were deleted once their decisions were captured here and in memory — they were only
   mockups, not final designs. Still recoverable from git history if ever needed: hero `a880e68`,
@@ -107,14 +111,14 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 
 ## NEXT TASK (do this first next session)
 
-**Phase 0, the shell pair, the hero, and the inner-page chrome are done** (all pushed; the hero menu
-links to section routes and `ESC · MENU` returns to the hero). Next, in small commits:
-1. **Build the real PROJECTS section** into `src/app/(console)/projects/page.tsx` (replace the stub):
-   the locked **filter-pill index** — pixel `PROJECTS` heading, category filter pills, list rows with
-   one-line descriptions + a keyboard-selected state + a `BUILDING` badge for bat-code. Content from
-   `tasks/content.md`; design recoverable from git (`1d8bfaf`) + Branon's patterns below. Compose from
-   the `TerminalWindow`/`TerminalScreen` shell + tokens.
-2. Then the other section routes (ABOUT, EXPERIENCE, WRITING, CONTACT) so their menu links resolve.
+**The navigable skeleton is done** (all pushed): hero → `SELECT A PROGRAM` menu → section routes →
+`ESC · MENU` back. `/projects` is the fully-built filter-pill index; the other four sections are
+on-theme stubs. Next, in small commits:
+1. **Build a real section** (recommend **ABOUT** next): the bio (two paragraphs, Tatari proof) + the
+   categorized skill chips, verbatim from `tasks/content.md`, into `src/app/(console)/about/page.tsx`
+   (replace the stub), composed from the shell + tokens. Then EXPERIENCE, WRITING, CONTACT.
+2. Optionally make PROJECTS **interactive** (real filter-pill clicks + row hover/open) — ties into the
+   deferred detail screen.
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
 ours should too), and designing ABOUT.
 
