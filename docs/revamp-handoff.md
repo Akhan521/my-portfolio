@@ -112,11 +112,15 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 ## NEXT TASK (do this first next session)
 
 **The navigable skeleton is done** (all pushed): hero → `SELECT A PROGRAM` menu → section routes →
-`ESC · MENU` back. `/projects` is the fully-built filter-pill index; the other four sections are
-on-theme stubs. Next, in small commits:
-1. **Build a real section** (recommend **ABOUT** next): the bio (two paragraphs, Tatari proof) + the
-   categorized skill chips, verbatim from `tasks/content.md`, into `src/app/(console)/about/page.tsx`
-   (replace the stub), composed from the shell + tokens. Then EXPERIENCE, WRITING, CONTACT.
+`ESC · MENU` back. `/projects` is the fully-built filter-pill index. **`/about` is now the second
+fully-built section** (committed `d882dfe`, 2026-08-31, not yet pushed): a terminal session in
+`src/app/(console)/about/page.tsx` where `ak whoami` prints the two verbatim bio paragraphs (Tatari
+proof phrases tinted phosphor green `screen.ok`) and `ak skills --grouped` prints the four
+categorized chip groups under `#` comment headers, reusing the `/projects` filter-pill chip
+vocabulary. Verified desktop + narrow; `tsc` + lint clean. `/experience`, `/writing`, `/contact`
+remain on-theme stubs. Next, in small commits:
+1. **Build the next real section** (recommend **EXPERIENCE** next), then WRITING, then CONTACT,
+   verbatim from `tasks/content.md` + `tasks/aamir-info-bank.md`, composed from the shell + tokens.
 2. Optionally make PROJECTS **interactive** (real filter-pill clicks + row hover/open) — ties into the
    deferred detail screen.
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;

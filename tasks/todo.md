@@ -97,16 +97,23 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > (`/about`, `/experience`, `/writing`, `/contact`) are on-theme stubs via
 > `src/components/section/SectionStub.tsx`, so every menu link resolves. Full loop works.
 >
-> **Next up:** build a real section (recommend **ABOUT**: bio + skill chips from `tasks/content.md`)
-> into its route, replacing the stub. Then EXPERIENCE/WRITING/CONTACT. Optional: make PROJECTS
+> **ABOUT SECTION DONE (2026-08-31, committed `d882dfe`, not yet pushed):** `/about` is now the
+> second fully-built section (`src/app/(console)/about/page.tsx`, replacing the stub): a terminal
+> session where `ak whoami` prints the two verbatim bio paragraphs (Tatari proof phrases tinted
+> phosphor green `screen.ok`) and `ak skills --grouped` prints the four categorized chip groups under
+> `#` comment headers, reusing the `/projects` filter-pill chip vocabulary. Verified desktop + narrow;
+> `tsc` + lint clean.
+>
+> **Next up:** build the next real section (recommend **EXPERIENCE**), then WRITING/CONTACT, replacing
+> each stub (content from `tasks/content.md` + `tasks/aamir-info-bank.md`). Optional: make PROJECTS
 > interactive (filter clicks + row open). Deferred: the single-project detail screen.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-08-24 — built + pushed the full PROJECTS filter-pill index and on-theme
-> stubs for the other four sections. Site is a fully navigable skeleton. Next: build ABOUT for real.
+> **Last activity:** 2026-08-31 — built the real ABOUT section (bio + categorized skill chips),
+> committed to `main` (not yet pushed). Next: build EXPERIENCE for real.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
