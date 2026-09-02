@@ -76,7 +76,7 @@ export default function ProjectsPage() {
             <Box as="span" color="screen.dim">
               $
             </Box>{" "}
-            ak projects <Box as="span" color="screen.path">--list</Box>
+            projects <Box as="span" color="screen.path">--list</Box>
           </Text>
 
           {/* pixel heading + subtitle */}

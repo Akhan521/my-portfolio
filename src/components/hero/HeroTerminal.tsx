@@ -36,7 +36,7 @@ export function HeroTerminal(props: BoxProps) {
           <Box as="span" color="screen.dim">
             $
           </Box>{" "}
-          ak agent
+          agent
         </Text>
 
         <Box h="16px" />

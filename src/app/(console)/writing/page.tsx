@@ -5,7 +5,7 @@ export default function WritingPage() {
     <SectionStub
       title="WRITING"
       path="~/writing"
-      command="ak writing"
+      command="writing"
       blurb="Notes & write-ups"
     />
   );

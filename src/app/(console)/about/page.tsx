@@ -90,7 +90,7 @@ export default function AboutPage() {
             <Box as="span" color="screen.dim">
               $
             </Box>{" "}
-            ak whoami
+            whoami
           </Text>
 
           {/* pixel heading + subtitle */}
@@ -130,7 +130,7 @@ export default function AboutPage() {
             <Box as="span" color="screen.dim">
               $
             </Box>{" "}
-            ak skills <Box as="span" color="screen.path">--grouped</Box>
+            skills <Box as="span" color="screen.path">--grouped</Box>
           </Text>
 
           <Box mt="16px">

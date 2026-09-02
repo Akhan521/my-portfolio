@@ -7,7 +7,7 @@ import { TerminalScreen } from "@/components/terminal/TerminalScreen";
 interface SectionStubProps {
   title: string; // pixel heading, e.g. "ABOUT"
   path: string; // window path tail, e.g. "~/about"
-  command: string; // e.g. "ak about"
+  command: string; // e.g. "about"
   blurb: string; // subtitle, e.g. "Who I am"
 }
 
