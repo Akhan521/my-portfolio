@@ -112,15 +112,22 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 ## NEXT TASK (do this first next session)
 
 **The navigable skeleton is done** (all pushed): hero → `SELECT A PROGRAM` menu → section routes →
-`ESC · MENU` back. `/projects` is the fully-built filter-pill index. **`/about` is now the second
-fully-built section** (committed `d882dfe`, 2026-08-31, not yet pushed): a terminal session in
-`src/app/(console)/about/page.tsx` where `ak whoami` prints the two verbatim bio paragraphs (Tatari
-proof phrases tinted phosphor green `screen.ok`) and `ak skills --grouped` prints the four
-categorized chip groups under `#` comment headers, reusing the `/projects` filter-pill chip
-vocabulary. Verified desktop + narrow; `tsc` + lint clean. `/experience`, `/writing`, `/contact`
-remain on-theme stubs. Next, in small commits:
-1. **Build the next real section** (recommend **EXPERIENCE** next), then WRITING, then CONTACT,
-   verbatim from `tasks/content.md` + `tasks/aamir-info-bank.md`, composed from the shell + tokens.
+`ESC · MENU` back. **Three sections are now fully built:** `/projects` (filter-pill index), `/about`
+(committed `d882dfe`), and `/experience` (committed `3d9f551`, 2026-09-01). Also site-wide (commit
+`281703a`): **command prompts dropped the `ak` prefix** (now bare `$ whoami`, `$ projects --list`,
+`$ agent`, `$ experience --log`, etc.).
+- **`/about`:** `whoami` prints the two verbatim bio paragraphs (Tatari proof phrases tinted phosphor
+  green `screen.ok`); `skills --grouped` prints four categorized chip groups under `#` comment
+  headers, reusing the `/projects` filter-pill chip vocabulary.
+- **`/experience`:** `experience --log` renders the three roles as a **git-log --graph**, each a `*`
+  commit node with its **own rail segment** (node → its last bullet, so the line brackets where each
+  role begins/ends), title + `company · dates` meta (`→` for ranges), proof bullets with metrics
+  tinted bright. `$` prompt sits apart below the log. Copy composed from `tasks/aamir-info-bank.md`.
+
+`/writing` and `/contact` remain on-theme stubs. All verified desktop + narrow; `tsc` + lint clean.
+Next, in small commits:
+1. **Build the next real section** (recommend **WRITING** next), then CONTACT, composed from the shell
+   + tokens (writing has no content block yet, so its copy/structure need designing first).
 2. Optionally make PROJECTS **interactive** (real filter-pill clicks + row hover/open) — ties into the
    deferred detail screen.
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;

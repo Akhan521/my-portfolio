@@ -97,23 +97,30 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > (`/about`, `/experience`, `/writing`, `/contact`) are on-theme stubs via
 > `src/components/section/SectionStub.tsx`, so every menu link resolves. Full loop works.
 >
-> **ABOUT SECTION DONE (2026-08-31, committed `d882dfe`, not yet pushed):** `/about` is now the
-> second fully-built section (`src/app/(console)/about/page.tsx`, replacing the stub): a terminal
-> session where `ak whoami` prints the two verbatim bio paragraphs (Tatari proof phrases tinted
-> phosphor green `screen.ok`) and `ak skills --grouped` prints the four categorized chip groups under
-> `#` comment headers, reusing the `/projects` filter-pill chip vocabulary. Verified desktop + narrow;
-> `tsc` + lint clean.
+> **ABOUT SECTION DONE (2026-08-31, committed `d882dfe`, pushed):** `/about`
+> (`src/app/(console)/about/page.tsx`): a terminal session where `whoami` prints the two verbatim bio
+> paragraphs (Tatari proof phrases tinted phosphor green `screen.ok`) and `skills --grouped` prints the
+> four categorized chip groups under `#` comment headers, reusing the `/projects` filter-pill chips.
 >
-> **Next up:** build the next real section (recommend **EXPERIENCE**), then WRITING/CONTACT, replacing
-> each stub (content from `tasks/content.md` + `tasks/aamir-info-bank.md`). Optional: make PROJECTS
-> interactive (filter clicks + row open). Deferred: the single-project detail screen.
+> **EXPERIENCE SECTION DONE + `ak` PREFIX DROPPED (2026-09-01, committed `281703a` + `3d9f551`, not yet
+> pushed):** `/experience` (`src/app/(console)/experience/page.tsx`): `experience --log` renders the
+> three roles (Tatari, Handshake, DeepLearning.AI) as a **git-log --graph**, each a `*` commit node
+> with its **own rail segment** (node → its last bullet, so the line brackets where each role
+> begins/ends), title + `company · dates` meta (`→` for ranges), proof bullets with metrics tinted
+> bright; the `$` prompt sits apart below the log. Copy composed from `tasks/aamir-info-bank.md`. Also
+> site-wide: **command prompts dropped the `ak` prefix** (bare `$ whoami`, `$ projects --list`, etc.).
+> All verified desktop + narrow; `tsc` + lint clean.
+>
+> **Next up:** build **WRITING** (needs copy/structure designed first, no content block yet), then
+> CONTACT, replacing each stub. Optional: make PROJECTS interactive (filter clicks + row open).
+> Deferred: the single-project detail screen.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-08-31 — built the real ABOUT section (bio + categorized skill chips),
-> committed to `main` (not yet pushed). Next: build EXPERIENCE for real.
+> **Last activity:** 2026-09-01 — built the real EXPERIENCE section (git-log career graph) and dropped
+> the `ak` prefix site-wide, committed to `main` (not yet pushed). Next: build WRITING for real.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
