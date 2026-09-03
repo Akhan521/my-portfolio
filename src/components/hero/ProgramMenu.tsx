@@ -3,15 +3,13 @@
 import { Box, Flex, Text, type BoxProps } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 
-// The five sections, each with its cartridge accent + route. ABOUT is the
+// The four sections, each with its cartridge accent + route. ABOUT is the
 // default highlighted item (the hero's resting selection). Accents are raw
 // hex so we can derive the active/hover fill (accent at ~12-13% alpha).
-// (Only /projects exists so far; the rest resolve as each section is built.)
 const ITEMS = [
   { cmd: "ABOUT", blurb: "Who I am", accent: "#f05032", href: "/about", active: true },
   { cmd: "PROJECTS", blurb: "Things I've built", accent: "#61dafb", href: "/projects" },
   { cmd: "EXPERIENCE", blurb: "Where I've shipped", accent: "#22c55e", href: "/experience" },
-  { cmd: "WRITING", blurb: "Notes & write-ups", accent: "#fbbf24", href: "/writing" },
   { cmd: "CONTACT", blurb: "Let's talk", accent: "#a78bfa", href: "/contact" },
 ];
 
