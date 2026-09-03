@@ -102,25 +102,32 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > paragraphs (Tatari proof phrases tinted phosphor green `screen.ok`) and `skills --grouped` prints the
 > four categorized chip groups under `#` comment headers, reusing the `/projects` filter-pill chips.
 >
-> **EXPERIENCE SECTION DONE + `ak` PREFIX DROPPED (2026-09-01, committed `281703a` + `3d9f551`, not yet
-> pushed):** `/experience` (`src/app/(console)/experience/page.tsx`): `experience --log` renders the
-> three roles (Tatari, Handshake, DeepLearning.AI) as a **git-log --graph**, each a `*` commit node
-> with its **own rail segment** (node → its last bullet, so the line brackets where each role
-> begins/ends), title + `company · dates` meta (`→` for ranges), proof bullets with metrics tinted
-> bright; the `$` prompt sits apart below the log. Copy composed from `tasks/aamir-info-bank.md`. Also
-> site-wide: **command prompts dropped the `ak` prefix** (bare `$ whoami`, `$ projects --list`, etc.).
-> All verified desktop + narrow; `tsc` + lint clean.
+> **ALL SECTIONS BUILT (2026-09-01, all pushed).** The site is complete end to end; no stubs remain
+> (`SectionStub` is now unused, safe to delete). Commits this session: EXPERIENCE (`3d9f551`), `ak`
+> prefix dropped site-wide (`281703a`), WRITING dropped (`6214e15`), CONTACT (`e540478`).
+> - **`/experience`:** `experience --log` renders the three roles as a **git-log --graph**, each a `*`
+>   commit node with its **own rail segment** (node → its last bullet, bracketing where each role
+>   begins/ends), title + `company · dates` meta (`→` ranges), metrics tinted bright. Copy from
+>   `tasks/aamir-info-bank.md`.
+> - **`/contact`:** the site's close (resolves the hero's `you> ask me anything`). CTA line + a
+>   **channels manifest** of four hoverable link rows (email/github/linkedin/resume), a pulsing-green
+>   availability line, blink cursor; title-bar chip `open to work`. Links canonical per `CLAUDE.md`.
+> - **WRITING dropped:** Aamir has no body of writing; an empty writing tab reads as unfinished on a
+>   hiring portfolio. Four honest sections. Re-add is trivial (one menu line + route) if he writes a
+>   technical piece later (e.g. the Tatari outage postmortem).
 >
-> **Next up:** build **WRITING** (needs copy/structure designed first, no content block yet), then
-> CONTACT, replacing each stub. Optional: make PROJECTS interactive (filter clicks + row open).
-> Deferred: the single-project detail screen.
+> **Next up (polish + interactivity, no new sections):** (1) make PROJECTS interactive (filter clicks +
+> row hover/open), tying into the deferred single-project detail screen; (2) parked design-iteration
+> items (hero tool-call trace, menu hover/active states, boot lines, a pixel sprite of Aamir);
+> (3) pre-cutover: verify every project/resume URL, then plan the Vercel deploy.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-09-01 — built the real EXPERIENCE section (git-log career graph) and dropped
-> the `ak` prefix site-wide, committed to `main` (not yet pushed). Next: build WRITING for real.
+> **Last activity:** 2026-09-01 — built EXPERIENCE + CONTACT for real, dropped the `ak` prefix
+> site-wide, and dropped the WRITING section. All four sections now live on `main`. Next: PROJECTS
+> interactivity + polish.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

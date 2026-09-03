@@ -12,13 +12,12 @@ Aamir's portfolio is being revamped from "Duolingo Night Mode" into a **retro te
 vintage-computer** theme, built in **Branon Eusebio's design language** (branon.dev), and
 scoped so it reads unmistakably as an **AI software engineer's** portfolio (the retro shell is
 a frame; the AI work is the hero). We proved we can faithfully emulate Branon, then pivoted the
-device from a Game Boy console to a terminal so it never reads as game-dev. The **hero is
-designed and validated**, and the **PROJECTS section screen is now designed and locked** (2026-08-21):
-after testing 4 variations, Aamir chose the **filter-pill index list** (a package-manager index),
-polished with real descriptions, a keyboard-selected state, and a verified mobile reflow. As of
-2026-08-24 the **Next.js Phase 0 foundation is built on `main`** (scaffold, Chakra UI v2 + Emotion,
-design tokens, self-hosted fonts, paper background; see "What exists right now"); next is the
-terminal shell + hero (Phase 1).
+device from a Game Boy console to a terminal so it never reads as game-dev. As of **2026-09-01 the
+site is built end to end on `main`**: the Next.js app (Chakra UI v2 + Emotion, design tokens,
+self-hosted fonts, paper background), the terminal shell pair, the hero + `SELECT A PROGRAM` menu,
+and **all four real section screens** (ABOUT, PROJECTS, EXPERIENCE, CONTACT), each verified desktop +
+narrow. WRITING was deliberately dropped (no body of writing). Remaining work is polish and
+interactivity, not new sections. Full detail in "What exists right now" and NEXT TASK.
 
 ## Decisions locked
 
@@ -111,27 +110,36 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 
 ## NEXT TASK (do this first next session)
 
-**The navigable skeleton is done** (all pushed): hero → `SELECT A PROGRAM` menu → section routes →
-`ESC · MENU` back. **Three sections are now fully built:** `/projects` (filter-pill index), `/about`
-(committed `d882dfe`), and `/experience` (committed `3d9f551`, 2026-09-01). Also site-wide (commit
-`281703a`): **command prompts dropped the `ak` prefix** (now bare `$ whoami`, `$ projects --list`,
-`$ agent`, `$ experience --log`, etc.).
-- **`/about`:** `whoami` prints the two verbatim bio paragraphs (Tatari proof phrases tinted phosphor
-  green `screen.ok`); `skills --grouped` prints four categorized chip groups under `#` comment
-  headers, reusing the `/projects` filter-pill chip vocabulary.
-- **`/experience`:** `experience --log` renders the three roles as a **git-log --graph**, each a `*`
-  commit node with its **own rail segment** (node → its last bullet, so the line brackets where each
-  role begins/ends), title + `company · dates` meta (`→` for ranges), proof bullets with metrics
-  tinted bright. `$` prompt sits apart below the log. Copy composed from `tasks/aamir-info-bank.md`.
+**ALL SECTIONS ARE NOW BUILT (2026-09-01, all pushed).** The site is complete end to end: hero →
+`SELECT A PROGRAM` menu → four real section screens → `ESC · MENU` back. No stubs remain (the
+`SectionStub` component is now unused; safe to delete when convenient). Site-wide, command prompts
+dropped the `ak` prefix (bare `$ whoami`, `$ projects --list`, `$ agent`, etc., commit `281703a`).
+- **`/projects`:** the locked filter-pill index (pixel heading, category pills, five rows with a
+  keyboard-selected state). Filtering + row-open are still static (see "next").
+- **`/about`** (`d882dfe`): `whoami` prints the two verbatim bio paragraphs (Tatari proof phrases
+  tinted phosphor green `screen.ok`); `skills --grouped` prints four categorized chip groups under `#`
+  comment headers, reusing the `/projects` filter-pill chip vocabulary.
+- **`/experience`** (`3d9f551`): `experience --log` renders the three roles as a **git-log --graph**,
+  each a `*` commit node with its **own rail segment** (node → its last bullet, bracketing where each
+  role begins/ends), title + `company · dates` meta (`→` for ranges), metrics tinted bright. Copy
+  composed from `tasks/aamir-info-bank.md`.
+- **`/contact`** (`e540478`): the site's close (resolves the hero's `you> ask me anything`). `contact`
+  prints the CTA line + a **channels manifest** of four hoverable link rows (email/github/linkedin/
+  resume, cyan values, translateX on hover), a pulsing-green availability line, and the blink cursor.
+  Title-bar chip reads `open to work`. Links canonical per `CLAUDE.md`.
+- **WRITING was dropped** (`6214e15`): Aamir has no body of writing, and an empty writing tab reads as
+  unfinished on a hiring portfolio. Four honest sections instead of five. Easy to re-add (one menu
+  line + one route) if he ever writes a technical piece (e.g. the Tatari outage postmortem).
 
-`/writing` and `/contact` remain on-theme stubs. All verified desktop + narrow; `tsc` + lint clean.
-Next, in small commits:
-1. **Build the next real section** (recommend **WRITING** next), then CONTACT, composed from the shell
-   + tokens (writing has no content block yet, so its copy/structure need designing first).
-2. Optionally make PROJECTS **interactive** (real filter-pill clicks + row hover/open) — ties into the
-   deferred detail screen.
+All verified desktop + narrow; `tsc` + lint clean. With every section real, remaining work is polish
+and interactivity, in small commits:
+1. Make PROJECTS **interactive** (real filter-pill clicks + row hover/open), which ties into the
+   deferred single-project detail screen.
+2. Open design-iteration items still parked (see below): hero tool-call trace, menu hover/active
+   states, boot lines typing in, a pixel sprite of Aamir.
+3. Pre-cutover: verify every project/resume URL, then plan the Vercel deploy (auto-deploy is paused).
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
-ours should too), and designing ABOUT.
+ours should too).
 
 **Live deploy:** Vercel auto-deploy is paused during the rebuild; deploy intentionally at cutover.
 
