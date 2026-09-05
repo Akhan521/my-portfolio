@@ -189,23 +189,20 @@ export default function ProjectsPage() {
                     pl={{ base: "24px", md: 0 }}
                     mt={{ base: "8px", md: 0 }}
                   >
+                    {/* In-progress marker: the same status-dot vocabulary as the
+                        title bar, in amber. Titled so it isn't dot-only meaning. */}
                     {p.building && (
                       <Box
                         as="span"
-                        fontSize="9.5px"
-                        fontWeight="500"
-                        letterSpacing="0.08em"
-                        color="cartridge.yellow"
-                        border="1px solid"
-                        borderColor="rgba(251,191,36,.5)"
-                        borderRadius="4px"
-                        px="6px"
-                        py="2px"
-                        pt="3px"
-                        bg="rgba(251,191,36,.08)"
-                      >
-                        BUILDING
-                      </Box>
+                        w="8px"
+                        h="8px"
+                        borderRadius="full"
+                        bg="cartridge.yellow"
+                        boxShadow="0 0 7px rgba(251,191,36,.7)"
+                        flexShrink={0}
+                        title="in progress"
+                        aria-label="in progress"
+                      />
                     )}
                     <Text fontSize="12px" color="screen.dim" whiteSpace="nowrap">
                       {p.category}
