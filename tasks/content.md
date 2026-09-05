@@ -23,8 +23,8 @@ const projects = [
     category: "LLM Fine-Tuning",
     description: "Fine-tuned LLaMA-2-7B to translate natural language into SQL using LoRA and 4-bit quantization.",
     stack: ["Python", "LLaMA-2", "LoRA", "Quantization"],
-    demoUrl: "https://github.com/Akhan521/Text2SQL-LLaMA",     // update with Colab demo link
-    githubUrl: "https://github.com/Akhan521/Text2SQL-LLaMA",
+    demoUrl: "https://github.com/Akhan521/Text2SQL-LLaMA-Analyst",  // update with Colab demo link
+    githubUrl: "https://github.com/Akhan521/Text2SQL-LLaMA-Analyst",
     characterMood: "happy",
     inProgress: false
   },
@@ -69,7 +69,9 @@ disabled state). GitHub button renders normally.
 `var(--duo-green)` text (light-island recipe — cards sit on the white laptop screen), label
 is the `category` value. Both buttons render normally.
 
-**URL verification:** Repo slugs above are inferred. Confirm each URL before first deploy.
+**URL verification (done 2026-09-04):** all five repo URLs checked live and return 200. One was wrong
+and is now fixed: Text2SQL is `Text2SQL-LLaMA-Analyst`, not `Text2SQL-LLaMA` (that slug 404s). The
+`demoUrl`s still point at the repos; swap in the real Colab/live-demo links when they exist.
 
 ---
 
