@@ -1,12 +1,9 @@
 "use client";
 
 import { Box, Flex, Link, Text } from "@chakra-ui/react";
-import { keyframes } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { TerminalWindow } from "@/components/terminal/TerminalWindow";
 import { TerminalScreen } from "@/components/terminal/TerminalScreen";
-
-const blink = keyframes`50% { opacity: 0 }`;
 
 // Project disks. Descriptions from tasks/content.md (reworded to avoid the
 // "end to end" phrasing the owner dislikes). Repo URLs verified live
@@ -229,26 +226,6 @@ export default function ProjectsPage() {
               ↵
             </Box>{" "}
             open repo
-          </Text>
-
-          {/* closing prompt, on its own line like the other sections */}
-          <Text mt="14px" color="screen.ok">
-            <Box as="span" color="screen.dim">
-              $
-            </Box>{" "}
-            <Box
-              as="span"
-              display="inline-block"
-              w="9px"
-              h="16px"
-              verticalAlign="-2px"
-              bg="screen.cream"
-              boxShadow="0 0 7px rgba(155,227,107,.75)"
-              sx={{
-                animation: `${blink} 1.05s steps(1) infinite`,
-                "@media (prefers-reduced-motion: reduce)": { animation: "none" },
-              }}
-            />
           </Text>
         </TerminalScreen>
       </TerminalWindow>
