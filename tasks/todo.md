@@ -116,18 +116,31 @@ its spec. This file only sequences that work into digestible, resumable commits.
 >   hiring portfolio. Four honest sections. Re-add is trivial (one menu line + route) if he writes a
 >   technical piece later (e.g. the Tatari outage postmortem).
 >
-> **Next up (polish + interactivity, no new sections):** (1) make PROJECTS interactive (filter clicks +
-> row hover/open), tying into the deferred single-project detail screen; (2) parked design-iteration
-> items (hero tool-call trace, menu hover/active states, boot lines, a pixel sprite of Aamir);
-> (3) pre-cutover: verify every project/resume URL, then plan the Vercel deploy.
+> **PROJECTS REWORKED (2026-09-04, pushed).** Made interactive, then stripped back on Aamir's feedback:
+> `↑↓`/`↵`/hover select and open the repo (`2e631ba`); **filter pills removed** (`1c88be9`, deliberate,
+> do not re-add without asking) along with the `showing N of 5` count; **cursor row removed**
+> (`8743cf7`, so PROJECTS is intentionally the only section not ending in `$ █`, it is a listing, not a
+> session); subtitle now `What I've been building.` (`5b352b6`, the old one overclaimed production and
+> said "by hand", which misleads since AI tooling helped); `BUILDING` badge → **amber status dot**
+> (`9a18ea7`); `● 5 programs` status chip removed (`8be9d39`, other sections keep theirs).
+> Two bugs fixed: the selection arrow's **ghost blur** (`38fe4f0`, `color: transparent` still casts the
+> screen's global text-shadow, use `opacity` on the phosphor screen), and a **404 repo URL**
+> (`dd5016b`, `Text2SQL-LLaMA-Analyst`, not `Text2SQL-LLaMA`); all five URLs now verified live.
+>
+> **Next up (polish, no new sections):** (1) open PROJECTS items: the amber in-progress dot is
+> color-only for sighted users (he built Pixelate for colorblind accessibility), and
+> `gpt-from-scratch`'s description still says "by hand in PyTorch"; (2) parked design-iteration items
+> (hero tool-call trace, menu hover/active states, boot lines, a pixel sprite of Aamir); (3) pre-cutover:
+> verify the resume URL, then plan the Vercel deploy. Deferred: the single-project detail screen.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-09-01 — built EXPERIENCE + CONTACT for real, dropped the `ak` prefix
-> site-wide, and dropped the WRITING section. All four sections now live on `main`. Next: PROJECTS
-> interactivity + polish.
+> **Last activity:** 2026-09-04 — reworked PROJECTS: made it interactive, then removed the filter
+> pills, the cursor row, and the status chip on Aamir's feedback; reworded the subtitle; swapped the
+> BUILDING badge for an amber dot; fixed the ghost-arrow blur and a 404 repo URL. All pushed. Next:
+> the open PROJECTS items + parked polish.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

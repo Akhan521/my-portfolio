@@ -114,8 +114,8 @@ row state, ESC/wordmark corner chrome (no inner-page navbar), and a verified mob
 `SELECT A PROGRAM` menu → four real section screens → `ESC · MENU` back. No stubs remain (the
 `SectionStub` component is now unused; safe to delete when convenient). Site-wide, command prompts
 dropped the `ak` prefix (bare `$ whoami`, `$ projects --list`, `$ agent`, etc., commit `281703a`).
-- **`/projects`:** the locked filter-pill index (pixel heading, category pills, five rows with a
-  keyboard-selected state). Filtering + row-open are still static (see "next").
+- **`/projects`** (reworked 2026-09-04, see "PROJECTS reworked" below): a plain interactive listing.
+  **The filter pills were deliberately REMOVED** (do not re-add them without asking).
 - **`/about`** (`d882dfe`): `whoami` prints the two verbatim bio paragraphs (Tatari proof phrases
   tinted phosphor green `screen.ok`); `skills --grouped` prints four categorized chip groups under `#`
   comment headers, reusing the `/projects` filter-pill chip vocabulary.
@@ -131,13 +131,46 @@ dropped the `ak` prefix (bare `$ whoami`, `$ projects --list`, `$ agent`, etc., 
   unfinished on a hiring portfolio. Four honest sections instead of five. Easy to re-add (one menu
   line + one route) if he ever writes a technical piece (e.g. the Tatari outage postmortem).
 
-All verified desktop + narrow; `tsc` + lint clean. With every section real, remaining work is polish
-and interactivity, in small commits:
-1. Make PROJECTS **interactive** (real filter-pill clicks + row hover/open), which ties into the
-   deferred single-project detail screen.
+## PROJECTS reworked (2026-09-04, pushed)
+
+Made the index interactive, then stripped it back on Aamir's feedback. Where it landed:
+- **Interactive** (`2e631ba`): `↑↓` moves the selection (wrapping), `↵` opens the selected repo,
+  hover selects, and rows are real external links to their GitHub repos.
+- **Filter pills REMOVED** (`1c88be9`): with only five projects, filtering was more chrome than help.
+  This also removed the `showing N of 5` count (nothing filters it now). **Do not re-add without
+  asking**; this was a deliberate reversal, not an oversight.
+- **Blinking cursor row REMOVED** (`8743cf7`): it sat beside the `↵ open repo` hint and read as an
+  artifact rather than a prompt. **PROJECTS is now the only section that does not end in `$ █`**, on
+  purpose: the other three are terminal *sessions*, this one is a *listing*.
+- **Subtitle** (`5b352b6`): now `What I've been building.` The old `Things I've built, by hand and in
+  production.` overclaimed (production is the Tatari work in EXPERIENCE) and `by hand` misleads since
+  AI tooling helped build several. Keep future wording general; Aamir wants it open to any project type.
+- **`BUILDING` badge → amber status dot** (`9a18ea7`): the badge was the only boxed element on screen.
+  The dot reuses the title-bar status-dot vocabulary. Carries `title`/`aria-label`, but note it is
+  **color-only meaning for sighted users** (open item, see below).
+- **Status chip REMOVED** (`8be9d39`): `● 5 programs` restated the list and implied a live status.
+  The other three sections keep theirs (`resolved`, `3 roles`, `open to work`), left alone for now.
+- **Ghost-arrow bug fixed** (`38fe4f0`): the selection arrow was hidden with `color: transparent`, but
+  `TerminalScreen` applies a global `text-shadow` that a transparent glyph **still casts**, leaving a
+  faint blur beside every unselected row. Hidden with `opacity` instead. **Watch for this pattern
+  anywhere on the phosphor screen.** (`ProgramMenu` also uses `color: transparent`, but it sits on
+  paper with no text-shadow, so it is fine.)
+- **Broken URL caught** (`dd5016b`): `Text2SQL-LLaMA` 404s; the real slug is `Text2SQL-LLaMA-Analyst`.
+  All five repo URLs verified live (200) and `tasks/content.md` corrected.
+
+Interactions were verified by driving real clicks/keypresses through Chrome's DevTools Protocol from a
+scratchpad script (no test deps added to the project); static screenshots can't prove interactivity.
+
+## What's next (polish; no new sections)
+
+1. **Open items on PROJECTS:** the amber in-progress dot is color-only for sighted users (Aamir built
+   Pixelate for colorblind accessibility, so he may want a `wip` label alongside it); and
+   `gpt-from-scratch`'s description still says "by hand in PyTorch" (accurate there, but he dislikes
+   the phrase generally).
 2. Open design-iteration items still parked (see below): hero tool-call trace, menu hover/active
    states, boot lines typing in, a pixel sprite of Aamir.
-3. Pre-cutover: verify every project/resume URL, then plan the Vercel deploy (auto-deploy is paused).
+3. Pre-cutover: verify the resume URL (project URLs are done), then plan the Vercel deploy
+   (auto-deploy is paused).
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
 ours should too).
 
