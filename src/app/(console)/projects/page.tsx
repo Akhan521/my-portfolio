@@ -153,6 +153,10 @@ export default function ProjectsPage() {
                   {/* Arrow + text stay one non-wrapping pair, so the marker can
                       never orphan onto its own line when the row wraps. */}
                   <Flex flex="1 1 auto" minW={0} gap="14px" flexWrap="nowrap">
+                    {/* Hidden via opacity, not `color: transparent`: the screen
+                        applies a global text-shadow, which a transparent glyph
+                        still casts (it showed as a faint blur beside every
+                        unselected row). */}
                     <Box
                       as="span"
                       flex="0 0 auto"
@@ -160,7 +164,9 @@ export default function ProjectsPage() {
                       textAlign="center"
                       fontSize="12px"
                       lineHeight="1.6"
-                      color={sel ? "screen.path" : "transparent"}
+                      color="screen.path"
+                      opacity={sel ? 1 : 0}
+                      transition="opacity 0.14s ease"
                     >
                       ▸
                     </Box>
