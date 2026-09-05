@@ -2,7 +2,7 @@
 
 import { Box, Flex, Link, Text } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { TerminalWindow } from "@/components/terminal/TerminalWindow";
 import { TerminalScreen } from "@/components/terminal/TerminalScreen";
 
@@ -45,23 +45,8 @@ const PROJECTS = [
   },
 ];
 
-// Derived from the data so a pill can never drift from a project's category.
-const FILTERS = ["all", ...PROJECTS.map((p) => p.category)];
-
 export default function ProjectsPage() {
-  const [filter, setFilter] = useState("all");
   const [selected, setSelected] = useState(0);
-
-  const shown = useMemo(
-    () => (filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.category === filter)),
-    [filter],
-  );
-
-  // Changing the filter re-seeds the selection at the top of the new list.
-  const pick = useCallback((f: string) => {
-    setFilter(f);
-    setSelected(0);
-  }, []);
 
   // ↑↓ moves the selected row, ↵ opens it. Matches the footer's hint.
   useEffect(() => {
@@ -70,16 +55,16 @@ export default function ProjectsPage() {
         e.preventDefault();
         setSelected((s) => {
           const next = e.key === "ArrowDown" ? s + 1 : s - 1;
-          return (next + shown.length) % shown.length;
+          return (next + PROJECTS.length) % PROJECTS.length;
         });
       } else if (e.key === "Enter") {
-        const target = shown[selected];
+        const target = PROJECTS[selected];
         if (target) window.open(target.href, "_blank", "noopener,noreferrer");
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [shown, selected]);
+  }, [selected]);
 
   return (
     <Flex minH="100vh" align="center" justify="center" px={{ base: 3, md: 8 }} py="80px">
@@ -125,46 +110,9 @@ export default function ProjectsPage() {
             </Text>
           </Flex>
 
-          {/* filter pills */}
-          <Flex flexWrap="wrap" gap={2} mt="16px" mb="6px">
-            {FILTERS.map((f) => {
-              const on = f === filter;
-              return (
-                <Box
-                  as="button"
-                  type="button"
-                  key={f}
-                  onClick={() => pick(f)}
-                  aria-pressed={on}
-                  fontSize="11.5px"
-                  letterSpacing="0.02em"
-                  px="11px"
-                  py="5px"
-                  borderRadius="md"
-                  whiteSpace="nowrap"
-                  cursor="pointer"
-                  border="2px solid"
-                  borderColor={on ? "screen.path" : "rgba(155,190,110,.28)"}
-                  color={on ? "screen.cream" : "screen.dim"}
-                  bg={on ? "rgba(127,215,240,.12)" : "rgba(0,0,0,.12)"}
-                  transition="0.14s ease all"
-                  _hover={
-                    on
-                      ? undefined
-                      : { borderColor: "rgba(155,190,110,.5)", color: "screen.base", bg: "rgba(0,0,0,.22)" }
-                  }
-                >
-                  {f}
-                </Box>
-              );
-            })}
-          </Flex>
-
-          {/* Project list. minH holds the full-list height (5 rows) so filtering
-              down to one row doesn't collapse the window; mobile rows are taller
-              and variable, so it flows freely there. */}
-          <Box mt="4px" minH={{ base: 0, md: "360px" }}>
-            {shown.map((p, i) => {
+          {/* project list */}
+          <Box mt="18px">
+            {PROJECTS.map((p, i) => {
               const sel = i === selected;
               const prevSel = i > 0 && i - 1 === selected;
               const showDivider = i > 0 && !sel && !prevSel;
@@ -271,42 +219,37 @@ export default function ProjectsPage() {
             })}
           </Box>
 
-          {/* footer */}
-          <Flex
-            mt="16px"
-            gap="12px"
-            justify="space-between"
-            align={{ base: "flex-start", md: "center" }}
-            direction={{ base: "column", md: "row" }}
-          >
-            <Text fontSize="11px" letterSpacing="0.02em" color="screen.faint">
-              <Box as="span" color="screen.path">
-                ↑↓
-              </Box>{" "}
-              select &middot;{" "}
-              <Box as="span" color="screen.path">
-                ↵
-              </Box>{" "}
-              open repo
-              <Box
-                as="span"
-                display="inline-block"
-                w="8px"
-                h="15px"
-                ml="6px"
-                verticalAlign="-2px"
-                bg="screen.cream"
-                boxShadow="0 0 7px rgba(155,227,107,.75)"
-                sx={{
-                  animation: `${blink} 1.05s steps(1) infinite`,
-                  "@media (prefers-reduced-motion: reduce)": { animation: "none" },
-                }}
-              />
-            </Text>
-            <Text fontSize="11px" color="screen.dim" whiteSpace="nowrap">
-              showing {shown.length} of {PROJECTS.length}
-            </Text>
-          </Flex>
+          {/* keyboard hint */}
+          <Text mt="16px" fontSize="11px" letterSpacing="0.02em" color="screen.faint">
+            <Box as="span" color="screen.path">
+              ↑↓
+            </Box>{" "}
+            select &middot;{" "}
+            <Box as="span" color="screen.path">
+              ↵
+            </Box>{" "}
+            open repo
+          </Text>
+
+          {/* closing prompt, on its own line like the other sections */}
+          <Text mt="14px" color="screen.ok">
+            <Box as="span" color="screen.dim">
+              $
+            </Box>{" "}
+            <Box
+              as="span"
+              display="inline-block"
+              w="9px"
+              h="16px"
+              verticalAlign="-2px"
+              bg="screen.cream"
+              boxShadow="0 0 7px rgba(155,227,107,.75)"
+              sx={{
+                animation: `${blink} 1.05s steps(1) infinite`,
+                "@media (prefers-reduced-motion: reduce)": { animation: "none" },
+              }}
+            />
+          </Text>
         </TerminalScreen>
       </TerminalWindow>
     </Flex>
