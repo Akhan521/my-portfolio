@@ -103,7 +103,7 @@ export default function ProjectsPage() {
               PROJECTS
             </Text>
             <Text fontSize="12.5px" color="screen.dim">
-              Things I&apos;ve built, by hand and in production.
+              What I&apos;ve been building.
             </Text>
           </Flex>
 
