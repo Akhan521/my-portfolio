@@ -25,7 +25,7 @@ const CHANNELS: { label: string; value: string; href: string; external?: boolean
   {
     label: "resume",
     value: "view on Google Drive",
-    href: "https://drive.google.com/file/d/1XmkXP_88RvogZ676RelvgUsJtfBq8vhm/view?usp=sharing",
+    href: "https://drive.google.com/file/d/1MJ38Aper8O_3g31amxiJidd3D1NGlGiU/view",
     external: true,
   },
 ];

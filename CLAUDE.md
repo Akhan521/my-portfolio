@@ -48,7 +48,7 @@ pre-pivot handoff is archived at `docs/HANDOFF.md`.
 | GitHub | https://github.com/Akhan521 |
 | LinkedIn | https://www.linkedin.com/in/aamir-khan-aak521/ |
 | Email | aamirksfg@gmail.com |
-| Resume | https://drive.google.com/file/d/1XmkXP_88RvogZ676RelvgUsJtfBq8vhm/view?usp=sharing (Drive viewer, not a direct PDF) |
+| Resume | https://drive.google.com/file/d/1MJ38Aper8O_3g31amxiJidd3D1NGlGiU/view (Drive viewer, not a direct PDF) |
 
 **Positioning rules (read before any copy/content work):** target **AI software engineer /
 application side** (agents, LLMs, RAG, pipelines, evals, latency), keep heavy ML/MLOps vocabulary
