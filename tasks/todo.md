@@ -127,20 +127,30 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > screen's global text-shadow, use `opacity` on the phosphor screen), and a **404 repo URL**
 > (`dd5016b`, `Text2SQL-LLaMA-Analyst`, not `Text2SQL-LLaMA`); all five URLs now verified live.
 >
-> **Next up (polish, no new sections):** (1) open PROJECTS items: the amber in-progress dot is
-> color-only for sighted users (he built Pixelate for colorblind accessibility), and
-> `gpt-from-scratch`'s description still says "by hand in PyTorch"; (2) parked design-iteration items
-> (hero tool-call trace, menu hover/active states, boot lines, a pixel sprite of Aamir); (3) pre-cutover:
-> verify the resume URL, then plan the Vercel deploy. Deferred: the single-project detail screen.
+> **SESSION 2026-09-05:** added an `● in progress` legend to the PROJECTS hint row (fixes the amber
+> dot's color-only meaning); **fixed the dead resume link** (the old Drive URL 404'd for anonymous
+> visitors, so every recruiter clicking "resume" hit a dead end; it only worked while logged in as the
+> owner, which is why it went unnoticed) so **all external URLs are now verified**; hero now opens on
+> `$ start-here` with the `aamir-agent>` line removed. Kept "by hand in PyTorch" on `gpt-from-scratch`
+> (literally true for that project).
+>
+> **>> PRE-CUTOVER BUG (open): hydration mismatch on `/`.** React discards the server HTML and
+> re-renders the landing page client-side. Only `/` is affected (verified fresh-browser per route;
+> testing routes sequentially in one browser gives false positives). Cause is Chakra/Emotion global
+> styles in the SSR stream, not our markup, and it predates the hero edits. Fix before deploying; full
+> detail + likely fix in `docs/revamp-handoff.md`.
+>
+> **Next up:** (1) fix the hydration bug; (2) parked design-iteration items (hero tool-call trace, menu
+> hover/active states, boot lines, a pixel sprite of Aamir); (3) plan the Vercel deploy. Deferred: the
+> single-project detail screen.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-09-04 — reworked PROJECTS: made it interactive, then removed the filter
-> pills, the cursor row, and the status chip on Aamir's feedback; reworded the subtitle; swapped the
-> BUILDING badge for an amber dot; fixed the ghost-arrow blur and a 404 repo URL. All pushed. Next:
-> the open PROJECTS items + parked polish.
+> **Last activity:** 2026-09-05 — added the in-progress legend, fixed the dead resume link, reworked
+> the hero opening to `$ start-here`, and logged an open pre-cutover hydration bug on `/`. Next: fix
+> that bug, then parked design polish.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

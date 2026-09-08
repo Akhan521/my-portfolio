@@ -161,16 +161,40 @@ Made the index interactive, then stripped it back on Aamir's feedback. Where it 
 Interactions were verified by driving real clicks/keypresses through Chrome's DevTools Protocol from a
 scratchpad script (no test deps added to the project); static screenshots can't prove interactivity.
 
+## PRE-CUTOVER BUG: hydration mismatch on `/` (open, 2026-09-05)
+
+**The landing page fails hydration**, so React discards the server-rendered HTML and re-renders the
+whole tree client-side. The page still *looks* right and the error overlay is dev-only, but in
+production this silently costs the SSR benefit on the one page a recruiter hits first. **Fix before
+the Vercel cutover.**
+
+- **Scope:** only `/`. Verified in a *fresh browser per route*: `/about`, `/projects`, `/experience`,
+  `/contact` are all clean; `/` reproduced 2/2. (Testing routes sequentially in one browser gives
+  false positives, it wrongly flagged `/about`; always use a fresh profile per route.)
+- **Not content-caused:** reproduced with the hero edits stashed, so it predates them.
+- **Cause:** Chakra/Emotion, not our markup. React's diff shows the server emitting
+  `<style data-emotion="css-global ...">` where the client expects the hero's `<section>`, i.e. the
+  theme's global `body` styles (`PAPER_BG_SX`, `src/app/theme.ts` -> `src/lib/consoleTheme.ts`) are
+  flushed into the SSR stream at a position the client does not reproduce.
+- **Likely fix:** replace `CacheProvider` from `@chakra-ui/next-js` in `src/app/providers.tsx` with a
+  proper Emotion cache registry using Next's `useServerInsertedHTML` (the documented App Router
+  pattern). Contained change, but it touches every page's styling path, so re-verify all five routes
+  (fresh browser each) *and* check for a flash of unstyled content.
+- **How to detect:** watch for the Next dev overlay's "N Issues" badge, or drive Chrome DevTools
+  Protocol and listen for `Runtime.exceptionThrown` matching /Hydration failed/ (scratchpad script
+  pattern used on 2026-09-05).
+
 ## What's next (polish; no new sections)
 
-1. **Open items on PROJECTS:** the amber in-progress dot is color-only for sighted users (Aamir built
-   Pixelate for colorblind accessibility, so he may want a `wip` label alongside it); and
-   `gpt-from-scratch`'s description still says "by hand in PyTorch" (accurate there, but he dislikes
-   the phrase generally).
-2. Open design-iteration items still parked (see below): hero tool-call trace, menu hover/active
+1. **Fix the hydration mismatch above** before deploying.
+2. Open item on PROJECTS: `gpt-from-scratch`'s description still says "by hand in PyTorch". Aamir
+   dislikes the phrase generally but **decided to keep it here** (2026-09-05) since it is literally
+   true for that project. No action unless he revisits.
+3. Open design-iteration items still parked (see below): hero tool-call trace, menu hover/active
    states, boot lines typing in, a pixel sprite of Aamir.
-3. Pre-cutover: verify the resume URL (project URLs are done), then plan the Vercel deploy
-   (auto-deploy is paused).
+4. Pre-cutover: **all external URLs are now verified** (resume replaced 2026-09-05 after the old Drive
+   link 404'd for anonymous visitors; email/GitHub/LinkedIn/5 repos all good). Remaining: plan the
+   Vercel deploy (auto-deploy is paused).
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
 ours should too).
 
