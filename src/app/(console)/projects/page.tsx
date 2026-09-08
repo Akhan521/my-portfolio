@@ -213,7 +213,9 @@ export default function ProjectsPage() {
             })}
           </Box>
 
-          {/* keyboard hint */}
+          {/* Hints + legend. The in-progress dot is amber-only on the row, so
+              it is spelled out here; otherwise its meaning is carried by color
+              alone. Shown only while something is actually in progress. */}
           <Text mt="16px" fontSize="11px" letterSpacing="0.02em" color="screen.faint">
             <Box as="span" color="screen.path">
               ↑↓
@@ -223,6 +225,24 @@ export default function ProjectsPage() {
               ↵
             </Box>{" "}
             open repo
+            {PROJECTS.some((p) => p.building) && (
+              <>
+                {" "}
+                &middot;{" "}
+                <Box
+                  as="span"
+                  display="inline-block"
+                  w="8px"
+                  h="8px"
+                  mr="6px"
+                  verticalAlign="0"
+                  borderRadius="full"
+                  bg="cartridge.yellow"
+                  boxShadow="0 0 7px rgba(251,191,36,.7)"
+                />
+                in progress
+              </>
+            )}
           </Text>
         </TerminalScreen>
       </TerminalWindow>
