@@ -36,15 +36,12 @@ export function HeroTerminal(props: BoxProps) {
           <Box as="span" color="screen.dim">
             $
           </Box>{" "}
-          agent
+          start-here
         </Text>
 
         <Box h="16px" />
 
         <Box>
-          <Text color="screen.path" mb={3}>
-            aamir-agent&gt;
-          </Text>
           <Text
             fontFamily="heading"
             fontSize="19px"
