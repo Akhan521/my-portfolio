@@ -14,8 +14,8 @@ const blink = keyframes`50% { opacity: 0 }`;
 const blinkCursor = keyframes`50% { opacity: 0 }`;
 
 // --- rhythm -----------------------------------------------------------------
-const T_WAIT = 0.5; // cursor sits before the first keystroke
-const T_READ = 0.5; // after typing: reading it back, then pressing Enter
+const T_WAIT = 0.25; // cursor sits before the first keystroke
+const T_READ = 0.35; // after typing: reading it back, then pressing Enter
 const T_EXEC = 0.12; // machine beat between Enter and output
 
 /**
@@ -85,7 +85,6 @@ function CommandCursor({ until }: { until: number }) {
       display="inline-block"
       w="9px"
       h="16px"
-      ml="2px"
       verticalAlign="-2px"
       bg="screen.cream"
       boxShadow="0 0 7px rgba(155,227,107,.75)"
@@ -179,7 +178,6 @@ export function HeroTerminal(props: BoxProps) {
             display="inline-block"
             w="9px"
             h="16px"
-            ml="6px"
             verticalAlign="-2px"
             bg="screen.cream"
             boxShadow="0 0 7px rgba(155,227,107,.75)"
