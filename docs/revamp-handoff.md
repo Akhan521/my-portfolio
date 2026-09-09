@@ -37,7 +37,8 @@ interactivity, not new sections. Full detail in "What exists right now" and NEXT
 - **Where it's built (changed 2026-08-23):** directly on this repo's **`main`** (Aamir's call; the
   vanilla build is backed up via `my-portfolio-backup` + git tags/branches). Vercel **auto-deploy is
   paused** during the rebuild so the live URL is not replaced mid-build.
-- **Character:** regenerate Aamir as a pixel sprite (not yet started).
+- **Character: DROPPED (2026-09-05).** The plan was to regenerate Aamir as a pixel sprite; he does
+  not want one. No character art on the site.
 
 ## What exists right now
 
@@ -76,9 +77,16 @@ interactivity, not new sections. Full detail in "What exists right now" and NEXT
 ## Open design-iteration items (parked)
 
 - The terminal's agentic tool-call trace (`● Search/Task` + `⎿` results) was removed on
-  2026-08-18 pending iteration — decide how/whether it returns above the intro.
+  2026-08-18 pending iteration. **Aamir is skeptical of it**; agreed plan is to build a throwaway
+  **prototype** so he can react to something real, then keep or drop it. Do not assume it ships.
 - Terminal has some empty mid-screen space now the trace is gone.
-- Not yet designed: menu hover/active states, a peeking "program disk," boot lines typing in.
+- A peeking "program disk" is still undesigned.
+- **DONE 2026-09-05:** menu hover/active states (`9a7d089`) and "boot lines typing in", which became
+  the hero typing sequence (`f9a61f8`, `6940379`, `e8a0c02`) rather than the fake-BIOS reading the
+  original note implied. A BIOS/POST sequence was explicitly rejected: it is the most imitated
+  retro-terminal trope, it gates the hero behind fiction, and nothing is actually booting.
+- **DROPPED 2026-09-05: the pixel sprite of Aamir.** He does not want one. Remove it from any
+  remaining plan docs rather than re-proposing it.
 
 ## Section-screen findings (2026-08-21)
 
@@ -184,9 +192,17 @@ the Vercel cutover.**
   Protocol and listen for `Runtime.exceptionThrown` matching /Hydration failed/ (scratchpad script
   pattern used on 2026-09-05).
 
-## What's next (polish; no new sections)
+## What's next (agreed 2026-09-05, in this order)
 
-1. **Fix the hydration mismatch above** before deploying.
+1. **Strip the title-bar status chips from every remaining page**, the way `/projects` already had
+   its `● 5 programs` removed (`8be9d39`): the green dot + wording in the top right. Remaining ones
+   are `/about` "resolved", `/experience` "3 roles", `/contact` "open to work" (pulsing), and the
+   hero's "agent online". Note when doing `/contact`: its chip is the only one carrying real
+   information (that he is job-hunting), and the page already says "Open to full-time and internship
+   AI roles" in the body, so nothing is lost by removing it. Aamir asked for all of them.
+2. **Prototype the hero tool-call trace** (see parked items above). Throwaway; he is skeptical, so
+   build it to be judged and be ready to drop it.
+3. **Fix the hydration mismatch above** before deploying.
 2. Open item on PROJECTS: `gpt-from-scratch`'s description still says "by hand in PyTorch". Aamir
    dislikes the phrase generally but **decided to keep it here** (2026-09-05) since it is literally
    true for that project. No action unless he revisits.

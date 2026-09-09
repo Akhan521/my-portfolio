@@ -140,17 +140,27 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > styles in the SSR stream, not our markup, and it predates the hero edits. Fix before deploying; full
 > detail + likely fix in `docs/revamp-handoff.md`.
 >
-> **Next up:** (1) fix the hydration bug; (2) parked design-iteration items (hero tool-call trace, menu
-> hover/active states, boot lines, a pixel sprite of Aamir); (3) plan the Vercel deploy. Deferred: the
-> single-project detail screen.
+> **SESSION 2026-09-05 (part 2):** made the SELECT A PROGRAM menu's states real (`9a7d089`: ↑↓/↵
+> actually work, hover + focus select, per-item accent, tactile :active press, focus-visible ring),
+> and built the hero **typing sequence** (`f9a61f8`, `6940379`, `e8a0c02`): `start-here` types on an
+> uneven human cadence, the cursor holds while it is read back, vanishes on Enter, the identity block
+> snaps in as output, then `ask me anything` types. Pure CSS + deterministic, so no hydration risk;
+> reduced-motion shows everything instantly. **The "boot lines" note became this**, a fake BIOS/POST
+> was explicitly rejected. **The pixel sprite is dropped** (Aamir does not want one).
+>
+> **Next up (agreed order):** (1) **strip the title-bar status chips from every page** (green dot +
+> wording, top right), as already done on `/projects`: `/about` "resolved", `/experience` "3 roles",
+> `/contact` "open to work", hero "agent online"; (2) **prototype the hero tool-call trace** (throwaway,
+> Aamir is skeptical, build it to be judged); (3) fix the hydration bug before the Vercel deploy.
+> Deferred: the single-project detail screen.
 >
 > **Live deploy:** Vercel auto-deploy is **paused** during the rebuild; deploy intentionally at cutover.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-09-05 — added the in-progress legend, fixed the dead resume link, reworked
-> the hero opening to `$ start-here`, and logged an open pre-cutover hydration bug on `/`. Next: fix
-> that bug, then parked design polish.
+> **Last activity:** 2026-09-05 — fixed the dead resume link, added the in-progress legend, made the
+> menu's interaction states real, and built the hero typing sequence. Next: strip the status chips,
+> then prototype the tool-call trace, then fix the hydration bug.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
