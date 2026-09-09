@@ -148,7 +148,16 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > reduced-motion shows everything instantly. **The "boot lines" note became this**, a fake BIOS/POST
 > was explicitly rejected. **The pixel sprite is dropped** (Aamir does not want one).
 >
-> **Next up (agreed order):** (1) **strip the title-bar status chips from every page** (green dot +
+> **BRANON BOOT-ANIMATION RESEARCH DONE (2026-09-05), no decision yet.** Aamir asked what branon.dev's
+> landing animation is. It is not a loader: it is a gesture-gated power-on ritual (~2,400 lines, WebGL
+> via `ogl`, a commissioned console SVG, a synthesized chime, sessionStorage replay suppression). Full
+> breakdown + my assessment + the three cheap borrowings are in `docs/revamp-handoff.md`.
+> **He explicitly asked to be REMINDED and RE-ASKED the open questions next session before any work:**
+> does the hero open with a wordmark animation before the terminal session, or does the typing
+> sequence stay the opening beat? Gesture-gated or automatic? Full ritual or just the cheap parts?
+>
+> **Next up (agreed order):** (0) **re-ask the boot-animation questions above**; (1) **strip the
+> title-bar status chips from every page** (green dot +
 > wording, top right), as already done on `/projects`: `/about` "resolved", `/experience` "3 roles",
 > `/contact` "open to work", hero "agent online"; (2) **prototype the hero tool-call trace** (throwaway,
 > Aamir is skeptical, build it to be judged); (3) fix the hydration bug before the Vercel deploy.
@@ -159,8 +168,9 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
 > **Last activity:** 2026-09-05 — fixed the dead resume link, added the in-progress legend, made the
-> menu's interaction states real, and built the hero typing sequence. Next: strip the status chips,
-> then prototype the tool-call trace, then fix the hydration bug.
+> menu's interaction states real, built the hero typing sequence, and researched Branon's boot
+> animation (findings recorded, decision deferred to Aamir). Next: re-ask him the boot questions,
+> strip the status chips, prototype the tool-call trace, then fix the hydration bug.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

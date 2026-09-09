@@ -88,6 +88,67 @@ interactivity, not new sections. Full detail in "What exists right now" and NEXT
 - **DROPPED 2026-09-05: the pixel sprite of Aamir.** He does not want one. Remove it from any
   remaining plan docs rather than re-proposing it.
 
+## Branon's boot/loading animation, how it actually works (researched 2026-09-05)
+
+Aamir liked the custom animation on branon.dev's landing page and asked what it is. Findings from the
+read-only clone at `~/Developer/branon-portfolio-ref`. **No decision made yet, see the open question
+at the end. Re-ask him before building anything.**
+
+**It is not a loading animation.** Nothing is loaded or awaited. It is an interactive **power-on
+ritual gated behind a real user gesture**, so it never makes anyone wait. `src/app/page.tsx` is just
+`return <BootIntro />`: the landing page *is* the boot experience. Two phases, `"select" | "booting"`
+(`BootIntro.tsx:67`). ~2,400 lines across 8 files in `src/components/boot-intro/`.
+
+**Phase 1, dormant console** (`PowerOnScene.tsx`): the shell sits in CSS 3D with a deliberately small
+resting tilt (`rotateX 3`, `rotateY -4`) plus mouse parallax; his comment notes bigger values shear a
+flat illustration into a parallelogram. The shell is a **pre-made SVG** (`public/boot-intro/console-shell.svg`),
+not modeled in code, after hand-tuned WebGL/SVG geometry fell short of photo fidelity.
+
+**Phase 2, power on:** selecting a cartridge is the gesture (and is what **unlocks Web Audio**). The
+shell eases flat and **zooms into the screen** over 580ms with `transform-origin: 50% 28%`, measured
+from where the screen actually sits in the SVG (x 7.5-92.8%, y 4.5-52%) rather than the geometric
+center, then hands off on a background color **sampled from the SVG** so there is no cut to black.
+
+**The logo animation is WebGL** (`BootLogoCanvas.tsx`), using **`ogl`** with custom vertex + fragment
+shaders; letters are pixel-font alpha masks, nearest-filtered for chunky pixels. Per letter:
+- rockets in at **8.5x** scale, settles to 1.6x, `easeOutBack` overshoot
+- hand-tuned **"J-hook" flight path**: starts right+below, rockets up bulging further right, arcs
+  back down past resting height, then slides left into place (3 keyframes, smoothstep)
+- the shrink is **biased late** (`SCALE_BIAS = 1.6`) so letters stay oversized and overlapping as long
+  as possible. This is where the drama comes from.
+- each letter **flashes its own color**, settling to ink
+- on landing, **2 in-place bounces** (170ms cycle, 0.16 amplitude), deliberately NOT synchronized, so
+  the word cascades
+- then a **rainbow sweep** across the finished word, computed from each letter's *word-relative*
+  horizontal position, not its own UV, so the band travels continuously instead of resetting per letter
+- timings: `STAGGER_MS 55`, `LETTER_DURATION_MS 480`, `SWEEP_GAP_MS 120`, `SWEEP_DURATION_MS 650`
+
+**Chime is synthesized, not a file** (`useBootChime.ts`): oscillators + gain + delay/feedback filter.
+Mute is one shared preference across every sound on the site (module store + `localStorage`).
+
+**It does not replay:** a `sessionStorage` flag (`REVERSE_BOOT_STORAGE_KEY`), set by the ESC/"power
+off" handler, makes a return to `/` play the zoom **backwards** instead of replaying the intro.
+`prefers-reduced-motion` skips it entirely.
+
+**Assessment (mine, 2026-09-05).** The scale is appropriate for Branon because he is a *design
+engineer*: the toy IS his portfolio piece. For an AI SWE it argues less directly, and a heavy WebGL
+boot ritual sits adjacent to the fake-BIOS idea already rejected. Three parts are cheap to borrow and
+worth more than the whole:
+1. **Gate it behind a gesture** so it never forces a wait (also sidesteps the empty-screen cost of our
+   existing hero typing sequence).
+2. **The J-hook path + late-biased scale**, which is the actual craft and is pure math, no WebGL
+   needed; it would work on our pixel wordmark in CSS or GSAP.
+3. **The sessionStorage replay suppression**, the difference between "delightful once" and "annoying
+   on the fourth visit."
+
+**OPEN QUESTION FOR AAMIR (he asked to be re-asked next session, do not build until answered):**
+- We **already have a boot moment**, the `start-here` hero typing sequence. So the real question is
+  not "add a loader" but: does the hero open with a **wordmark animation first**, then the terminal
+  session, or does the terminal session stay the opening beat on its own?
+- If we do add one: **gesture-gated or automatic?** (Branon's is gated; ours currently auto-plays.)
+- **How far do we scope it?** Full ritual (shell art + WebGL + audio), or just the cheap borrowings
+  above applied to the existing pixel wordmark?
+
 ## Section-screen findings (2026-08-21)
 
 Explored the PROJECTS section screen. Owner leans toward a **package-manager / catalog** feel
@@ -194,6 +255,8 @@ the Vercel cutover.**
 
 ## What's next (agreed 2026-09-05, in this order)
 
+0. **Re-ask Aamir the boot-animation open question above** (he explicitly asked to be reminded and to
+   be re-asked the same questions; he will decide then). Do not build any of it unprompted.
 1. **Strip the title-bar status chips from every remaining page**, the way `/projects` already had
    its `● 5 programs` removed (`8be9d39`): the green dot + wording in the top right. Remaining ones
    are `/about` "resolved", `/experience` "3 roles", `/contact` "open to work" (pulsing), and the
