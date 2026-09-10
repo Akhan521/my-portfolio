@@ -16,8 +16,10 @@ device from a Game Boy console to a terminal so it never reads as game-dev. As o
 site is built end to end on `main`**: the Next.js app (Chakra UI v2 + Emotion, design tokens,
 self-hosted fonts, paper background), the terminal shell pair, the hero + `SELECT A PROGRAM` menu,
 and **all four real section screens** (ABOUT, PROJECTS, EXPERIENCE, CONTACT), each verified desktop +
-narrow. WRITING was deliberately dropped (no body of writing). Remaining work is polish and
-interactivity, not new sections. Full detail in "What exists right now" and NEXT TASK.
+narrow. WRITING was deliberately dropped (no body of writing). Since then it has had a polish pass:
+real menu interaction states, a hero typing sequence, an interactive PROJECTS list, and (2026-09-05) a
+**WebGL boot wordmark** on the landing page. Remaining work is polish plus one known bug, not new
+sections. Full detail in the dated sections below and "What's next".
 
 ## Decisions locked
 
@@ -57,12 +59,11 @@ interactivity, not new sections. Full detail in "What exists right now" and NEXT
   ported verbatim from the locked hero mockup. **Inner-page chrome is built**
   (`src/components/chrome/ConsoleChrome.tsx` = fixed `ESC · MENU` chip + wordmark, both link home),
   applied via the `src/app/(console)/` route-group `layout.tsx`; the hero's `ProgramMenu` items link to
-  their section routes. **`/projects` is fully built** (`src/app/(console)/projects/page.tsx`): the
-  locked filter-pill index (pixel heading, category filter pills, five project rows with descriptions +
-  category meta + `BUILDING` badge + a keyboard-selected row, footer, mobile reflow; content from
-  `tasks/content.md`). The other four sections (`/about`, `/experience`, `/writing`, `/contact`) are
-  **on-theme stubs** via a shared `src/components/section/SectionStub.tsx` (so every menu link resolves).
-  `CLAUDE.md` has the stack.
+  their section routes. `CLAUDE.md` has the stack.
+  **NOTE (2026-09-05): the rest of this bullet is historical.** All four sections are now fully built,
+  WRITING was dropped, `/projects` no longer has filter pills or a `BUILDING` badge, and `SectionStub`
+  is unused (safe to delete). The landing page also opens with the WebGL boot wordmark
+  (`src/components/boot/`). See "What's next" and the dated sections below for the current state.
 - **Design mockups (removed from repo):** the throwaway HTML mockups (hero + the four PROJECTS
   variations) were deleted once their decisions were captured here and in memory — they were only
   mockups, not final designs. Still recoverable from git history if ever needed: hero `a880e68`,
@@ -81,9 +82,10 @@ interactivity, not new sections. Full detail in "What exists right now" and NEXT
   **prototype** so he can react to something real, then keep or drop it. Do not assume it ships.
 - Terminal has some empty mid-screen space now the trace is gone.
 - A peeking "program disk" is still undesigned.
-- **DONE 2026-09-05:** menu hover/active states (`9a7d089`) and "boot lines typing in", which became
+- **DONE 2026-09-05:** menu hover/active states (`9a7d089`); "boot lines typing in", which became
   the hero typing sequence (`f9a61f8`, `6940379`, `e8a0c02`) rather than the fake-BIOS reading the
-  original note implied. A BIOS/POST sequence was explicitly rejected: it is the most imitated
+  original note implied; and the **landing boot wordmark** (`794e790`, see the Branon research
+  section for the decision and the two gotchas). A BIOS/POST sequence was explicitly rejected: it is the most imitated
   retro-terminal trope, it gates the hero behind fiction, and nothing is actually booting.
 - **DROPPED 2026-09-05: the pixel sprite of Aamir.** He does not want one. Remove it from any
   remaining plan docs rather than re-proposing it.
@@ -91,8 +93,8 @@ interactivity, not new sections. Full detail in "What exists right now" and NEXT
 ## Branon's boot/loading animation, how it actually works (researched 2026-09-05)
 
 Aamir liked the custom animation on branon.dev's landing page and asked what it is. Findings from the
-read-only clone at `~/Developer/branon-portfolio-ref`. **No decision made yet, see the open question
-at the end. Re-ask him before building anything.**
+read-only clone at `~/Developer/branon-portfolio-ref`. **Decision made and built on 2026-09-05, see
+"ANSWERED + BUILT" at the end of this section.**
 
 **It is not a loading animation.** Nothing is loaded or awaited. It is an interactive **power-on
 ritual gated behind a real user gesture**, so it never makes anyone wait. `src/app/page.tsx` is just
@@ -141,13 +143,30 @@ worth more than the whole:
 3. **The sessionStorage replay suppression**, the difference between "delightful once" and "annoying
    on the fourth visit."
 
-**OPEN QUESTION FOR AAMIR (he asked to be re-asked next session, do not build until answered):**
-- We **already have a boot moment**, the `start-here` hero typing sequence. So the real question is
-  not "add a loader" but: does the hero open with a **wordmark animation first**, then the terminal
-  session, or does the terminal session stay the opening beat on its own?
-- If we do add one: **gesture-gated or automatic?** (Branon's is gated; ours currently auto-plays.)
-- **How far do we scope it?** Full ritual (shell art + WebGL + audio), or just the cheap borrowings
-  above applied to the existing pixel wordmark?
+**ANSWERED + BUILT 2026-09-05 (`794e790`).** Aamir chose: a wordmark animation **before** the
+terminal, playing **automatically** (not gesture-gated), as a **full WebGL port** rather than the
+cheap CSS borrowings, explicitly "to start here and iterate". He was shown the cost (~3s before his
+name is readable) in the option preview and chose it anyway. What shipped:
+- `src/components/boot/BootLogoCanvas.tsx`: the ported animation via **`ogl`** (new dependency),
+  faithful to his J-hook path, late-biased scale, per-letter cascade bounce and word-relative sweep.
+  **Retuned to us:** letters flash our `cartridge.*` accents rather than a generic rainbow, and settle
+  to `brand.ink` (which is byte-identical to the ink his shader already used).
+- `src/components/boot/BootOverlay.tsx`: plays **once per session** (sessionStorage), skipped under
+  `prefers-reduced-motion`, and falls through to the hero if WebGL is unavailable or the canvas never
+  reports completion (6s bail), so nobody is stranded on a blank screen.
+
+**Two gotchas worth keeping:**
+1. **The hero's typing had to be gated.** Its CSS animations start on page load, so they ran to
+   completion *underneath* the overlay and the terminal was already finished when it lifted. They are
+   now `animation-play-state: paused` until `html[data-booted="1"]` is set.
+2. **React strips unknown attributes off `<html>` during hydration.** The pre-paint inline script sets
+   `data-booted`, and hydration silently removed it, so repeat visits still played the boot. The
+   decision is therefore also stashed on `window.__akSkipBoot`, which hydration cannot touch; the
+   attribute only needs to survive the single pre-paint frame it prevents a flash in.
+
+**Iteration knobs if he wants to make it more his own:** total duration (~2.4s before handoff, from
+the four constants in `BootOverlay.tsx`), whether the sweep stays at all, and the accent order in
+`ACCENTS` in `BootLogoCanvas.tsx`.
 
 ## Section-screen findings (2026-08-21)
 
@@ -253,10 +272,8 @@ the Vercel cutover.**
   Protocol and listen for `Runtime.exceptionThrown` matching /Hydration failed/ (scratchpad script
   pattern used on 2026-09-05).
 
-## What's next (agreed 2026-09-05, in this order)
+## What's next (in this order)
 
-0. **Re-ask Aamir the boot-animation open question above** (he explicitly asked to be reminded and to
-   be re-asked the same questions; he will decide then). Do not build any of it unprompted.
 1. **Strip the title-bar status chips from every remaining page**, the way `/projects` already had
    its `● 5 programs` removed (`8be9d39`): the green dot + wording in the top right. Remaining ones
    are `/about` "resolved", `/experience` "3 roles", `/contact` "open to work" (pulsing), and the
@@ -265,15 +282,16 @@ the Vercel cutover.**
    AI roles" in the body, so nothing is lost by removing it. Aamir asked for all of them.
 2. **Prototype the hero tool-call trace** (see parked items above). Throwaway; he is skeptical, so
    build it to be judged and be ready to drop it.
-3. **Fix the hydration mismatch above** before deploying.
-2. Open item on PROJECTS: `gpt-from-scratch`'s description still says "by hand in PyTorch". Aamir
-   dislikes the phrase generally but **decided to keep it here** (2026-09-05) since it is literally
-   true for that project. No action unless he revisits.
-3. Open design-iteration items still parked (see below): hero tool-call trace, menu hover/active
-   states, boot lines typing in, a pixel sprite of Aamir.
-4. Pre-cutover: **all external URLs are now verified** (resume replaced 2026-09-05 after the old Drive
+3. **Fix the hydration mismatch on `/`** (see the pre-cutover bug section) before deploying.
+4. Pre-cutover: **all external URLs are verified** (resume replaced 2026-09-05 after the old Drive
    link 404'd for anonymous visitors; email/GitHub/LinkedIn/5 repos all good). Remaining: plan the
-   Vercel deploy (auto-deploy is paused).
+   Vercel deploy (auto-deploy is paused). Also worth a look before shipping: the boot animation adds
+   **`ogl` (~1MB) and a WebGL path on the landing page's critical path**, the first non-CSS
+   dependency in the visual layer.
+**No action, recorded so it is not re-litigated:** `gpt-from-scratch`'s description still says "by
+hand in PyTorch"; Aamir dislikes the phrase generally but decided to keep it there (2026-09-05) since
+it is literally true for that project.
+
 **Deferred:** the single-project detail screen from the PROJECTS index (Branon opens a separate page;
 ours should too).
 
