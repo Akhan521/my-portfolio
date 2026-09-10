@@ -66,6 +66,10 @@ function TypeIn({ text, at }: { text: string; at: number }) {
       sx={{
         width: `${text.length}ch`,
         animation: `${typeTrack(text)} ${typeDur(text).toFixed(3)}s linear ${at}s both`,
+        // Held until the boot overlay lifts, otherwise the session would run
+        // to completion underneath it (see BootOverlay).
+        animationPlayState: "paused",
+        'html[data-booted="1"] &': { animationPlayState: "running" },
         "@media (prefers-reduced-motion: reduce)": { animation: "none" },
       }}
     >
@@ -90,6 +94,8 @@ function CommandCursor({ until }: { until: number }) {
       boxShadow="0 0 7px rgba(155,227,107,.75)"
       sx={{
         animation: `${blinkCursor} 1.05s steps(1) infinite, ${keyframes`to { opacity: 0; visibility: hidden }`} 0.01s linear ${until}s forwards`,
+        animationPlayState: "paused",
+        'html[data-booted="1"] &': { animationPlayState: "running" },
         "@media (prefers-reduced-motion: reduce)": { display: "none" },
       }}
     />
@@ -102,6 +108,8 @@ function CommandCursor({ until }: { until: number }) {
  */
 const snapAt = (at: number) => ({
   animation: `${keyframes`from { opacity: 0 } to { opacity: 1 }`} 0.01s linear ${at}s both`,
+  animationPlayState: "paused",
+  'html[data-booted="1"] &': { animationPlayState: "running" },
   "@media (prefers-reduced-motion: reduce)": { animation: "none", opacity: 1 },
 });
 
