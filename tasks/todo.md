@@ -170,6 +170,11 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > late-biased shrink, the cascade bounce, the sweep. Making it ours means changing how letters move.
 > Directions + file pointers are in `docs/revamp-handoff.md`.
 >
+> **TOOL-CALL TRACE DROPPED FOR GOOD (2026-09-05).** Prototyped three variants at a throwaway
+> `/proto/trace` route (work trace / load trace / restrained) so Aamir could judge something real.
+> **His call: drop it entirely, it does not suit the hero and does not look good.** Route deleted, no
+> production code touched. Reasoning recorded in `docs/revamp-handoff.md`; do not re-propose it.
+>
 > **Next up:** (1) ~~strip the title-bar status chips~~ DONE (green dot +
 > wording, top right), as already done on `/projects`: `/about` "resolved", `/experience` "3 roles",
 > `/contact` "open to work", hero "agent online"; (2) **prototype the hero tool-call trace** (throwaway,
@@ -180,9 +185,9 @@ its spec. This file only sequences that work into digestible, resumable commits.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-09-05 — built the **WebGL boot wordmark**, then stripped the title-bar
-> status chips from every page. Next: prototype the tool-call trace, refine the wordmark so it stops
-> reading as Branon's, then fix the hydration bug on `/` before deploying.
+> **Last activity:** 2026-09-05 — built the **WebGL boot wordmark**, stripped the title-bar status
+> chips from every page, and prototyped then **dropped** the tool-call trace. Next: refine the
+> wordmark so it stops reading as Branon's, then fix the hydration bug on `/` before deploying.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 

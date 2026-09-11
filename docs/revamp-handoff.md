@@ -77,10 +77,20 @@ sections. Full detail in the dated sections below and "What's next".
 
 ## Open design-iteration items (parked)
 
-- The terminal's agentic tool-call trace (`● Search/Task` + `⎿` results) was removed on
-  2026-08-18 pending iteration. **Aamir is skeptical of it**; agreed plan is to build a throwaway
-  **prototype** so he can react to something real, then keep or drop it. Do not assume it ships.
-- Terminal has some empty mid-screen space now the trace is gone.
+- **DROPPED for good 2026-09-05: the agentic tool-call trace** (`● call` / `⎿ result` above the
+  identity block). It was pulled on 2026-08-18 for reading too generic, then prototyped properly on
+  2026-09-05 so Aamir could judge something real: three variants (A the Tatari outage told as tool
+  calls, B the machine loading his data, C a single restrained call) rendered beside the live hero at
+  a throwaway `/proto/trace` route, since deleted. **His call after seeing it: drop the idea
+  altogether, it does not suit the hero and does not look good.** Do not re-propose it.
+  For the record, the problems the prototype exposed: **A** is the most compelling content but the
+  tool-call format implies an *agent* did work that Aamir did, which undercuts the very claim the
+  site makes about him; **B** is honest but drifts back toward the fake-BIOS idea already rejected
+  (nothing is actually loading); and every variant pushes his name further down the screen, adding a
+  third thing between a recruiter and "AAMIR KHAN" on top of the boot wordmark and the typing.
+- Terminal has some empty mid-screen space where the trace used to sit. **That space is now its own
+  open question** (the trace is no longer the answer to it): either design something else for it, or
+  tighten the terminal's height so the gap closes.
 - A peeking "program disk" is still undesigned.
 - **DONE 2026-09-05:** the title-bar status chips are stripped from **every** page (`d677212`:
   hero "agent online", `/about` "resolved", `/experience` "3 roles", `/contact` "open to work";
@@ -303,10 +313,10 @@ the Vercel cutover.**
 
 ## What's next (in this order)
 
-1. **Prototype the hero tool-call trace** (see parked items above). Throwaway; he is skeptical, so
-   build it to be judged and be ready to drop it.
-2. **Refine the boot wordmark so it stops reading as Branon's** (see the OPEN block in the Branon
+1. **Refine the boot wordmark so it stops reading as Branon's** (see the OPEN block in the Branon
    section for why this is a motion problem, not a colour one).
+2. Decide what, if anything, fills the terminal's empty mid-screen space now that the tool-call trace
+   is dropped (see parked items), or close the gap instead.
 3. **Fix the hydration mismatch on `/`** (see the pre-cutover bug section) before deploying.
 4. Pre-cutover: **all external URLs are verified** (resume replaced 2026-09-05 after the old Drive
    link 404'd for anonymous visitors; email/GitHub/LinkedIn/5 repos all good). Remaining: plan the
