@@ -82,7 +82,11 @@ sections. Full detail in the dated sections below and "What's next".
   **prototype** so he can react to something real, then keep or drop it. Do not assume it ships.
 - Terminal has some empty mid-screen space now the trace is gone.
 - A peeking "program disk" is still undesigned.
-- **DONE 2026-09-05:** menu hover/active states (`9a7d089`); "boot lines typing in", which became
+- **DONE 2026-09-05:** the title-bar status chips are stripped from **every** page (`d677212`:
+  hero "agent online", `/about` "resolved", `/experience` "3 roles", `/contact` "open to work";
+  `/projects` was already done in `8be9d39`). Title bars are now just traffic lights + path.
+  `TerminalWindow` still accepts a `status` prop that nothing passes; left in place as an optional
+  slot, safe to delete if it stays unused. Also done: menu hover/active states (`9a7d089`); "boot lines typing in", which became
   the hero typing sequence (`f9a61f8`, `6940379`, `e8a0c02`) rather than the fake-BIOS reading the
   original note implied; and the **landing boot wordmark** (`794e790`, see the Branon research
   section for the decision and the two gotchas). A BIOS/POST sequence was explicitly rejected: it is the most imitated
@@ -164,9 +168,34 @@ name is readable) in the option preview and chose it anyway. What shipped:
    decision is therefore also stashed on `window.__akSkipBoot`, which hydration cannot touch; the
    attribute only needs to survive the single pre-paint frame it prevents a flash in.
 
-**Iteration knobs if he wants to make it more his own:** total duration (~2.4s before handoff, from
-the four constants in `BootOverlay.tsx`), whether the sweep stays at all, and the accent order in
-`ACCENTS` in `BootLogoCanvas.tsx`.
+**>> OPEN: REFINE THE WORDMARK SO IT IS OURS (Aamir, 2026-09-05).** He looked at the shipped version
+and said it "looks far too similar to and almost exactly like Branon's portfolio design for the
+wordmark lettering". He parked it deliberately to strip the status chips first, and wants to come back
+to it. **This is the next design task after the tool-call trace prototype, or sooner if he asks.**
+
+The important framing, so this is not mistaken for a colour problem: **recolouring will not fix it.**
+We already swapped his rainbow for our `cartridge.*` accents and it still reads as his. What we
+actually inherited is his *letter choreography*, and that is the signature:
+- the J-hook flight path (right+below -> up bulging right -> arc down -> slide left)
+- the 8.5x oversized entrance with the late-biased shrink
+- the per-letter cascade bounce on landing
+- the colour sweep across the settled word
+
+Making it ours means **changing how the letters move**, not what shade they are. Directions worth
+exploring (none chosen yet, render options and let him react, per his usual workflow):
+- **Terminal-native motion instead of a console-native one.** Our device is a terminal, not a Game
+  Boy. Letters could land like *typed characters* (left to right, on the uneven keystroke cadence we
+  already built in `HeroTerminal.tsx` `gaps()`), with the block cursor sweeping them into place.
+- **A CRT power-on** rather than a letter drop: a scanline collapse/expand, a phosphor bloom, the
+  screen warming up into the wordmark.
+- **Print/plotter feel:** characters struck onto paper, matching the warm-paper half of the palette.
+- Keep the WebGL pipeline (`ogl`, the atlas, nearest-neighbour sampling) either way; it is the
+  *animation curve* that needs replacing, not the renderer. Timings live in `BootOverlay.tsx`, motion
+  in `BootLogoCanvas.tsx` (`flightOffset`, `scaleProgress`, `bounceScale`, and the sweep uniforms).
+
+**Iteration knobs (smaller tweaks, if he only wants a trim rather than a rethink):** total duration
+(~2.4s before handoff, from the four constants in `BootOverlay.tsx`), whether the sweep stays at all,
+and the accent order in `ACCENTS` in `BootLogoCanvas.tsx`.
 
 ## Section-screen findings (2026-08-21)
 
@@ -274,14 +303,10 @@ the Vercel cutover.**
 
 ## What's next (in this order)
 
-1. **Strip the title-bar status chips from every remaining page**, the way `/projects` already had
-   its `● 5 programs` removed (`8be9d39`): the green dot + wording in the top right. Remaining ones
-   are `/about` "resolved", `/experience` "3 roles", `/contact` "open to work" (pulsing), and the
-   hero's "agent online". Note when doing `/contact`: its chip is the only one carrying real
-   information (that he is job-hunting), and the page already says "Open to full-time and internship
-   AI roles" in the body, so nothing is lost by removing it. Aamir asked for all of them.
-2. **Prototype the hero tool-call trace** (see parked items above). Throwaway; he is skeptical, so
+1. **Prototype the hero tool-call trace** (see parked items above). Throwaway; he is skeptical, so
    build it to be judged and be ready to drop it.
+2. **Refine the boot wordmark so it stops reading as Branon's** (see the OPEN block in the Branon
+   section for why this is a motion problem, not a colour one).
 3. **Fix the hydration mismatch on `/`** (see the pre-cutover bug section) before deploying.
 4. Pre-cutover: **all external URLs are verified** (resume replaced 2026-09-05 after the old Drive
    link 404'd for anonymous visitors; email/GitHub/LinkedIn/5 repos all good). Remaining: plan the

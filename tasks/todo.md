@@ -158,7 +158,19 @@ its spec. This file only sequences that work into digestible, resumable commits.
 > (it was running to completion underneath), and **React strips unknown attributes off `<html>` during
 > hydration**, so the skip decision rides on `window.__akSkipBoot`, not the attribute.
 >
-> **Next up:** (1) **strip the title-bar status chips from every page** (green dot +
+> **STATUS CHIPS STRIPPED (2026-09-05, `d677212`, pushed):** the green dot + wording is gone from the
+> top right of every terminal window (hero "agent online", `/about` "resolved", `/experience`
+> "3 roles", `/contact` "open to work"; `/projects` was already done). Title bars are now just traffic
+> lights + path. `TerminalWindow`'s `status` prop is now unused, left as an optional slot.
+>
+> **>> OPEN: REFINE THE BOOT WORDMARK.** Aamir saw the shipped version and said it looks "almost
+> exactly like Branon's" lettering; he parked it to do the chips first and wants to come back to it.
+> **Key framing: this is a MOTION problem, not a colour one** (we already swapped in our accents and it
+> still reads as his). What we inherited is his letter choreography: the J-hook path, the 8.5x
+> late-biased shrink, the cascade bounce, the sweep. Making it ours means changing how letters move.
+> Directions + file pointers are in `docs/revamp-handoff.md`.
+>
+> **Next up:** (1) ~~strip the title-bar status chips~~ DONE (green dot +
 > wording, top right), as already done on `/projects`: `/about` "resolved", `/experience` "3 roles",
 > `/contact` "open to work", hero "agent online"; (2) **prototype the hero tool-call trace** (throwaway,
 > Aamir is skeptical, build it to be judged); (3) fix the hydration bug before the Vercel deploy.
@@ -168,10 +180,9 @@ its spec. This file only sequences that work into digestible, resumable commits.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-09-05 — fixed the dead resume link, added the in-progress legend, made the
-> menu's interaction states real, built the hero typing sequence, and built the **WebGL boot wordmark**
-> on the landing page. Next: strip the title-bar status chips, prototype the tool-call trace, then fix
-> the hydration bug on `/` before deploying.
+> **Last activity:** 2026-09-05 — built the **WebGL boot wordmark**, then stripped the title-bar
+> status chips from every page. Next: prototype the tool-call trace, refine the wordmark so it stops
+> reading as Branon's, then fix the hydration bug on `/` before deploying.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
