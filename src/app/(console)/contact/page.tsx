@@ -44,21 +44,6 @@ export default function ContactPage() {
             </Box>
           </>
         }
-        status={
-          <Box as="span" display="inline-flex" alignItems="center" gap={2}>
-            <Box
-              w="8px"
-              h="8px"
-              borderRadius="full"
-              bg="cartridge.green"
-              sx={{
-                animation: `${pulse} 2s ease-in-out infinite`,
-                "@media (prefers-reduced-motion: reduce)": { animation: "none" },
-              }}
-            />
-            open to work
-          </Box>
-        }
       >
         <TerminalScreen>
           <Text>

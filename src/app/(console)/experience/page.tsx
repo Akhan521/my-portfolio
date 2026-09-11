@@ -88,12 +88,6 @@ export default function ExperiencePage() {
             </Box>
           </>
         }
-        status={
-          <Box as="span" display="inline-flex" alignItems="center" gap={2}>
-            <Box w="8px" h="8px" borderRadius="full" bg="cartridge.green" boxShadow="0 0 7px rgba(34,197,94,.7)" />
-            3 roles
-          </Box>
-        }
       >
         <TerminalScreen>
           <Text>

@@ -129,22 +129,7 @@ const T_ASK = T_OUT + 0.33; // the prompt starts typing
  */
 export function HeroTerminal(props: BoxProps) {
   return (
-    <TerminalWindow
-      path="aamir@ak-micro: ~"
-      status={
-        <Box as="span" display="inline-flex" alignItems="center" gap={2}>
-          <Box
-            w="8px"
-            h="8px"
-            borderRadius="full"
-            bg="cartridge.green"
-            boxShadow="0 0 7px rgba(34,197,94,.7)"
-          />
-          agent online
-        </Box>
-      }
-      {...props}
-    >
+    <TerminalWindow path="aamir@ak-micro: ~" {...props}>
       <TerminalScreen display="flex" flexDirection="column">
         <Text>
           <Box as="span" color="screen.dim">
