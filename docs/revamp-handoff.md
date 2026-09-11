@@ -334,11 +334,36 @@ ours should too).
 
 ## Paste-prompt for the fresh session
 
-> Continue the portfolio revamp. Read `docs/revamp-handoff.md` (NEXT TASK), the Current Position
-> block in `tasks/todo.md`, and your memory on the retro-terminal revamp. The Next.js app is live on
-> `main` (Chakra + tokens + fonts + paper bg; the terminal shell pair; the hero; inner-page chrome
-> with the menu wired to section routes). Today: build the real **PROJECTS** section into
-> `src/app/(console)/projects/page.tsx` (replace the stub) as the locked filter-pill index, using my
-> real content in `tasks/content.md` and the shell components. Work in very small, single-focus
-> commits and verify each with headless Chrome (extension isn't connected). Keep originality the top
-> priority, no generic/AI-generic looks. No em dashes.
+Paste this into a new session. Swap the "Today" line for whatever you actually want to work on.
+
+> Continue the portfolio revamp. First read `docs/revamp-handoff.md` (especially "What's next" and the
+> parked/dropped items), the Current Position block in `tasks/todo.md`, and your memory on the
+> retro-terminal revamp. Don't trust any single line in isolation, these docs have accumulated over
+> many sessions; the dated entries are the reliable ones.
+>
+> **State:** the site is fully built on `main` and pushed. Four sections (ABOUT, PROJECTS, EXPERIENCE,
+> CONTACT), a hero that types itself in as a terminal session, a WebGL boot wordmark on the landing
+> page, real keyboard/hover/press states on the menu and the projects list. Every external link is
+> verified. Next.js 15 + React 19 + TS, Chakra UI v2 + Emotion, self-hosted Press Start 2P + IBM Plex
+> Mono.
+>
+> **Today:** refine the boot wordmark so it stops reading as Branon Eusebio's. It is currently a
+> faithful port of his letter choreography, so this is a MOTION problem, not a colour one, recolouring
+> has already been tried and it still reads as his. See the OPEN block in the Branon section of the
+> handoff for directions and the exact functions to replace.
+>
+> **Things already decided, do not redo them:** the PROJECTS filter pills were deliberately removed
+> (do not re-add); the tool-call trace was prototyped and dropped for good (do not re-propose); the
+> pixel sprite is dropped; WRITING as a section is dropped. There is a known pre-cutover hydration bug
+> on `/` that is documented and not yet fixed.
+>
+> **How I work:** very small, single-focus commits. Verify every change with headless Chrome (my
+> browser extension is not connected), at desktop and a >=500px narrow width, since headless clamps
+> below ~500px. For anything interactive or animated, drive it with Chrome DevTools Protocol from a
+> scratchpad script rather than trusting a static screenshot; there are working examples of this
+> pattern from previous sessions. Commit and push ONLY when I ask. Keep originality the top priority,
+> nothing that reads as generic or AI-generated. No em dashes anywhere.
+
+**If you would rather not paste anything:** a fresh session that just reads `docs/revamp-handoff.md`
+will pick up fine. The paste-prompt mainly saves a round trip and front-loads the "already decided"
+list, which is the part most likely to be re-litigated otherwise.
