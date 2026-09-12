@@ -49,3 +49,6 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+
+# private, unsanitized source docs (this repo is PUBLIC, never commit these)
+tasks/*-master.md

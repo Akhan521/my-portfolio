@@ -107,8 +107,8 @@ export default function AboutPage() {
           <Box mt="18px" maxW="68ch">
             <Text color="screen.base">
               {"I'm Aamir, an AI software engineer focused on building AI systems and getting them into production. At Tatari, I work on a production ML platform serving millions of predictions a day. I "}
-              <Win>root-caused and fixed a multi-month outage</Win>
-              {" that had been silently failing ~3.9M predictions daily, and I "}
+              <Win>root-caused and fixed a four-month-old serving defect</Win>
+              {" that had been silently returning nothing for ~3.9M feature lookups a day, and I "}
               <Win>built the champion/challenger routing system</Win>
               {" that scores 3.4M+ rows nightly, which I then optimized to run about 45% faster."}
             </Text>

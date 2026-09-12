@@ -117,17 +117,23 @@ game-y XP/% and emoji read as AI-generic, replaced per the clean-professional no
 
 - Eyebrow: `"About Me"` (was `"SKILL TREE"` — dropped the game framing)
 - Heading: `"What I've Learned"`
-- Bio (repositioned 2026-08-08 to AI software engineer / application side; leads with shipping to
-  production + failure diagnosis, features Tatari as proof; "end to end" dropped per Aamir.
-  P1 rewritten 2026-08-15 from `tasks/tatari-accomplishments-report.md`: added the
-  champion/challenger routing build with its 3.4M+ rows and ~45% speedup, replacing the weak
-  "shipped new serving and monitoring features" closer. Owner validated the ~3.9M figure and
-  chose to omit the postmortem-adoption detail. P1 now carries **two** brand-green bolds, a
-  deliberate exception to the one-bold-per-paragraph rule so the fix and the build get equal
-  billing.) Rendered as **two paragraphs** (readability), bolds via `<strong>` +
-  `.about-text strong { color: var(--duo-green) }` (green chosen 2026-08-08; weight-only white
-  was too subtle on the already-white body):
-  > I'm Aamir, an AI software engineer focused on building AI systems and getting them into production. At Tatari, I work on a production ML platform serving millions of predictions a day. I **root-caused and fixed a multi-month outage** that had been silently failing ~3.9M predictions daily, and I **built the champion/challenger routing system** that scores 3.4M+ rows nightly, which I then optimized to run about 45% faster.
+- Bio: repositioned 2026-08-08 to AI software engineer / application side; leads with shipping to
+  production + failure diagnosis, features Tatari as proof; "end to end" dropped per Aamir. P1
+  rewritten 2026-08-15 to add the champion/challenger routing build with its 3.4M+ rows and ~45%
+  speedup, replacing the weak "shipped new serving and monitoring features" closer. P1 carries
+  **two** proof-phrase highlights, a deliberate exception to the one-per-paragraph rule so the fix
+  and the build get equal billing. Rendered as two paragraphs; in the retro-terminal build the
+  highlights are the phosphor `<Win>` span in `src/app/(console)/about/page.tsx` (the terminal
+  analog of the earlier brand-green bolds).
+
+  **CORRECTED 2026-09-11, accuracy, do not regress:** the four-month defect affected **feature
+  lookups**, not customer-facing predictions. Aamir's full internship record is explicit that no
+  production prediction was wrong during those four months, because nothing used the broken path
+  yet; he built the path, found the dormant defect, and fixed it before it could ever carry traffic.
+  The earlier wording "silently failing ~3.9M predictions daily" overclaimed. **Never restore it**,
+  here or on any external surface (LinkedIn, GitHub profile README, resume). Source of truth:
+  `tasks/tatari-accomplishments-report.md` §1.
+  > I'm Aamir, an AI software engineer focused on building AI systems and getting them into production. At Tatari, I work on a production ML platform serving millions of predictions a day. I **root-caused and fixed a four-month-old serving defect** that had been silently returning nothing for ~3.9M feature lookups a day, and I **built the champion/challenger routing system** that scores 3.4M+ rows nightly, which I then optimized to run about 45% faster.
   >
   > I've also **built AI systems from scratch**, from an image-captioning library to a hand-written GPT and a fine-tuned text-to-SQL model, so I understand what's happening under the hood. I care about shipping AI software that holds up in production, not just in a demo.
 
