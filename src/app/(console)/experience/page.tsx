@@ -16,8 +16,11 @@ function Num({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Career log, most recent first. Copy composed from tasks/aamir-info-bank.md,
-// application-side framing, Tatari metrics cleared for public use.
+// Career log, most recent first. Tatari bullets are the four headline
+// workstreams from tasks/tatari-accomplishments-report.md, in the report's
+// order. Application-side framing; all figures cleared for public use.
+// NOTE: the four-month defect affected feature LOOKUPS, not customer-facing
+// predictions. Do not reword it as failing predictions.
 const ROLES: {
   title: string;
   meta: string;
@@ -28,19 +31,26 @@ const ROLES: {
     meta: "Tatari · Jun 2026 → Sep 2026",
     bullets: [
       <>
-        Root-caused and fixed a multi-month serving outage that was silently failing{" "}
-        <Num>~3.9M</Num> feature lookups a day, tracing it to a publish-vs-serve key-order
-        mismatch and sealing it with a permanent regression test.
+        Rewired the nightly job so every prediction runs through the live model and gets logged,
+        which surfaced a four-month-old bug that had been quietly returning nothing for{" "}
+        <Num>~3.9M</Num> data lookups a day. Found it by comparing how the data was being saved
+        against how it was being read, and fixed it before the new path carried real traffic.
       </>,
       <>
-        Built and shipped the champion/challenger batch routing client (registry-driven fan-out
-        with its own OAuth2 auth), verified in production at <Num>3.4M+</Num> rows, then optimized
-        the scoring to run about <Num>45% faster</Num>.
+        Brought back a dead LLM service that flags TV ads breaking network rules before a network
+        rejects them, which saves days of back-and-forth on every rejection. Got it running, tuned
+        its checks against <Num>84 real ads</Num> until it caught violations reliably, and shipped
+        it.
       </>,
       <>
-        Caught a security bug in my own code before it shipped (a registry URL that could redirect a
-        live credential) and prevented two production incidents, including a prune that would have
-        dropped <Num>3.44M</Num> predictions a day.
+        Ported the model onto the team&rsquo;s standardized MLOps framework, cutting training from{" "}
+        <Num>109 minutes to 15</Num> by training one model a night instead of two to serve one.
+      </>,
+      <>
+        Built the system that tests new models against full production traffic without any of it
+        reaching a customer, verified at <Num>3.4M+</Num> rows, then cut the nightly run from{" "}
+        <Num>145 minutes to 80</Num> by scoring the models at the same time instead of one after
+        another.
       </>,
     ],
   },
