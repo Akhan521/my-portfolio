@@ -118,18 +118,41 @@ framework (Databricks Asset Bundles, MLflow pyfunc, Feature Store training), the
 second deployment end to end across dev, staging, and production, turned on its inference logging,
 and registered it as a live challenger.
 
-The impact is in the training loop:
+**Why the migration mattered.** Before it, starting a new model experiment required an
+infrastructure change against code that every other experiment also depended on, reviewed on a
+separate track from the model code itself. Nobody could get a new idea running in production until
+that landed, which made it the single largest source of friction on trying anything new. Under the
+new framework each model gets two self-contained deployments, one serving live traffic and one
+running as a shadow, so starting an experiment became a branch in the shadow deployment rather than
+a change to shared infrastructure.
+
+**Where the training time actually went.** This was not a tuning win. Reading the old and new
+training code side by side, he found the legacy pipeline was retraining the model roughly **13
+times per run**, walking a rolling window of past weeks to produce plots and logs that nothing
+downstream read, and then training the production model separately afterward anyway. Removing that
+**redundant retraining** is the dominant contributor. A larger single-node training instance
+accounts for most of the remainder. Dropping a second, redundant model variant that used to train
+alongside the real one mainly cut compute cost rather than wall-clock time.
+
+> **Wording caution for copy:** never describe this as "removing validation." Nothing consumed the
+> loop's output and the shipped model was trained separately, so no coverage was lost, but the
+> phrase reads as cutting safety checks to hit a number. Say **redundant retraining**, or **a
+> leftover backtest whose output nothing read**.
 
 | | Before | After |
 |---|---|---|
 | Training time | **109 min** | **15 min** |
-| Variants trained nightly | 2 (to serve 1) | 1 |
 | Full train-and-deploy cycle | ~2.5 hours | **27 min** |
 | Compute per run | baseline | **68% less** |
 
 Anyone who wants to try a change to this model now waits a quarter of an hour to see the result
 instead of nearly two hours. Fleet-wide, the migration this port fed into measured **cheaper per
 month while serving 50% more models**, six against four.
+
+> **On the 109-minute baseline:** it was measured against the platform's own job-run history at the
+> time. That history was not retained once the new pipeline replaced the old one, so the figure is
+> not re-derivable today. The honest framing, and a normal one for an infra-migration metric, is
+> "measured at the time against live infrastructure history." Do not oversell it as reproducible.
 
 ### The champion/challenger router, and a nightly job nearly twice as fast
 
@@ -283,8 +306,8 @@ adjudication by mechanical evidence, and formal equivalence testing.
 
 **ML & model serving:** MLflow (run artifacts, pyfunc models), Databricks model serving via
 `/invocations`, AI Gateway inference logging, LightGBM, champion/challenger registries, batch
-inference, blue/green deployment, shadow scoring and request fan-out, and ULP-level bit-exact parity
-testing between scoring paths.
+inference, shadow scoring and request fan-out, and ULP-level bit-exact parity testing between
+scoring paths.
 
 **Databricks & data platform:** Databricks Runtime migration, Unity Catalog (grants, lineage, audit
 tables), DBFS, online (DynamoDB-backed) vs. offline feature stores, feature-table publish/refresh,
