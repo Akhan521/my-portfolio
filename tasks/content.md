@@ -126,14 +126,16 @@ game-y XP/% and emoji read as AI-generic, replaced per the clean-professional no
   highlights are the phosphor `<Win>` span in `src/app/(console)/about/page.tsx` (the terminal
   analog of the earlier brand-green bolds).
 
-  **CORRECTED 2026-09-11, accuracy, do not regress:** the four-month defect affected **feature
-  lookups**, not customer-facing predictions. Aamir's full internship record is explicit that no
+  **CORRECTED 2026-09-11, accuracy, do not regress:** the four-month defect affected **data
+  lookups** (called feature lookups internally), not customer-facing predictions. Aamir's full internship record is explicit that no
   production prediction was wrong during those four months, because nothing used the broken path
   yet; he built the path, found the dormant defect, and fixed it before it could ever carry traffic.
   The earlier wording "silently failing ~3.9M predictions daily" overclaimed. **Never restore it**,
   here or on any external surface (LinkedIn, GitHub profile README, resume). Source of truth:
-  `tasks/tatari-accomplishments-report.md` §1.
-  > I'm Aamir, an AI software engineer focused on building AI systems and getting them into production. At Tatari, I work on a production ML platform serving millions of predictions a day. I **root-caused and fixed a four-month-old serving defect** that had been silently returning nothing for ~3.9M feature lookups a day, and I **built the champion/challenger routing system** that scores 3.4M+ rows nightly, which I then optimized to run about 45% faster.
+  `tasks/tatari-accomplishments-report.md` §1. **Wording refreshed 2026-09-14** to match the
+  GitHub README and LinkedIn verbatim: "found a four-month-old bug", "data lookups" (not "feature
+  lookups", which means nothing to a recruiter), and "145 minutes to 80" rather than "~45% faster".
+  > I'm Aamir, an AI software engineer focused on building AI systems and getting them into production. At Tatari, I work on a production ML platform serving millions of predictions a day. I **found a four-month-old bug** that had been quietly returning nothing for ~3.9M data lookups a day, and I **built the champion/challenger routing system** that scores 3.4M+ rows nightly, then cut that run from 145 minutes to 80.
   >
   > I've also **built AI systems from scratch**, from an image-captioning library to a hand-written GPT and a fine-tuned text-to-SQL model, so I understand what's happening under the hood. I care about shipping AI software that holds up in production, not just in a demo.
 
