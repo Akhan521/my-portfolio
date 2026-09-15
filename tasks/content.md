@@ -75,29 +75,26 @@ and is now fixed: Text2SQL is `Text2SQL-LLaMA-Analyst`, not `Text2SQL-LLaMA` (th
 
 ---
 
-## Skills (About section), implemented 2026-08-07 (curated, categorized chips)
+## Skills (About section), REMOVED 2026-09-14
 
-Owner-confirmed, curated for AI SWE recruiters (not overloaded). No XP levels, no %, no emoji.
-Rendered as solid-tactile `.skill-chip`s under green category labels. See
-`docs/superpowers/specs/2026-08-07-about-skills-design.md`.
+**There is no skills block on `/about` any more.** The curated chip grid (languages / ai-ml /
+tools / production-and-mlops) was deleted in commit `6fb857c`.
 
-- **Languages:** Python · SQL · JavaScript · C++
-- **AI / ML:** PyTorch · LLMs & NLP · Agentic AI · RAG · Fine-tuning (LoRA/PEFT) · Transformers
-- **Tools & Frameworks:** Hugging Face · LangChain · FastAPI · Docker · Git
-- **Production & MLOps:** MLflow · Databricks · Airflow · Model serving · Feature stores · Shadow deployment · Monitoring · CI/CD
-  _(added 2026-08-08: signals Aamir's differentiator, he ships/operates AI in production. Owner
-  chose the label "Production & MLOps" (ampersand matches "Tools & Frameworks"). Expanded
-  2026-08-15 with Airflow, Feature stores, and Shadow deployment, all backed by real depth in
-  `tasks/tatari-accomplishments-report.md`; these are the vocabulary ML-platform hiring managers
-  scan for.)_
+**Why, so it is not rebuilt:** a self-declared skill list carries no evidence, the `/experience`
+bullets already demonstrate the same stack in use, and a skills grid is the most templated element
+in the portfolio genre, which works against a site whose whole point is not looking generic. The
+LinkedIn skills block stays, because LinkedIn Recruiter hard-filters on that structured field and
+semantic search reads the About text; no equivalent mechanism exists for a personal site.
 
-_Set aside to avoid overload (easy to add back): generic "Machine Learning", standalone Vector
-DBs/embeddings (implied by RAG), React / Node (web-leaning), NumPy / Pandas (assumed alongside
-PyTorch), and deeper infra terms (Kubernetes, Terraform, OAuth2/M2M, champion/challenger as a
-separate chip, it's implied by Shadow deployment) kept out to stay curated and application-leaning._
+**Also rejected 2026-09-14:** a replacement two-row `$ cd ~/experience` / `$ cd ~/projects` link
+block, and a 760px frame. Aamir saw both and did not like them. Do not re-propose them.
 
-**Retired:** the earlier XP-bar skills (`level`/`icon` array with "SKILL TREE" eyebrow). The
-game-y XP/% and emoji read as AI-generic, replaced per the clean-professional north star.
+**Open:** the chips were the only element spanning the window, so nothing on `/about` now reaches
+the right edge (the bio is capped at `68ch` inside a 900px frame). Layout for that space is an
+unresolved design question, deliberately left for a later pass rather than padded with filler.
+
+**Retired earlier:** the XP-bar skills (`level`/`icon` array with a "SKILL TREE" eyebrow), which
+read as AI-generic.
 
 ---
 

@@ -6,11 +6,13 @@ rebuilt as a **retro terminal / vintage-computer** experience in **Branon Eusebi
 language** (branon.dev), scoped so it reads unmistakably as an AI software engineer's portfolio:
 the retro shell is the frame, the AI work is the hero.
 
-> **Status: early build.** The Next.js app is scaffolded and stripped to a bare home route on
-> `main`. Chakra UI, design tokens, fonts, the terminal shell, and all sections are not built yet.
-> This file describes the current stack + locked direction; deep design detail lives in the
-> reference docs below. When something here and a reference doc disagree, the reference doc wins
-> for its area.
+> **Status: built end to end** (all sections shipped 2026-09-01, pushed). Chakra UI, the design
+> tokens, the fonts, the terminal shell, and all four section screens exist: hero and
+> `SELECT A PROGRAM` menu, then `/about`, `/projects`, `/experience`, `/contact`, with
+> `ESC · MENU` to go back. Remaining work is polish, interactivity, and the Vercel cutover
+> (**auto-deploy is still paused, so the live URL serves the OLD Duolingo build**).
+> This file describes the stack + locked direction; deep design detail lives in the reference
+> docs below. When something here and a reference doc disagree, the reference doc wins for its area.
 
 **History:** this repo previously held a "Duolingo Night Mode" vanilla HTML/CSS/JS site. That build
 is **parked** (fully backed up: git tag `duolingo-night-mode-v1`, branch `backup/duolingo-night-mode`,
@@ -30,7 +32,8 @@ pre-pivot handoff is archived at `docs/HANDOFF.md`.
 | `tasks/content.md` | **Verbatim content**: projects, skills, and all section copy. Use these values exactly. |
 | `tasks/todo.md` | Current Position + Review Log (also still holds the parked Duolingo commit plan). |
 | `tasks/aamir-info-bank.md` | Factual source of truth about Aamir (background, Tatari work, projects). |
-| `tasks/tatari-accomplishments-report.md` | Sanitized, cleared-for-public Tatari accomplishments. |
+| `tasks/tatari-accomplishments-report.md` | Canonical **public-safe** Tatari record. Draw all outward copy from this. |
+| `tasks/*-master.md` | **GITIGNORED private masters** (Tatari internship, ML platform migration). Unsanitized: colleague names, internal quotes, vendor dates. **Never commit them, this repo is public.** |
 | `docs/HANDOFF.md` | **Archived** pre-pivot Duolingo handoff (parked build only). |
 | `~/Developer/branon-portfolio-ref` | Read-only clone of Branon's repo (design-language reference). |
 
@@ -84,17 +87,24 @@ my-portfolio/
 ├── CLAUDE.md               ← this file
 ├── README.md
 ├── next.config.ts, tsconfig.json, eslint.config.mjs, package.json
-├── src/app/                ← App Router
-│   ├── layout.tsx          ← root layout (Chakra provider goes here next)
-│   ├── page.tsx            ← bare home placeholder
-│   └── globals.css         ← minimal reset (Chakra provides the full one)
-├── public/                 ← (empty; starter SVGs removed)
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx, providers.tsx, theme.ts, fonts.ts, globals.css
+│   │   ├── page.tsx              ← landing: boot overlay + hero + program menu
+│   │   └── (console)/            ← inner pages, no navbar (ESC · MENU chrome instead)
+│   │       ├── layout.tsx
+│   │       ├── about/page.tsx    ← bio only; skills chips removed 2026-09-14
+│   │       ├── projects/page.tsx
+│   │       ├── experience/page.tsx  ← Tatari bullets, kept in sync with the GitHub README
+│   │       └── contact/page.tsx
+│   ├── components/  boot/ chrome/ hero/ section/ terminal/
+│   └── lib/consoleTheme.ts
 ├── docs/                   ← revamp-handoff.md (live), HANDOFF.md (archived), superpowers/specs/
 └── tasks/                  ← content.md, todo.md, and the other reference docs
 ```
 
-Components, theme, fonts, and routes are added as we build. Follow Branon's structure where it
-helps (`src/components/`, `src/lib/`, a `theme.ts`), reinterpreted for the terminal device.
+Follow Branon's structure where it helps (`src/components/`, `src/lib/`, a `theme.ts`),
+reinterpreted for the terminal device.
 
 ---
 

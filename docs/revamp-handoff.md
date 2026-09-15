@@ -313,6 +313,15 @@ the Vercel cutover.**
 
 ## What's next (in this order)
 
+0. **`/about` layout is an open question (opened 2026-09-14).** The skill chips were removed
+   (commit `6fb857c`), and they were the only element spanning the window, so nothing on the page
+   now reaches the right edge (bio capped at `68ch` inside a 900px frame). Aamir saw and
+   **rejected** two attempts to fill or fit it: a two-row `$ cd ~/experience` / `$ cd ~/projects`
+   link block, and narrowing the frame to 760px. **Do not re-propose either.** He wants the page
+   short rather than padded, so the answer is either a genuinely better use of the space or a
+   deliberate layout that reads as intentional emptiness. See `tasks/content.md` for the reasoning
+   behind removing the chips.
+
 1. **Refine the boot wordmark so it stops reading as Branon's** (see the OPEN block in the Branon
    section for why this is a motion problem, not a colour one).
 2. Decide what, if anything, fills the terminal's empty mid-screen space now that the tool-call trace
@@ -323,6 +332,14 @@ the Vercel cutover.**
    Vercel deploy (auto-deploy is paused). Also worth a look before shipping: the boot animation adds
    **`ogl` (~1MB) and a WebGL path on the landing page's critical path**, the first non-CSS
    dependency in the visual layer.
+**Tatari copy is settled (2026-09-14).** `/about` and `/experience` are accurate and in sync with
+the GitHub profile README and LinkedIn, all using the same canonical figures. The one-time accuracy
+fix: the four-month defect affected **data lookups**, not customer-facing predictions, so never
+write "failing ~3.9M predictions a day". Every bullet is one sentence in the form "achieved X as
+measured by Y by doing Z". The MLOps port bullet is deliberately **off** all public surfaces (every
+honest framing read weaker than the other five); that story is interview material instead. Still
+outstanding off-site: the resume block.
+
 **No action, recorded so it is not re-litigated:** `gpt-from-scratch`'s description still says "by
 hand in PyTorch"; Aamir dislikes the phrase generally but decided to keep it there (2026-09-05) since
 it is literally true for that project.
