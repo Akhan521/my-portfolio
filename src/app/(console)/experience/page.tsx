@@ -16,10 +16,11 @@ function Num({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Career log, most recent first. Tatari bullets are the four headline
-// workstreams from tasks/tatari-accomplishments-report.md, in the report's
-// order. Application-side framing; all figures cleared for public use.
-// NOTE: the four-month defect affected feature LOOKUPS, not customer-facing
+// Career log, most recent first. The Tatari bullets are kept verbatim in sync
+// with the GitHub profile README (github.com/Akhan521) so both surfaces tell
+// the same story with the same figures. Source: tasks/tatari-accomplishments-report.md.
+// Every bullet is one sentence in the form "achieved X as measured by Y by doing Z".
+// NOTE: the four-month defect affected data LOOKUPS, not customer-facing
 // predictions. Do not reword it as failing predictions.
 const ROLES: {
   title: string;
@@ -31,26 +32,28 @@ const ROLES: {
     meta: "Tatari · Jun 2026 → Sep 2026",
     bullets: [
       <>
-        Rewired the nightly job so every prediction runs through the live model and gets logged,
-        which surfaced a four-month-old bug that had been quietly returning nothing for{" "}
-        <Num>~3.9M</Num> data lookups a day. Found it by comparing how the data was being saved
-        against how it was being read, and fixed it before the new path carried real traffic.
+        Found a four-month-old bug that had been quietly returning nothing for <Num>~3.9M</Num> data
+        lookups a day, by comparing how the data was being saved against how it was being read, and
+        fixed it before it reached real traffic.
       </>,
       <>
-        Brought back a dead LLM service that flags TV ads breaking network rules before a network
-        rejects them, which saves days of back-and-forth on every rejection. Got it running, tuned
-        its checks against <Num>84 real ads</Num> until it caught violations reliably, and shipped
-        it.
+        Revived an LLM service that flags TV ads likely to fail network compliance, validated
+        against <Num>84 ads</Num> networks had already rejected, by diagnosing why it had never run
+        in production and writing its detection prompts.
       </>,
       <>
-        Ported the model onto the team&rsquo;s standardized MLOps framework, cutting training from{" "}
-        <Num>109 minutes to 15</Num> by training one model a night instead of two to serve one.
+        Benchmarked a new video processing mode in our Gemini pipeline, advertised at{" "}
+        <Num>88% fewer tokens</Num>, measured it failing <Num>22%</Num> of the time at{" "}
+        <Num>~15x</Num> the tokens, and recommended against adopting it.
       </>,
       <>
-        Built the system that tests new models against full production traffic without any of it
-        reaching a customer, verified at <Num>3.4M+</Num> rows, then cut the nightly run from{" "}
-        <Num>145 minutes to 80</Num> by scoring the models at the same time instead of one after
-        another.
+        Built a champion/challenger routing system that scores <Num>3.4M+</Num> rows against new
+        models nightly without any of it reaching a customer, then cut that run from{" "}
+        <Num>145 minutes to 80</Num> by running the models concurrently.
+      </>,
+      <>
+        Cut writes to a production database by <Num>49%</Num> (7.98M to 4.07M rows) after reading
+        the code and proving an entire category of data was never used by any model.
       </>,
     ],
   },
