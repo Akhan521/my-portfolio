@@ -1,11 +1,8 @@
 "use client";
 
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { keyframes } from "@emotion/react";
 import { TerminalWindow } from "@/components/terminal/TerminalWindow";
 import { TerminalScreen } from "@/components/terminal/TerminalScreen";
-
-const blink = keyframes`50% { opacity: 0 }`;
 
 // A proof phrase inside the bio, tinted the phosphor "success" green (the
 // terminal analog of the brand-green bolds from the earlier build).
@@ -17,10 +14,22 @@ function Win({ children }: { children: React.ReactNode }) {
   );
 }
 
-// The skill-chip grid was deliberately removed 2026-09-14: a self-declared
-// skill list carries no evidence, and the /experience bullets already
-// demonstrate the same stack in use. The page is intentionally short; layout
-// for the resulting space is still an open design question.
+// The skill-chip grid was removed 2026-09-14: a self-declared skill list
+// carries no evidence, and the /experience bullets already demonstrate the
+// same stack in use.
+//
+// This block replaces it (2026-09-15). Not padding: these are facts the site
+// stated nowhere else (degree, graduation, location), and they are what a
+// recruiter scans for. It reuses the /contact row vocabulary (arrow + dim
+// label + value) so /about stops being the only page with no aligned
+// structure. `role` was dropped as redundant with `now`; availability
+// deliberately lives on /contact, not here.
+const FACTS: { label: string; value: string }[] = [
+  { label: "now", value: "AI/ML Software Engineer Intern @ Tatari" },
+  { label: "school", value: "MS in Computer Science, UC Riverside (Dec 2026)" },
+  { label: "based", value: "Riverside, CA" },
+];
+
 export default function AboutPage() {
   return (
     <Flex minH="100vh" align="center" justify="center" px={{ base: 3, md: 8 }} py="80px">
@@ -76,25 +85,28 @@ export default function AboutPage() {
             </Text>
           </Box>
 
-          {/* trailing cursor */}
-          <Text mt="26px" color="screen.ok">
-            <Box as="span" color="screen.dim">
-              $
-            </Box>{" "}
-            <Box
-              as="span"
-              display="inline-block"
-              w="9px"
-              h="16px"
-              verticalAlign="-2px"
-              bg="screen.cream"
-              boxShadow="0 0 7px rgba(155,227,107,.75)"
-              sx={{
-                animation: `${blink} 1.05s steps(1) infinite`,
-                "@media (prefers-reduced-motion: reduce)": { animation: "none" },
-              }}
-            />
-          </Text>
+          {/* identity facts, aligned like the /contact channel rows */}
+          <Box mt="28px">
+            {FACTS.map((f) => (
+              <Flex key={f.label} align="baseline" gap={{ base: "10px", md: "16px" }} py="5px">
+                <Box as="span" flexShrink={0} fontSize="12px" color="screen.faint">
+                  &rarr;
+                </Box>
+                <Text
+                  flexShrink={0}
+                  w={{ base: "76px", md: "96px" }}
+                  fontSize="12.5px"
+                  color="screen.dim"
+                >
+                  {f.label}
+                </Text>
+                <Text fontSize="12.5px" color="screen.base">
+                  {f.value}
+                </Text>
+              </Flex>
+            ))}
+          </Box>
+
         </TerminalScreen>
       </TerminalWindow>
     </Flex>
