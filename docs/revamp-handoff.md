@@ -207,6 +207,61 @@ exploring (none chosen yet, render options and let him react, per his usual work
 (~2.4s before handoff, from the four constants in `BootOverlay.tsx`), whether the sweep stays at all,
 and the accent order in `ACCENTS` in `BootLogoCanvas.tsx`.
 
+### Wordmark motion: seven variants tried, PRESS parked as the pick (2026-09-22)
+
+Throwaway bench at **`/proto/boot`** (`src/app/proto/boot/page.tsx` +
+`src/components/boot/proto/ProtoLogoCanvas.tsx`). `?v=<id>` plays one full screen, `?strip=t1,t2,...`
+renders frozen frames for filmstrip capture. **Delete both when this is settled.** The shipped
+`BootLogoCanvas.tsx` has not been touched.
+
+**PARKED PICK: E, `?v=press`.** Three passes on a hand press. Each plate is slammed down whole, one
+at a time, the paper takes the hit, then a final press shoves all three into register and the colour
+drains to ink. 1.29s. **Why he picked it:** it is the most unique and different of the seven, and it
+is **dynamic, fluid and smooth**. Those three words are the brief now; see the next-step block below.
+
+**The four things that made the shipped wordmark read as Branon's**, all removed from every variant
+and not to be reintroduced: the J-hook flight path, the 8.5x oversized entrance with the late-biased
+shrink, the per-letter cascade bounce on scale, and the rainbow sweep across the settled word.
+
+**What is worth keeping from him, and is not his** (this is the useful half of the research): every
+letter or plate is its own event with its own timing; arrivals have mass; colour arrives as heat and
+cools to ink; no two durations are round numbers or multiples of each other; and the composition
+completes in **two movements** (his is the name, then his role line typing in underneath, staggered
+at `SWEEP_DURATION / 2 / character count`). His boot is also gated behind a real gesture, holds for
+1100ms before routing, and fires a pentatonic note per letter landing. We have no audio, but the
+principle (one beat driving more than one channel) transfers.
+
+**Rejected, with his reasons. Do not rebuild these:**
+- **A TYPED** (block cursor walks the line, letters snap in on the hero's keystroke cadence): the
+  cursor is too thick and too big on screen.
+- **C STRUCK** (print head crosses, letters struck over-inked and knocked down): rejected outright.
+- **B PLATES** (one misregistered sheet tapped into register): he likes the look, but the stepped
+  taps read as a **glitching** effect rather than something smooth.
+- **D CASCADE** (the plates, letter by letter, each pulling into focus on its own beat): smoother
+  than B but **plain and generic, not creative**. Per-letter sequencing is the most conventional
+  thing in this space; that is the lesson, not just a verdict on D.
+- **F HOT TYPE** (letters as metal sorts dropped under gravity, two decaying bounces, hot on impact,
+  neighbours flinch): his **second favourite**, genuinely liked, but not chosen.
+- **G BLOOM** (his oversized entrance done in ink: an over-inked mass contracting into crisp type):
+  **"really looks ugly to me."**
+- **H ROLLER** (the word as a dry ghost, one band of wet ink crossing it, hot leading edge): neat and
+  aesthetic but **too plain**.
+- **J EMBOSS** (blind impression struck into the paper, bevelled pixel rim, then ink floods in out of
+  register): unique and different, but again **too plain**.
+
+**Technique worth keeping regardless of which variant wins:** the plate look needs a **single-pass
+multiply shader** that samples the glyph mask once per plate and multiplies the results
+(`PLATE_FRAGMENT`). Three separate translucent draws just stack and go muddy. Out-of-span samples
+return zero so a shifted or dilated plate can never pick up its neighbour in the atlas, and the quad
+carries a margin so the offsets have room. Same trick powers the ink bloom (a ring-max dilation) and
+the emboss rim.
+
+**>> NEXT: DYNAMIC AND FLUID, WITH CHARACTERS FLYING IN (Aamir, 2026-09-22).** Everything above
+except F starts with the letters already on screen. What he actually responded to in Branon's is that
+the characters **fly in from outside the frame**, and the whole thing reads as **dynamic and fluid**.
+Next round: variants where the glyphs genuinely enter from off-screen, keeping press's smoothness and
+weight, without reusing the J-hook itself. Press stays the pick until something beats it.
+
 ## Section-screen findings (2026-08-21)
 
 Explored the PROJECTS section screen. Owner leans toward a **package-manager / catalog** feel
@@ -322,8 +377,10 @@ the Vercel cutover.**
    deliberate layout that reads as intentional emptiness. See `tasks/content.md` for the reasoning
    behind removing the chips.
 
-1. **Refine the boot wordmark so it stops reading as Branon's** (see the OPEN block in the Branon
-   section for why this is a motion problem, not a colour one).
+1. **Refine the boot wordmark so it stops reading as Branon's** (in progress, 2026-09-22). Seven
+   variants built and judged in the `/proto/boot` bench; **PRESS is the parked pick**, and the open
+   brief is "dynamic and fluid, characters flying in from off screen". Full record, including every
+   rejection and its reason, in the Branon section above.
 2. Decide what, if anything, fills the terminal's empty mid-screen space now that the tool-call trace
    is dropped (see parked items), or close the gap instead.
 3. **Fix the hydration mismatch on `/`** (see the pre-cutover bug section) before deploying.

@@ -185,9 +185,17 @@ its spec. This file only sequences that work into digestible, resumable commits.
 >
 > **Git state:** `main` = the Next.js app (vanilla Duolingo build removed; recoverable in history +
 > `my-portfolio-backup`). **The commit plan below is the PARKED Duolingo roadmap, not the new build.**
-> **Last activity:** 2026-09-05 — built the **WebGL boot wordmark**, stripped the title-bar status
-> chips from every page, and prototyped then **dropped** the tool-call trace. Next: refine the
-> wordmark so it stops reading as Branon's, then fix the hydration bug on `/` before deploying.
+> **WORDMARK MOTION: PRESS PARKED AS THE PICK (2026-09-22).** Built a throwaway bench at
+> **`/proto/boot`** and put **seven** motions in front of Aamir. He picked **E, PRESS**: three passes
+> on a hand press, each plate slammed down whole, the paper taking each hit, then a final press into
+> register. He chose it for being the most unique of the seven and for feeling **dynamic, fluid and
+> smooth**, which is now the brief. Parked, not final: the next round tries **characters flying in
+> from off screen**, which is the thing he actually responded to in Branon's. Every variant and every
+> rejection (with his own reasons) is recorded in `docs/revamp-handoff.md`, Branon section. The
+> shipped `BootLogoCanvas.tsx` is untouched; the bench gets deleted once this is settled.
+>
+> **Last activity:** 2026-09-22 — seven wordmark motion variants built and judged, PRESS parked as
+> the pick. Next: fly-in variants, then the hydration bug on `/` before deploying.
 
 Update this block whenever the position changes so a cold start knows exactly where to pick up.
 
